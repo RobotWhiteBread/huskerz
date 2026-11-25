@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nebraska volleyball, rally by rally</title>
+<meta name="description" content="An unofficial, fan-built analysis of 85,615 rallies of Nebraska volleyball, 2001-2026: momentum, serving, rotations, substitutions and timeouts.">
+<style>
+  :root {
+    --bg: #f8f6f1; --surface: #ffffff; --ink: #1c1a17; --ink-2: #4a453e; --muted: #6f685e;
+    --rule: #e3ddd2; --accent: #2a6fbe; --accent-soft: #b9d0ea; --ghost: #d9d3c8; --warn: #8a5a00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #151412; --surface: #1d1b19; --ink: #f1ede6; --ink-2: #cfc8bc; --muted: #a39b8f;
+            --rule: #34302b; --accent: #6ea8e8; --accent-soft: #2e4a6b; --ghost: #3a3631; --warn: #e0b25a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; overflow-wrap: break-word; }
+  header p.kicker { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  h1 { font: 700 clamp(30px, 6vw, 44px)/1.1 Georgia, "Times New Roman", serif; margin: 0 0 14px; letter-spacing: -.01em; }
+  h2 { font: 700 26px/1.2 Georgia, "Times New Roman", serif; margin: 48px 0 10px; }
+  p { margin: 0 0 14px; }
+  .lede { font-size: 19px; color: var(--ink-2); }
+  .disclaimer { font-size: 14px; color: var(--muted); border-left: 3px solid var(--rule); padding: 4px 0 4px 12px; }
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(136px, 1fr)); gap: 12px; margin: 22px 0; }
+  .stat { background: var(--surface); border: 1px solid var(--rule); padding: 12px 14px; }
+  .stat b { display: block; font: 700 26px/1.1 Georgia, serif; }
+  .stat span { font-size: 13px; color: var(--muted); }
+  .card { background: var(--surface); border: 1px solid var(--rule); padding: 16px; margin: 18px 0; }
+  .card .cap { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .answer { font-weight: 700; }
+  .chart { width: 100%; height: auto; display: block; }
+  .chart .grid { stroke: var(--rule); stroke-width: 1; }
+  .chart .tick, .chart .label { fill: var(--muted); font-size: 12px; font-family: inherit; }
+  .chart .label { fill: var(--ink-2); font-size: 13px; }
+  .chart .bar { fill: var(--accent-soft); }
+  .chart .bar.best { fill: var(--accent); }
+  .chart .bar.ghost { fill: var(--ghost); }
+  .chart .whisker { stroke: var(--ink-2); stroke-width: 1.2; }
+  .chart .rule { stroke: var(--ink-2); stroke-dasharray: 4 4; stroke-width: 1; }
+  .chart .dot { fill: var(--accent); }
+  .chart .line { fill: none; stroke: var(--accent); stroke-width: 1.5; opacity: .6; }
+  .tbl { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--rule); }
+  th:first-child, td:first-child { text-align: left; }
+  th { font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 600; white-space: normal; vertical-align: bottom; }
+  .ci { color: var(--muted); font-size: 13px; }
+  ul.limits li { margin-bottom: 8px; }
+  footer { margin-top: 56px; font-size: 14px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 16px; }
+  @media (max-width: 520px) { body { font-size: 16px; } th, td { padding: 5px 4px; font-size: 14px; } }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <p class="kicker">Unofficial &middot; fan-built &middot; 2001&ndash;2026</p>
+  <h1>Nebraska volleyball, rally by rally</h1>
+  <p class="lede">What 26 seasons of official play-by-play &mdash; 85,615 rallies in
+    1,898 sets of 616 matches &mdash; say about momentum, serving, rotations and the bench.</p>
+  <p class="disclaimer">Not affiliated with the University of Nebraska&ndash;Lincoln or Nebraska Athletics. Every number
+    here is computed from the official box scores and play-by-play the schools publish; counts sit beside every rate,
+    and every rate carries a 95% interval.</p>
+</header>
+
+<h2>2026 so far</h2>
+<div class="stat-row">
+  <div class="stat"><b>32&ndash;0</b><span>record through 2026-11-24</span></div>
+  <div class="stat"><b>8</b><span>sets lost</span></div>
+<div class="stat"><b>+7.5</b><span>point margin per set</span></div><div class="stat"><b>70.5%</b><span>side-out rate (1,138 of 1,614)</span></div></div>
+<p>Side-out rate &mdash; the share of the opponent's serves that end in a Nebraska point &mdash; is the number a bench
+  watches rotation by rotation. This season it is 70.5%, against 65.9%
+  over every season since 2001.
+  The best rotation sides out 73.6% of the time (145 of
+  197), the toughest 66.5% (226 of
+  340).</p>
+<div class="card">
+  <svg viewBox="0 0 640 270" role="img" aria-labelledby="rot-title" class="chart"><title id="rot-title">Nebraska side-out rate by rotation, with 95% intervals</title><line x1="46" x2="628" y1="236.0" y2="236.0" class="grid"/><text x="40" y="240.0" class="tick" text-anchor="end">0%</text><line x1="46" x2="628" y1="180.5" y2="180.5" class="grid"/><text x="40" y="184.5" class="tick" text-anchor="end">25%</text><line x1="46" x2="628" y1="125.0" y2="125.0" class="grid"/><text x="40" y="129.0" class="tick" text-anchor="end">50%</text><line x1="46" x2="628" y1="69.5" y2="69.5" class="grid"/><text x="40" y="73.5" class="tick" text-anchor="end">75%</text><line x1="46" x2="628" y1="14.0" y2="14.0" class="grid"/><text x="40" y="18.0" class="tick" text-anchor="end">100%</text><rect x="65.4" y="88.4" width="58.2" height="147.6" class="bar"><title>R1: 226 of 340 (66.5%)</title></rect><line x1="94.5" x2="94.5" y1="99.9" y2="77.8" class="whisker"/><line x1="88.5" x2="100.5" y1="99.9" y2="99.9" class="whisker"/><line x1="88.5" x2="100.5" y1="77.8" y2="77.8" class="whisker"/><text x="94.5" y="254" class="tick" text-anchor="middle">R1</text><rect x="162.4" y="76.2" width="58.2" height="159.8" class="bar"><title>R2: 213 of 296 (72.0%)</title></rect><line x1="191.5" x2="191.5" y1="88.2" y2="65.6" class="whisker"/><line x1="185.5" x2="197.5" y1="88.2" y2="88.2" class="whisker"/><line x1="185.5" x2="197.5" y1="65.6" y2="65.6" class="whisker"/><text x="191.5" y="254" class="tick" text-anchor="middle">R2</text><rect x="259.4" y="74.7" width="58.2" height="161.3" class="bar"><title>R3: 202 of 278 (72.7%)</title></rect><line x1="288.5" x2="288.5" y1="86.9" y2="63.8" class="whisker"/><line x1="282.5" x2="294.5" y1="86.9" y2="86.9" class="whisker"/><line x1="282.5" x2="294.5" y1="63.8" y2="63.8" class="whisker"/><text x="288.5" y="254" class="tick" text-anchor="middle">R3</text><rect x="356.4" y="79.6" width="58.2" height="156.4" class="bar"><title>R4: 186 of 264 (70.5%)</title></rect><line x1="385.5" x2="385.5" y1="92.4" y2="68.1" class="whisker"/><line x1="379.5" x2="391.5" y1="92.4" y2="92.4" class="whisker"/><line x1="379.5" x2="391.5" y1="68.1" y2="68.1" class="whisker"/><text x="385.5" y="254" class="tick" text-anchor="middle">R4</text><rect x="453.4" y="81.8" width="58.2" height="154.2" class="bar"><title>R5: 166 of 239 (69.5%)</title></rect><line x1="482.5" x2="482.5" y1="95.4" y2="69.6" class="whisker"/><line x1="476.5" x2="488.5" y1="95.4" y2="95.4" class="whisker"/><line x1="476.5" x2="488.5" y1="69.6" y2="69.6" class="whisker"/><text x="482.5" y="254" class="tick" text-anchor="middle">R5</text><rect x="550.4" y="72.6" width="58.2" height="163.4" class="bar best"><title>R6: 145 of 197 (73.6%)</title></rect><line x1="579.5" x2="579.5" y1="87.2" y2="60.0" class="whisker"/><line x1="573.5" x2="585.5" y1="87.2" y2="87.2" class="whisker"/><line x1="573.5" x2="585.5" y1="60.0" y2="60.0" class="whisker"/><text x="579.5" y="254" class="tick" text-anchor="middle">R6</text><line x1="46" x2="628" y1="79.5" y2="79.5" class="rule"/><text x="50" y="73.5" class="tick">season 70.5%</text></svg>
+  <div class="tbl"><table>
+    <thead><tr><th>Rotation</th><th>Side-out</th><th>Receptions</th><th>95% interval</th><th>Point-scoring</th></tr></thead>
+    <tbody>
+      <tr><td>R1</td><td>66.5%</td><td>226 / 340</td>
+        <td class="ci">61%&ndash;71%</td><td>49.9%</td></tr>
+      <tr><td>R2</td><td>72.0%</td><td>213 / 296</td>
+        <td class="ci">67%&ndash;77%</td><td>49.1%</td></tr>
+      <tr><td>R3</td><td>72.7%</td><td>202 / 278</td>
+        <td class="ci">67%&ndash;78%</td><td>54.1%</td></tr>
+      <tr><td>R4</td><td>70.5%</td><td>186 / 264</td>
+        <td class="ci">65%&ndash;76%</td><td>50.1%</td></tr>
+      <tr><td>R5</td><td>69.5%</td><td>166 / 239</td>
+        <td class="ci">63%&ndash;75%</td><td>49.2%</td></tr>
+      <tr><td>R6</td><td>73.6%</td><td>145 / 197</td>
+        <td class="ci">67%&ndash;79%</td><td>51.5%</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">Rotations are numbered from where each set started (R1 at the first serve, one more each time Nebraska
+    sides out), not from a fixed lineup slot. Point-scoring is the share of Nebraska's own serves it wins.</p>
+</div>
+
+<h2>Momentum: scoring runs aren't what they look like</h2>
+<p>After winning three rallies in a row, Nebraska wins the next one 49.4% of the time &mdash; <em>less</em>
+  than its 55.7% on all 85,615 rallies. That isn't a cold streak. The team that wins a rally serves the
+  next one (true on 83,717 of 83,717 consecutive rallies), and serving is the harder side of
+  the net. Winning hands the serve over.</p>
+<p>Compare like with like &mdash; serves that follow a streak against serves that start a fresh turn, after taking out
+  what a random order of the same rallies produces &mdash; and what is left is <span class="answer">+0.5
+  points</span> (95% interval -0.6 to +1.5). The record is big enough to catch an
+  effect of about 1.3 points; it doesn't find one.</p>
+<div class="card">
+  <svg viewBox="0 0 640 150" role="img" aria-labelledby="runs-title" class="chart"><title id="runs-title">Runs of three or more points: actual against a random order of the same rallies</title><text x="140" y="29" class="label" text-anchor="end">Nebraska runs</text><rect x="150" y="14" width="323.7" height="20" class="bar best"/><text x="479.7" y="29" class="tick">5,380 actual</text><rect x="150" y="38" width="388.9" height="20" class="bar ghost"/><text x="544.9" y="53" class="tick">6,462 if random</text><text x="140" y="93" class="label" text-anchor="end">Opponent runs</text><rect x="150" y="78" width="171.5" height="20" class="bar best"/><text x="327.5" y="93" class="tick">2,850 actual</text><rect x="150" y="102" width="242.6" height="20" class="bar ghost"/><text x="398.6" y="117" class="tick">4,032 if random</text></svg>
+  <p class="cap">Runs of three or more points. Shuffling each set's own rallies into a random order 2,000
+    times (keeping every final score) produces <em>more</em> runs than really happened, for both teams: winning a rally
+    hands over the serve, which breaks runs up.</p>
+</div>
+
+<h2>Serving harder doesn't pay</h2>
+<p>Over 47,212 Nebraska serves in 26 seasons, 5.2% were aces and 8.2%
+  errors. When a serve lands and isn't an ace, Nebraska still wins the rally 48.8% of the time &mdash; so a
+  missed serve throws that away, and <span class="answer">one extra point of error rate has to buy about
+  0.95 points of ace rate</span> just to break even.</p>
+<p>Nebraska's servers get nowhere near it. Comparing servers with each other, the riskier ones buy about
+  0.34 <span class="ci">(95% interval 0.16 to 0.30)</span>;
+  following one server from one season to the next, about 0.16
+  <span class="ci">(0.05 to 0.27)</span>. Against a serve that never
+  missed and never aced, the serving as a whole is worth -0.013 points a serve &mdash;
+  about -626 points over 26 seasons.</p>
+
+<h2>How the game changed</h2>
+<p>Rally scoring arrived in 2001 and the 25-point set in 2008, but the set only changed length once.</p><div class="tbl"><table>
+  <thead><tr><th>Seasons</th><th>Scoring</th><th>Points per set</th><th>Rallies per set</th></tr></thead>
+  <tbody>
+    <tr><td>2000</td>
+      <td>side-out, to 15</td>
+      <td>22.3</td><td>51.4</td></tr>
+    <tr><td>2001&ndash;2007</td>
+      <td>rally, to 30</td>
+      <td>51.2</td><td>51.1</td></tr>
+    <tr><td>2008&ndash;2025</td>
+      <td>rally, to 25</td>
+      <td>43.0</td><td>42.9</td></tr>
+  </tbody>
+</table></div>
+<p class="cap" style="font-size:13px;color:var(--muted)">Under side-out scoring only the serving team could score, so a set
+  had as many rallies as a rally-scoring set to 30 but less than half the points.</p>
+<p>Matches have also slowed down. Nebraska's matches ran at 1.72 rallies a
+  minute in 2000 and 1.43 in 2026
+  (550 matches print both a duration and a full rally log).</p>
+<div class="card"><svg viewBox="0 0 640 250" role="img" aria-labelledby="pace-title" class="chart"><title id="pace-title">Rallies per minute by season, with 95% intervals</title><line x1="46" x2="628" y1="216.0" y2="216.0" class="grid"/><text x="40" y="220.0" class="tick" text-anchor="end">1.3</text><line x1="46" x2="628" y1="175.6" y2="175.6" class="grid"/><text x="40" y="179.6" class="tick" text-anchor="end">1.4</text><line x1="46" x2="628" y1="135.2" y2="135.2" class="grid"/><text x="40" y="139.2" class="tick" text-anchor="end">1.5</text><line x1="46" x2="628" y1="94.8" y2="94.8" class="grid"/><text x="40" y="98.8" class="tick" text-anchor="end">1.6</text><line x1="46" x2="628" y1="54.4" y2="54.4" class="grid"/><text x="40" y="58.4" class="tick" text-anchor="end">1.7</text><line x1="46" x2="628" y1="14.0" y2="14.0" class="grid"/><text x="40" y="18.0" class="tick" text-anchor="end">1.8</text><text x="46.0" y="234" class="tick" text-anchor="middle">2000</text><text x="157.9" y="234" class="tick" text-anchor="middle">2005</text><text x="269.8" y="234" class="tick" text-anchor="middle">2010</text><text x="381.8" y="234" class="tick" text-anchor="middle">2015</text><text x="493.7" y="234" class="tick" text-anchor="middle">2020</text><text x="605.6" y="234" class="tick" text-anchor="middle">2025</text><line x1="46.0" x2="46.0" y1="83.1" y2="16.4" class="whisker"/><circle cx="46.0" cy="45.5" r="3.5" class="dot"><title>2000: 1.72 rallies a minute over 22 matches</title></circle><line x1="68.4" x2="68.4" y1="78.2" y2="36.2" class="whisker"/><circle cx="68.4" cy="58.0" r="3.5" class="dot"><title>2001: 1.69 rallies a minute over 23 matches</title></circle><line x1="90.8" x2="90.8" y1="47.9" y2="16.4" class="whisker"/><circle cx="90.8" cy="32.2" r="3.5" class="dot"><title>2002: 1.75 rallies a minute over 13 matches</title></circle><line x1="113.2" x2="113.2" y1="71.4" y2="30.6" class="whisker"/><circle cx="113.2" cy="50.4" r="3.5" class="dot"><title>2003: 1.71 rallies a minute over 23 matches</title></circle><line x1="135.5" x2="135.5" y1="55.2" y2="23.3" class="whisker"/><circle cx="135.5" cy="39.9" r="3.5" class="dot"><title>2004: 1.74 rallies a minute over 25 matches</title></circle><line x1="157.9" x2="157.9" y1="56.8" y2="33.8" class="whisker"/><circle cx="157.9" cy="45.5" r="3.5" class="dot"><title>2005: 1.72 rallies a minute over 30 matches</title></circle><line x1="180.3" x2="180.3" y1="46.7" y2="24.9" class="whisker"/><circle cx="180.3" cy="36.2" r="3.5" class="dot"><title>2006: 1.75 rallies a minute over 31 matches</title></circle><line x1="202.7" x2="202.7" y1="60.5" y2="35.4" class="whisker"/><circle cx="202.7" cy="47.5" r="3.5" class="dot"><title>2007: 1.72 rallies a minute over 29 matches</title></circle><line x1="225.1" x2="225.1" y1="107.7" y2="84.3" class="whisker"/><circle cx="225.1" cy="96.0" r="3.5" class="dot"><title>2008: 1.60 rallies a minute over 33 matches</title></circle><line x1="247.5" x2="247.5" y1="118.6" y2="96.0" class="whisker"/><circle cx="247.5" cy="107.3" r="3.5" class="dot"><title>2009: 1.57 rallies a minute over 33 matches</title></circle><line x1="269.8" x2="269.8" y1="130.8" y2="106.5" class="whisker"/><circle cx="269.8" cy="118.6" r="3.5" class="dot"><title>2010: 1.54 rallies a minute over 31 matches</title></circle><line x1="292.2" x2="292.2" y1="165.9" y2="104.5" class="whisker"/><circle cx="292.2" cy="142.5" r="3.5" class="dot"><title>2011: 1.48 rallies a minute over 27 matches</title></circle><line x1="314.6" x2="314.6" y1="159.4" y2="139.2" class="whisker"/><circle cx="314.6" cy="149.3" r="3.5" class="dot"><title>2012: 1.47 rallies a minute over 32 matches</title></circle><line x1="337.0" x2="337.0" y1="162.3" y2="138.8" class="whisker"/><circle cx="337.0" cy="150.6" r="3.5" class="dot"><title>2013: 1.46 rallies a minute over 31 matches</title></circle><line x1="359.4" x2="359.4" y1="160.2" y2="138.8" class="whisker"/><circle cx="359.4" cy="149.3" r="3.5" class="dot"><title>2014: 1.47 rallies a minute over 32 matches</title></circle><line x1="381.8" x2="381.8" y1="182.5" y2="161.9" class="whisker"/><circle cx="381.8" cy="172.0" r="3.5" class="dot"><title>2015: 1.41 rallies a minute over 34 matches</title></circle><line x1="404.2" x2="404.2" y1="209.9" y2="182.1" class="whisker"/><circle cx="404.2" cy="196.6" r="3.5" class="dot"><title>2016: 1.35 rallies a minute over 9 matches</title></circle><line x1="426.5" x2="426.5" y1="196.6" y2="148.5" class="whisker"/><circle cx="426.5" cy="172.4" r="3.5" class="dot"><title>2017: 1.41 rallies a minute over 10 matches</title></circle><line x1="448.9" x2="448.9" y1="196.2" y2="156.6" class="whisker"/><circle cx="448.9" cy="176.4" r="3.5" class="dot"><title>2018: 1.40 rallies a minute over 13 matches</title></circle><line x1="560.8" x2="560.8" y1="204.7" y2="56.8" class="whisker"/><circle cx="560.8" cy="149.7" r="3.5" class="dot"><title>2023: 1.46 rallies a minute over 14 matches</title></circle><line x1="583.2" x2="583.2" y1="214.0" y2="179.2" class="whisker"/><circle cx="583.2" cy="196.6" r="3.5" class="dot"><title>2024: 1.35 rallies a minute over 13 matches</title></circle><line x1="605.6" x2="605.6" y1="168.3" y2="130.8" class="whisker"/><circle cx="605.6" cy="149.7" r="3.5" class="dot"><title>2025: 1.46 rallies a minute over 12 matches</title></circle><line x1="628.0" x2="628.0" y1="178.4" y2="151.8" class="whisker"/><circle cx="628.0" cy="164.3" r="3.5" class="dot"><title>2026: 1.43 rallies a minute over 30 matches</title></circle><polyline points="46.0,45.5 68.4,58.0 90.8,32.2 113.2,50.4 135.5,39.9 157.9,45.5 180.3,36.2 202.7,47.5 225.1,96.0 247.5,107.3 269.8,118.6 292.2,142.5 314.6,149.3 337.0,150.6 359.4,149.3 381.8,172.0 404.2,196.6 426.5,172.4 448.9,176.4" class="line"/><polyline points="560.8,149.7 583.2,196.6 605.6,149.7 628.0,164.3" class="line"/></svg>
+  <p class="cap">Seasons without a figure are seasons whose box scores print no match duration.</p></div>
+
+<h2>On the bench</h2>
+<p><strong>When does Nebraska substitute?</strong> In the 94 sets of Busboom Kelly 2025-2026 whose substitutions the record lets
+  us read, Nebraska made 394 substitutions. 235 were planned rotation swaps &mdash; the same specialist
+  in and out at the same turn of the rotation, set after set &mdash; and 82 came with Nebraska up
+  6 or more late in a set or a set from the match.
+  That leaves 21 like-for-like changes, the only ones that could be a reaction to how a set was going.
+None of 7 possible triggers the record can see &mdash; a player's own errors just
+  before, an opponent run, a stretch of failed side-outs, the score &mdash; shows up at those moments more than chance
+  allows. With so few, that rules out a big, regular trigger, not a subtle one. The same test does find triggers in Cook 2016-2024 (41 like-for-like
+  changes), so it can find one when one is there.</p>
+<p><strong>Do timeouts stop a run?</strong> Of the 3,815 timeouts the logs place between rallies, Nebraska called
+  1,242. Nebraska won 794 of the rallies right after them, against 804
+  expected from the same situations without a timeout (p = 0.54). Opponents' 2,297 timeouts
+  made no measurable difference either (p = 0.86).</p>
+
+<h2>What this record can't show</h2>
+<ul class="limits">
+  <li>Each rally is printed as the one action that ended it: a kill, an error, an ace, a block. Passes, sets, digs and
+    attacks that were dug are recorded nowhere, so nothing here measures them.</li>
+  <li>Opponents appear only in their matches against Nebraska, so nothing here is a scouting report on anyone else.</li>
+  <li>Rates on small samples come with wide intervals; read the interval, not just the number.</li>
+</ul>
+
+<h2>How it's built</h2>
+<p>Every official box score from 2001 on is archived as published, parsed, and checked against its own
+  printed totals before it counts (879 box scores). A rally log
+  is used only if every set passes six checks: rallies equal the final score, the score moves one point at a time, the
+  serve changes on every side-out, the server follows the rotation, the final matches the box score, and the points by
+  type match the box score. Where a school's site publishes the same match, the two logs are compared rally for rally.
+Every one of these checks held when this page was built.</p>
+
+<footer>
+  <p>Sources: official box scores and play-by-play published by Nebraska Athletics (huskers.com) and by opponents' athletics
+    sites. This page redistributes no box score or play-by-play; it reports numbers computed from them.</p>
+  <p>Built 2026-11-25 from analysis version 5a554e5. Unofficial and
+    not affiliated with the University of Nebraska&ndash;Lincoln, Nebraska Athletics or any school named here.</p>
+</footer>
+</main>
+</body>
+</html>
