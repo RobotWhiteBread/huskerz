@@ -1,0 +1,83 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   HuskerStats design tokens — source of truth for all visual variables.
+
+   Rules:
+     --scarlet    = Nebraska identity accent ONLY. Never use as data signal.
+     --signal-pos = wins, above-average, positive delta  (deep green)
+     --signal-neg = losses, below-average, negative delta (deep red ≠ scarlet)
+     --paper-*    = background/surface hierarchy (warm white, not pure white)
+     --ink-*      = text hierarchy (warm black, not #000)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Surface palette ─────────────────────────────────────────────────── */
+  --paper:         #F9F6F0;   /* page background */
+  --paper-dark:    #F2EDE4;   /* slightly deeper surface (sidebar, inset) */
+  --paper-line:    #E5DFD4;   /* rules, borders, dividers */
+  --paper-hover:   #EDE8DF;   /* row hover, light highlight */
+
+  /* ── Ink hierarchy ───────────────────────────────────────────────────── */
+  --ink:           #1A1714;   /* body text, primary */
+  --ink-2:         #3D3830;   /* secondary labels */
+  --ink-muted:     #6B6259;   /* captions, metadata */
+  --ink-ghost:     #A09080;   /* placeholder, disabled */
+
+  /* ── Nebraska identity — accent only ─────────────────────────────────── */
+  --scarlet:       #D62B3A;
+  --scarlet-dk:    #A8202D;
+  --scarlet-bg:    rgba(214, 43, 58, 0.07);
+
+  /* ── Performance signal — carry meaning, never brand ────────────────── */
+  --signal-pos:    #1F6644;   /* win / above-average */
+  --signal-neg:    #8B3030;   /* loss / below-average (distinct from scarlet) */
+  --signal-neu:    #5A5247;   /* neutral / average */
+  --signal-pos-bg: #E8F4EE;
+  --signal-neg-bg: #F7EDED;
+
+  /* ── Structural ──────────────────────────────────────────────────────── */
+  --nav-bg:        #160509;
+  --nav-border:    #3D1018;
+  --white:         #FFFFFF;
+
+  /* ── Arena panel — the dark surface anything showing a court or a rally
+        sits on (design/Main.dc.html, design/Match.dc.html) ─────────────── */
+  --arena:         #160509;   /* panel ground */
+  --arena-floor:   #1E0A0F;   /* the court itself */
+  --arena-line:    #3A181E;   /* attack lines, faint rules */
+  --arena-net:     #6E3A42;   /* the net */
+  --arena-edge:    #4A2A30;   /* court border */
+  --arena-ink:     #F5EFE6;   /* text on the panel */
+  --arena-ink-2:   #C9B8A8;   /* secondary text on the panel */
+
+  /* ── Data colours — never scarlet (handoff section 6) ────────────────── */
+  --series:        #2a78d6;   /* one series */
+  --series-emph:   #eb6834;   /* the emphasised one */
+  --series-3:      #1F6644;
+  --series-4:      #6B4BA8;
+  --series-neutral:#5A5247;
+
+  /* ── Type scale ──────────────────────────────────────────────────────── */
+  --text-xs:    0.72rem;
+  --text-sm:    0.84rem;
+  --text-base:  1rem;
+  --text-lg:    1.1rem;
+  --text-xl:    1.3rem;
+  --text-2xl:   1.65rem;
+  --text-3xl:   2.2rem;
+
+  /* ── Spacing ─────────────────────────────────────────────────────────── */
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.25rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-12: 3rem;
+
+  /* ── Misc ────────────────────────────────────────────────────────────── */
+  --max-w:        1200px;
+  --radius:       2px;
+  --shadow-card:  0 1px 2px rgba(26, 23, 20, 0.07);
+  --shadow-rule:  0 1px 0 var(--paper-line);
+}

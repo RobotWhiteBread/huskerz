@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Bench 2009 · HuskerStats</title>
+
+
+
+<link href="../../../assets/tokens.css" rel="stylesheet"/>
+<link href="../../../assets/app.css" rel="stylesheet"/>
+<link href="../../../assets/analyses.css" rel="stylesheet"/>
+<script src="../../../assets/plotly.min.js"></script>
+</head>
+<body>
+<header>
+<div class="masthead-rule"></div>
+<nav>
+<a class="brand" href="../../../index.html">HuskerStats</a>
+<div class="nav-sections"><a class="nav-link" href="../../../season/index.html">Season</a><a class="nav-link" href="../../../analyses/index.html">Studies</a><a class="nav-link" href="../2026/index.html">Bench</a><a class="nav-link" href="../../subs/index.html">Substitutions and timeouts</a><a class="nav-link" href="../../../history/index.html">History</a><a class="nav-link" href="../../../coverage/index.html">Coverage</a></div>
+
+</nav>
+</header>
+<main>
+<style>
+  .bench-ci { font-size: var(--text-xs); white-space: nowrap; }
+  .bench-small { background: #FEF3C7; color: #7A4A00; font-size: var(--text-xs); }
+  .bench-note { font-size: var(--text-sm); margin: .5rem 0 1.25rem; max-width: 80ch; }
+  .bench-h3 { font-size: var(--text-base); margin: 1rem 0 .4rem; }
+  .bench-answer { font-size: var(--text-lg, 1.15rem); line-height: 1.55; max-width: 78ch; }
+  .bench-answer strong { color: var(--ink); }   /* scarlet marks Nebraska, never a finding */
+  .bench-section { margin-top: 2rem; }
+  .bench-links { display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
+  table.data td .bench-ci { display: block; }
+</style>
+<div class="page-hd">
+<h1>Bench sheet · 2009</h1>
+<p class="muted">32 matches, 99 trusted sets, 4,212 rallies · head coach John Cook · sources:
+    statcrew_corpus 99.
+    </p>
+</div>
+<div class="rot-tabs">
+<span class="lbl">Season</span>
+<a class="toggle-btn" href="../2026/index.html">2026</a>
+<a class="toggle-btn" href="../2025/index.html">2025</a>
+<a class="toggle-btn" href="../2024/index.html">2024</a>
+<a class="toggle-btn" href="../2023/index.html">2023</a>
+<a class="toggle-btn" href="../2022/index.html">2022</a>
+<a class="toggle-btn" href="../2021/index.html">2021</a>
+<a class="toggle-btn" href="../2020/index.html">2020-21</a>
+<a class="toggle-btn" href="../2019/index.html">2019</a>
+<a class="toggle-btn" href="../2018/index.html">2018</a>
+<a class="toggle-btn" href="../2017/index.html">2017</a>
+<a class="toggle-btn" href="../2016/index.html">2016</a>
+<a class="toggle-btn" href="../2015/index.html">2015</a>
+<a class="toggle-btn" href="../2014/index.html">2014</a>
+<a class="toggle-btn" href="../2013/index.html">2013</a>
+<a class="toggle-btn" href="../2012/index.html">2012</a>
+<a class="toggle-btn" href="../2011/index.html">2011</a>
+<a class="toggle-btn" href="../2010/index.html">2010</a>
+<a class="toggle-btn active" href="index.html">2009</a>
+<a class="toggle-btn" href="../2008/index.html">2008</a>
+<a class="toggle-btn" href="../2007/index.html">2007</a>
+<a class="toggle-btn" href="../2006/index.html">2006</a>
+<a class="toggle-btn" href="../2005/index.html">2005</a>
+<a class="toggle-btn" href="../2004/index.html">2004</a>
+<a class="toggle-btn" href="../2003/index.html">2003</a>
+<a class="toggle-btn" href="../2002/index.html">2002</a>
+<a class="toggle-btn" href="../2001/index.html">2001</a>
+</div>
+<div class="gap soft">
+<div class="gap-hd">Terminal actions only</div>
+<div class="gap-body">A rally is printed as the one action that ended it, so an attack that was dug, a pass, a set or a dig is recorded nowhere; these are counts of kills, errors, aces and blocks that ended a rally, never attempts.</div>
+</div>
+<h2 class="bench-section">Rotation scoreboard</h2>
+<div class="chart-card">
+<div class="chart-card-hd">Side-out and point-scoring by Nebraska rotation · 2009</div>
+<div> <div class="plotly-graph-div" id="57216daa-c104-43b2-867a-12718be0aa6c" style="height:280px; width:100%;"></div> <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("57216daa-c104-43b2-867a-12718be0aa6c")) {                    Plotly.newPlot(                        "57216daa-c104-43b2-867a-12718be0aa6c",                        [{"customdata":[[251,390,0.595,0.69,""],[234,361,0.598,0.696,""],[217,329,0.607,0.709,""],[203,311,0.598,0.703,""],[187,283,0.604,0.713,""],[171,260,0.598,0.713,""]],"error_y":{"array":[0.04599999999999993,0.04799999999999993,0.04899999999999993,0.04999999999999993,0.051999999999999935,0.05499999999999994],"arrayminus":[0.049000000000000044,0.050000000000000044,0.05300000000000005,0.05500000000000005,0.05700000000000005,0.06000000000000005],"color":"#5A5247","symmetric":false,"thickness":1,"type":"data","width":3},"hovertemplate":"Nebraska side-out %{x}\u003cbr\u003e%{y:.1%} = %{customdata[0]} of %{customdata[1]}\u003cbr\u003e95% interval %{customdata[2]:.1%} to %{customdata[3]:.1%}\u003cbr\u003e%{customdata[4]}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2a78d6","#2a78d6","#2a78d6","#2a78d6","#2a78d6","#2a78d6"]},"name":"Nebraska side-out","x":["R1","R2","R3","R4","R5","R6"],"y":[0.644,0.648,0.66,0.653,0.661,0.658],"type":"bar"},{"customdata":[[170,389,0.389,0.487,""],[205,445,0.415,0.507,""],[188,408,0.413,0.509,""],[191,397,0.432,0.53,""],[156,348,0.397,0.501,""],[117,291,0.347,0.459,""]],"error_y":{"array":[0.04999999999999999,0.045999999999999985,0.04799999999999999,0.049000000000000044,0.05299999999999999,0.056999999999999995],"arrayminus":[0.04799999999999999,0.04600000000000004,0.04800000000000004,0.04899999999999999,0.05099999999999999,0.05500000000000005],"color":"#5A5247","symmetric":false,"thickness":1,"type":"data","width":3},"hovertemplate":"Nebraska point-scoring %{x}\u003cbr\u003e%{y:.1%} = %{customdata[0]} of %{customdata[1]}\u003cbr\u003e95% interval %{customdata[2]:.1%} to %{customdata[3]:.1%}\u003cbr\u003e%{customdata[4]}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#eb6834","#eb6834","#eb6834","#eb6834","#eb6834","#eb6834"]},"name":"Nebraska point-scoring","x":["R1","R2","R3","R4","R5","R6"],"y":[0.437,0.461,0.461,0.481,0.448,0.402],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"yaxis":{"title":{"text":"share of rallies won"},"tickformat":".0%","range":[0,1],"gridcolor":"#E5DFD4","zeroline":false},"barmode":"group","margin":{"t":16,"l":56,"r":16,"b":44},"font":{"family":"Source Sans 3, sans-serif","color":"#1A1714"},"legend":{"orientation":"h","y":1.12,"x":0,"entrywidth":205,"entrywidthmode":"pixels"},"height":280,"plot_bgcolor":"#FFFFFF","paper_bgcolor":"#FFFFFF","bargap":0.25,"bargroupgap":0.08},                        {"displayModeBar": false, "responsive": true, "scrollZoom": false}                    )                };            </script> </div>
+<p class="vb-caption">Nebraska's rotation index: 1 at the set's first serve, +1 on every Nebraska side-out, relative to the set's own start and not a lineup position (two sets that opened in different alignments share an index without sharing six players). Side-out = rallies won while receiving / receptions; point-scoring = rallies won while serving / serves; +/- = rallies won minus lost in that rotation. Bars carry the 95% Wilson interval; faint bars are small samples.
+    The same numbers are in the table.</p>
+</div>
+<div class="tbl-wrap">
+<table class="data bench-rot">
+<thead>
+<tr>
+<th>Rotation</th>
+<th class="num" data-type="num" onclick="sortTable(this)">Nebraska side-out</th>
+<th class="num" data-type="num" onclick="sortTable(this)">Point-scoring</th>
+<th class="num" data-type="num" onclick="sortTable(this)">Rallies</th>
+<th class="num" data-type="num" onclick="sortTable(this)">Won</th>
+<th class="num" data-type="num" onclick="sortTable(this)">Lost</th>
+<th class="num" data-type="num" onclick="sortTable(this)">+/-</th>
+</tr>
+</thead>
+<tbody>
+<tr data-rotation="1">
+<td>R1 <span class="badge badge-L">worst side-out</span></td>
+<td class="num" data-val="0.644"><span class="num" data-k="251" data-n="390">0.644</span>
+<span class="muted bench-ci">251/390 · 0.595–0.690</span></td>
+<td class="num" data-val="0.437"><span class="num" data-k="170" data-n="389">0.437</span>
+<span class="muted bench-ci">170/389 · 0.389–0.487</span></td>
+<td class="num">779</td>
+<td class="num">421</td>
+<td class="num">358</td>
+<td class="num" data-val="63">+63</td>
+</tr>
+<tr data-rotation="2">
+<td>R2</td>
+<td class="num" data-val="0.648"><span class="num" data-k="234" data-n="361">0.648</span>
+<span class="muted bench-ci">234/361 · 0.598–0.696</span></td>
+<td class="num" data-val="0.461"><span class="num" data-k="205" data-n="445">0.461</span>
+<span class="muted bench-ci">205/445 · 0.415–0.507</span></td>
+<td class="num">806</td>
+<td class="num">439</td>
+<td class="num">367</td>
+<td class="num" data-val="72">+72</td>
+</tr>
+<tr data-rotation="3">
+<td>R3</td>
+<td class="num" data-val="0.66"><span class="num" data-k="217" data-n="329">0.660</span>
+<span class="muted bench-ci">217/329 · 0.607–0.709</span></td>
+<td class="num" data-val="0.461"><span class="num" data-k="188" data-n="408">0.461</span>
+<span class="muted bench-ci">188/408 · 0.413–0.509</span></td>
+<td class="num">737</td>
+<td class="num">405</td>
+<td class="num">332</td>
+<td class="num" data-val="73">+73</td>
+</tr>
+<tr data-rotation="4">
+<td>R4</td>
+<td class="num" data-val="0.653"><span class="num" data-k="203" data-n="311">0.653</span>
+<span class="muted bench-ci">203/311 · 0.598–0.703</span></td>
+<td class="num" data-val="0.481"><span class="num" data-k="191" data-n="397">0.481</span>
+<span class="muted bench-ci">191/397 · 0.432–0.530</span></td>
+<td class="num">708</td>
+<td class="num">394</td>
+<td class="num">314</td>
+<td class="num" data-val="80">+80</td>
+</tr>
+<tr data-rotation="5">
+<td>R5 <span class="badge badge-W">best side-out</span></td>
+<td class="num" data-val="0.661"><span class="num" data-k="187" data-n="283">0.661</span>
+<span class="muted bench-ci">187/283 · 0.604–0.713</span></td>
+<td class="num" data-val="0.448"><span class="num" data-k="156" data-n="348">0.448</span>
+<span class="muted bench-ci">156/348 · 0.397–0.501</span></td>
+<td class="num">631</td>
+<td class="num">343</td>
+<td class="num">288</td>
+<td class="num" data-val="55">+55</td>
+</tr>
+<tr data-rotation="6">
+<td>R6</td>
+<td class="num" data-val="0.658"><span class="num" data-k="171" data-n="260">0.658</span>
+<span class="muted bench-ci">171/260 · 0.598–0.713</span></td>
+<td class="num" data-val="0.402"><span class="num" data-k="117" data-n="291">0.402</span>
+<span class="muted bench-ci">117/291 · 0.347–0.459</span></td>
+<td class="num">551</td>
+<td class="num">288</td>
+<td class="num">263</td>
+<td class="num" data-val="25">+25</td>
+</tr>
+<tr class="totals-row">
+<td>all</td>
+<td class="num"><span class="num" data-k="1263" data-n="1934">0.653</span>
+<span class="muted bench-ci">1263/1934 · 0.632–0.674</span></td>
+<td class="num"><span class="num" data-k="1027" data-n="2278">0.451</span>
+<span class="muted bench-ci">1027/2278 · 0.431–0.471</span></td>
+<td class="num">4212</td>
+<td class="num">2290</td>
+<td class="num">1922</td>
+<td class="num">+368</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="muted bench-note">Best and worst are ranked among the 6 rotations with at least
+  30 receptions, and their intervals overlap: the ranking is not established.
+</p>
+<h2 class="bench-section">Earned against gifted</h2>
+<p class="muted bench-note" style="margin-top:0">Earned = Nebraska kills, aces and blocks; gifted = opponent attack errors (not blocked), service errors and other errors (ball-handling, bad set, block error); given away = the same three errors by Nebraska; lost to their earned = opponent kills, aces and Nebraska attacks blocked.</p>
+<div class="tbl-wrap">
+<table class="data"><thead>
+<tr>
+<th></th>
+<th class="num" colspan="4">Earned</th><th class="num" colspan="4">Gifted by the opponent</th>
+<th class="num" colspan="4">Given away by Nebraska</th><th class="num" colspan="3">Lost to their earned</th>
+</tr>
+<tr>
+<th></th>
+<th class="num">Kills</th><th class="num">Aces</th><th class="num">Blocks</th><th class="num">Total</th>
+<th class="num">Attack err.</th><th class="num">Serve err.</th><th class="num">Other err.</th><th class="num">Total</th>
+<th class="num">Attack err.</th><th class="num">Serve err.</th><th class="num">Other err.</th><th class="num">Total</th>
+<th class="num">Their kills</th><th class="num">Their aces</th><th class="num">Our attacks blocked</th>
+</tr>
+</thead><tbody><tr>
+<td>the season</td>
+<td class="num">1444</td><td class="num">108</td>
+<td class="num">236</td><td class="num"><strong>1788</strong></td>
+<td class="num">307</td><td class="num">154</td>
+<td class="num">41</td><td class="num"><strong>502</strong></td>
+<td class="num">343</td><td class="num">209</td>
+<td class="num">33</td><td class="num"><strong>585</strong></td>
+<td class="num">1087</td><td class="num">57</td>
+<td class="num">193</td>
+</tr></tbody></table>
+</div>
+<p class="muted bench-note">Earned share of Nebraska's points <span class="num" data-k="1788" data-n="2290">0.781</span>
+<span class="muted bench-ci">1788/2290 · 0.763–0.797</span>;
+  given-away share of the points it lost <span class="num" data-k="585" data-n="1922">0.304</span>
+<span class="muted bench-ci">585/1922 · 0.284–0.325</span>. Per set: earned
+  18.0606, gifted 5.0707, given away
+  5.9091, lost to their earned 13.5051.</p>
+<h2 class="bench-section">Run stoppers</h2>
+<p class="muted bench-note" style="margin-top:0">Opponent runs of 3 or more points in a row; the rotation is Nebraska's during the run (it cannot change, because Nebraska rotates only on a side-out); the run ends on the rally Nebraska wins, and the stopper is the player whose kill or block won it.</p>
+<div class="chart-grid">
+<section class="card">
+<div class="chart-card-hd"><strong>146 opponent runs: how they ended</strong></div>
+<table class="data"><tbody><tr><td>kill</td><td class="num">108</td></tr><tr><td>service error</td><td class="num">21</td></tr><tr><td>set ended</td><td class="num">7</td></tr><tr><td>attack error</td><td class="num">4</td></tr><tr><td>block</td><td class="num">4</td></tr><tr><td>other error</td><td class="num">2</td></tr></tbody></table>
+<table class="data"><thead><tr><th>Nebraska rotation</th><th class="num">Runs against</th></tr></thead>
+<tbody><tr><td>R1</td><td class="num">29</td></tr><tr><td>R2</td><td class="num">26</td></tr><tr><td>R3</td><td class="num">22</td></tr><tr><td>R4</td><td class="num">27</td></tr><tr><td>R5</td><td class="num">21</td></tr><tr><td>R6</td><td class="num">21</td></tr></tbody></table>
+</section>
+</div>
+<h2 class="bench-section">Late in the set</h2>
+<p class="muted bench-note" style="margin-top:0">Late = both teams within 5 of the set's target at the start of the rally (20-20 of 25; 25-25 in the sets to 30 of 2001-2007; 10-10 in a fifth set to 15).</p>
+<div class="tbl-wrap">
+<table class="data">
+<thead><tr><th></th><th class="num">Side-out</th><th class="num">Point-scoring</th></tr></thead>
+<tbody>
+<tr><td>Late in the set</td><td class="num"><span class="num" data-k="78" data-n="115">0.678</span>
+<span class="muted bench-ci">78/115 · 0.588–0.757</span></td><td class="num"><span class="num" data-k="44" data-n="111">0.396</span>
+<span class="muted bench-ci">44/111 · 0.310–0.489</span></td></tr>
+<tr><td>Earlier</td><td class="num"><span class="num" data-k="1185" data-n="1819">0.651</span>
+<span class="muted bench-ci">1185/1819 · 0.629–0.673</span></td><td class="num"><span class="num" data-k="983" data-n="2167">0.454</span>
+<span class="muted bench-ci">983/2167 · 0.433–0.475</span></td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted bench-note">40 of 99 sets reached the late stage.</p>
+<section class="lineage">
+<p class="lineage-lead">
+    Every number above is read out of a file in this repository, and every file is
+    re-derived and re-checked by <code>huskerstats vb-validate</code>, which wrote
+    <code>data/reports/coverage.json</code> at commit
+    <code>5a554e5</code>. Hover a file to read its checks.
+  </p>
+<div class="lineage-list">
+<span class="lineage-src" title="data/reports/rally_analytics.json 
+side-out and point-scoring rates from the rally logs
+85,615 rallies
+
+[pass] rally_analytics: 85615 rallies in 1898 trusted sets of 616 matches
+[pass] play_by_play: 655 matches and 2260 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+">
+<code>rally_analytics.json</code> · <span class="num">85,615</span> rows ·
+        <span class="ok">2/2</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/box_scores.json 
+one row per player per match, parsed from the official box scores
+18,419 player-match rows
+
+[pass] box_scores: 879 box scores parsed from 879 corpus files, 0 failed
+[pass] player_match_rows: 18419 player-match rows, 18182 from a team block that reconciles
+[pass] trust_rules: 1758 team blocks re-parsed, 1734 pass every trust rule
+[pass] untrusted_files: 22 untrusted files, 208 of their rows kept, 237 left out
+[pass] flags: 6 files with a set-score problem, 0 flags unclassified
+">
+<code>box_scores.json</code> · <span class="num">18,419</span> rows ·
+        <span class="ok">5/5</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/team_matches.json 
+one row per team per match: printed set counts, result, schedule check
+1,758 team-match rows
+
+[pass] team_matches: 1758 team-match rows, 875 Nebraska rows carrying stats
+[pass] sets_played: sets played agree with the printed set counts in 879 of 879
+[pass] results_vs_schedule: 878 results compared with the schedule, 0 disagree
+[pass] schedule_coverage: 878 of 891 schedule rows have a box score, 9 open gaps
+">
+<code>team_matches.json</code> · <span class="num">1,758</span> rows ·
+        <span class="ok">4/4</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/player_timeline.json 
+each player's jersey, listed position and derived role over time
+469 attribute spells
+
+[pass] player_timeline: 469 rows for 135 players, 23 libero claims refused
+">
+<code>player_timeline.json</code> · <span class="num">469</span> rows ·
+        <span class="ok">1/1</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/schedule_history.json 
+every scheduled match 1975-2026 with site, result and rankings
+1,882 scheduled matches, 1975-2026
+
+[pass] schedule_history: 1882 rows over 52 seasons; 52 of 52 add up to their printed record
+">
+<code>schedule_history.json</code> · <span class="num">1,882</span> rows ·
+        <span class="ok">1/1</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/bench_stats.json 
+the sheets a bench stats person feeds the staff, rebuilt from the public rally logs and box scores
+85,615 rallies
+
+">
+<code>bench_stats.json</code> · <span class="num">85,615</span> rows
+    </span>
+<a class="lineage-src" href="../../../coverage/index.html">What is covered, and what is missing →</a>
+</div>
+</section>
+</main>
+<footer><small>Unofficial and fan-built; not affiliated with the University of Nebraska-Lincoln or Nebraska Athletics. Computed from official box scores and play-by-play; no box score or play-by-play is redistributed here.</small></footer>
+<script>
+      /* Tiny table-sort — no dependencies */
+      function sortTable(th) {
+        const tbl = th.closest("table");
+        const col = th.cellIndex;
+        const isNum = th.dataset.type === "num";
+        const wasDesc = th.classList.contains("sorted-desc");
+        tbl
+          .querySelectorAll("thead th")
+          .forEach((t) => t.classList.remove("sorted-asc", "sorted-desc"));
+        const dir = wasDesc ? "asc" : "desc";
+        th.classList.add("sorted-" + dir);
+        const tbody = tbl.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr:not(.totals-row)"));
+        rows.sort((a, b) => {
+          const av =
+            a.cells[col]?.dataset?.val ??
+            a.cells[col]?.textContent?.trim() ??
+            "";
+          const bv =
+            b.cells[col]?.dataset?.val ??
+            b.cells[col]?.textContent?.trim() ??
+            "";
+          const ai = isNum ? parseFloat(av) || 0 : av.toLowerCase();
+          const bi = isNum ? parseFloat(bv) || 0 : bv.toLowerCase();
+          if (dir === "desc") return ai > bi ? -1 : ai < bi ? 1 : 0;
+          return ai < bi ? -1 : ai > bi ? 1 : 0;
+        });
+        rows.forEach((r) => tbody.appendChild(r));
+        const totals = tbody.querySelector(".totals-row");
+        if (totals) tbody.appendChild(totals);
+      }
+      /* Client-side filter for any list marked data-filter="<input id>" */
+      function filterList(input) {
+        const list = document.getElementById(input.dataset.target);
+        if (!list) return;
+        const q = input.value.trim().toLowerCase();
+        for (const row of list.children) {
+          row.hidden = q.length > 0 && !(row.dataset.key || "").includes(q);
+        }
+      }
+    </script>
+</body>
+</html>

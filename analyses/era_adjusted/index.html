@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>A set changed size once, not twice | HuskerStats</title>
+
+
+
+<link href="../../assets/tokens.css" rel="stylesheet"/>
+<link href="../../assets/app.css" rel="stylesheet"/>
+<link href="../../assets/analyses.css" rel="stylesheet"/>
+<script src="../../assets/plotly.min.js"></script>
+</head>
+<body>
+<header>
+<div class="masthead-rule"></div>
+<nav>
+<a class="brand" href="../../index.html">HuskerStats</a>
+<div class="nav-sections"><a class="nav-link" href="../../season/index.html">Season</a><a class="nav-link" href="../index.html">Studies</a><a class="nav-link" href="../../bench/season/2026/index.html">Bench</a><a class="nav-link" href="../../bench/subs/index.html">Substitutions and timeouts</a><a class="nav-link" href="../../history/index.html">History</a><a class="nav-link" href="../../coverage/index.html">Coverage</a></div>
+
+</nav>
+</header>
+<main>
+<style>
+  .study-prose p { font-size: 15.5px; line-height: 1.62; color: #2B2620; margin: 0 0 14px; max-width: 74ch; }
+  .study-prose ul { margin: 0 0 14px 20px; padding: 0; max-width: 72ch; }
+  .study-prose li { font-size: 15.5px; line-height: 1.6; color: #2B2620; margin-bottom: 8px; }
+  .study-prose code, .study-side code { font-size: 0.92em; background: #F2EDE4; padding: 0 4px; }
+  .study-side h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #6B6259; margin: 0 0 10px; }
+  .study-side li { font-size: 13.5px; line-height: 1.5; color: #3D3830; margin-bottom: 10px; }
+  @media (max-width: 900px) { .study-grid { grid-template-columns: 1fr !important; } }
+</style>
+<div style="background: #F9F6F0; padding: 40px 64px 30px;">
+<div class="eyebrow">Study 3 of 5 · <code>data/reports/era_adjusted.json</code></div>
+<h1 style="font-family: 'Source Serif 4', Georgia, serif; font-size: 42px; font-weight: 700; margin: 10px 0 12px; letter-spacing: -0.02em; line-height: 1.1;">A set changed size once, not twice</h1>
+<p style="font-size: 13px; color: #6B6259; margin: 16px 0 0; max-width: 90ch;">
+    The text below is this study's section of <code>data/reports/findings.md</code>, as written, for a
+    reader who is not an analyst. The panel beside it is the export as it stands now; where the two
+    differ, the <a href="../index.html">studies page</a> says what has changed since the text was written.
+  </p>
+</div>
+<div class="study-grid" style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 44px; padding: 10px 64px 40px; background: #F9F6F0;">
+<div class="study-prose">
+<p><strong>What it measures.</strong> Whether a kills-per-set number from 2000, from 2005 and from 2025 can be compared, and what has to be done to them first. Two rule changes stand in the way: 2001 (side-out scoring to rally scoring, sets to 30) and 2008 (sets to 25).</p>
+<p><strong>What it found.</strong> Points per set more than doubled in 2001 (22.3 to 51.2), because under the old rule a rally the receiving team won scored nothing. But the number of <em>rallies</em> in a set barely moved: <strong>51.4 to 51.1</strong>. The change that actually shortened a set was 2008: <strong>42.9 rallies</strong>, about 16% fewer. So a per-set number from 2000 and one from 2005 are nearly comparable with each other, and both need scaling down against anything from 2008 on. Every official line from 2000 to 2025 is published three ways: as printed, converted to today's units, and as a standing inside its own season.</p>
+<p>Two of the four conversions pass the study's own test - predict a season's team rate from how many rallies its sets held, on seasons the model never saw - and two do not. Kills and assists pass: the era difference in them <em>is</em> the length of a set. Hitting percentage does not, and is left alone (its denominator is attempts, which the rule change never touched). Digs do not either: digs per rally rose steadily over 25 years, which is something else, and the file says so beside every adjusted dig number.</p>
+<p>Best single seasons in today's units: kills, Kelsey Robinson 2013 (4.45 per set) ahead of Sarah Pavan 2006 (5.10 printed, 4.21 converted); assists, Kelly Hunter 2015 (11.64) ahead of Rachel Holloway 2007 (13.58 printed, 11.45 converted). Careers: Pavan for kills, Justine Wong-Orantes and Lexi Rodriguez for digs, Andi Jackson and Lauren Stivrins for hitting percentage.</p>
+<p><strong>How sure.</strong> The 2000 figure is an estimate, not a measurement, and the file says so in the row itself: under side-out scoring the printed points do not count rallies, so 2000's rallies are its terminal actions divided by a constant fitted on the fifteen rally-scoring seasons (1.0157, 95% interval 1.0135 to 1.0176). That constant divides every season, so it sets the level of the whole column and cancels in any comparison between two seasons - the claim above does not rest on it. The side-out era is one season of data; its conversion factor carries no interval and cannot.</p>
+<p><strong>What it cannot see.</strong> Anyone before 2000 (25 of 52 seasons have no per-player line in any file). Why hitting percentage fell across the eras - it survives a conference control and cannot be the scoring change, and the file refuses to name a cause. Whether the libero rule (2002) or the scoring change moved the dig numbers: they are one season apart.</p>
+<p><strong>What the review changed.</strong> The "standing inside its own season" score had a flaw with a large effect: a player was measured against a pool that contained her, which caps the score at a value that depends only on how many team-mates qualified. All six best assist seasons sat exactly at that ceiling, so the all-time assists table was ordered by squad size. The score now leaves the player out of her own pool; all 886 scores changed, no printed or converted rate did. For kills, digs and hitting percentage the tables barely reorder (nine or ten of each top ten are the same). For assists the new numbers are enormous (Holloway 2007 scores 96.8) because a season's assists pool is one setter and ten players who do not set - the score measures "was she the setter", not "how well did she set", and the table now says so and names the tables to read instead. Two smaller things: the test that kills and assists pass used to include Nebraska's own kills in the "pace" it predicted them from (about a third of the count), and is now run on the opponents' actions alone with the same verdict; and every rallies-per-set figure carries an interval.</p>
+</div>
+<div class="study-side">
+<h2>What the export says · <code>headline</code></h2>
+<ul style="padding-left: 18px; margin: 0 0 24px;">
+<li>the two rule changes did not do the same thing.  Points per set went from 22.3 under side-out scoring to 51.2 under rally-30 - it more than doubled - but *rallies* per set barely moved, 51.4 to 51.1, because a side-out set was long in rallies and short in points.  The change that actually shortened a set was 2008: rally-25 holds 42.9 rallies, about 16% fewer.  So a kills-per-set number from 2000 and one from 2005 are nearly comparable, and both need adjusting against anything after 2007.</li><li>an era factor is one number per season, so it cannot move one player past another inside a season.  Checked on 104 season-by-rate pools: True.  The adjustment changes the units a career is read in, never the order inside a season, and the standard scores and the career table are untouched by it.</li><li>of the 37 player-pairs whose two seasons straddle a scoring change, none moves further in standard score than the 99th percentile of ordinary year-to-year moves inside an era.  The stronger test - whether adjusting *shrinks* the boundary jump - has 7 to 10 pairs to work with and no power; it is reported with its minimum detectable effect rather than read as a result.</li><li>25 of the 52 seasons - 1975 to 1999, 958 matches and 2946 sets - have no per-player line in any export, so no player of them appears in any table here.  The side-out era is represented by one season, 2000, which is why its era factor carries no interval.</li><li>hitting percentage.  Its season pools are 5 to 7 players however the threshold is set, its reliability is 0.78 against 0.99 for the other three, and it gets no era factor at all because its denominator is attempts.</li><li>a team has one setter, so the assists pool is two groups and not a distribution: the leader owns 91% of the pool's whole range in the median season and 88% of the pool is under one assist per set.  Its standard score therefore measures 'was she the setter' more than 'how well did she set', and 45 of its intervals have an unusable upper end, because a resampled pool that draws no setter has almost no spread to divide by.  Read the assists tables on era_adjusted and share_of_team, both of which need no pool.</li>
+</ul>
+<h2>Questions it refuses</h2>
+<ul style="padding-left: 18px; margin: 0 0 24px;">
+<li><strong>set length — refused</strong> — rallies per set cannot be measured for 1975-1999: no season report for those years is parsed, and no play-by-play on disk starts before 2016.  The side-out figure here is 2000's alone.</li><li><strong>cannot be compared — refusal</strong> — no player who played for Nebraska before 2000 appears anywhere in this file, in any table, at any rank.  Not because she was worse - because no export on this machine holds a line for her.  Every all-time table here is an all-time table of 2000-2025, and saying otherwise would be the error.</li>
+</ul>
+<h2>The other studies</h2>
+<ul style="padding-left: 18px; margin: 0;">
+<li><a href="../runs/index.html">Scoring runs are not real</a></li><li><a href="../serving/index.html">Serving harder does not pay</a></li><li><a href="../leverage/index.html">Win probability, and who moved it</a></li><li><a href="../opponent_adjusted/index.html">Opponent-adjusted performance, for the two numbers it works on</a></li>
+</ul>
+</div>
+</div>
+<section class="lineage">
+<p class="lineage-lead">
+    Every number above is read out of a file in this repository, and every file is
+    re-derived and re-checked by <code>huskerstats vb-validate</code>, which wrote
+    <code>data/reports/coverage.json</code> at commit
+    <code>5a554e5</code>. Hover a file to read its checks.
+  </p>
+<div class="lineage-list">
+<span class="lineage-src" title="data/reports/era_adjusted.json 
+official season lines 2000-2025 put into one set of units
+341 official player-season lines
+
+[pass] analysis_exports: 5 analysis exports fresh and consistent: leverage on 85471 rallies, serving on 47212 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
+">
+<code>era_adjusted.json</code> · <span class="num">341</span> rows ·
+        <span class="ok">1/1</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/rally_analytics.json 
+side-out and point-scoring rates from the rally logs
+85,615 rallies
+
+[pass] rally_analytics: 85615 rallies in 1898 trusted sets of 616 matches
+[pass] play_by_play: 655 matches and 2260 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+">
+<code>rally_analytics.json</code> · <span class="num">85,615</span> rows ·
+        <span class="ok">2/2</span>
+        checks
+    </span>
+<a class="lineage-src" href="../../coverage/index.html">What is covered, and what is missing →</a>
+</div>
+</section>
+</main>
+<footer><small>Unofficial and fan-built; not affiliated with the University of Nebraska-Lincoln or Nebraska Athletics. Computed from official box scores and play-by-play; no box score or play-by-play is redistributed here.</small></footer>
+<script>
+      /* Tiny table-sort — no dependencies */
+      function sortTable(th) {
+        const tbl = th.closest("table");
+        const col = th.cellIndex;
+        const isNum = th.dataset.type === "num";
+        const wasDesc = th.classList.contains("sorted-desc");
+        tbl
+          .querySelectorAll("thead th")
+          .forEach((t) => t.classList.remove("sorted-asc", "sorted-desc"));
+        const dir = wasDesc ? "asc" : "desc";
+        th.classList.add("sorted-" + dir);
+        const tbody = tbl.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr:not(.totals-row)"));
+        rows.sort((a, b) => {
+          const av =
+            a.cells[col]?.dataset?.val ??
+            a.cells[col]?.textContent?.trim() ??
+            "";
+          const bv =
+            b.cells[col]?.dataset?.val ??
+            b.cells[col]?.textContent?.trim() ??
+            "";
+          const ai = isNum ? parseFloat(av) || 0 : av.toLowerCase();
+          const bi = isNum ? parseFloat(bv) || 0 : bv.toLowerCase();
+          if (dir === "desc") return ai > bi ? -1 : ai < bi ? 1 : 0;
+          return ai < bi ? -1 : ai > bi ? 1 : 0;
+        });
+        rows.forEach((r) => tbody.appendChild(r));
+        const totals = tbody.querySelector(".totals-row");
+        if (totals) tbody.appendChild(totals);
+      }
+      /* Client-side filter for any list marked data-filter="<input id>" */
+      function filterList(input) {
+        const list = document.getElementById(input.dataset.target);
+        if (!list) return;
+        const q = input.value.trim().toLowerCase();
+        for (const row of list.children) {
+          row.hidden = q.length > 0 && !(row.dataset.key || "").includes(q);
+        }
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Coverage and provenance · HuskerStats</title>
+
+
+
+<link href="../assets/tokens.css" rel="stylesheet"/>
+<link href="../assets/app.css" rel="stylesheet"/>
+<link href="../assets/analyses.css" rel="stylesheet"/>
+<script src="../assets/plotly.min.js"></script>
+</head>
+<body>
+<header>
+<div class="masthead-rule"></div>
+<nav>
+<a class="brand" href="../index.html">HuskerStats</a>
+<div class="nav-sections"><a class="nav-link" href="../season/index.html">Season</a><a class="nav-link" href="../analyses/index.html">Studies</a><a class="nav-link" href="../bench/season/2026/index.html">Bench</a><a class="nav-link" href="../bench/subs/index.html">Substitutions and timeouts</a><a class="nav-link" href="../history/index.html">History</a><a class="nav-link active" href="index.html">Coverage</a></div>
+
+</nav>
+</header>
+<main>
+<div class="page-hd">
+<div class="eyebrow">Coverage &amp; provenance</div>
+<h1 style="font-family:'Source Serif 4',Georgia,serif;font-size:2.4rem;letter-spacing:-0.02em;line-height:1.08">
+    What is here, where it came from, and what is missing</h1>
+<p style="font-size:var(--text-base);color:var(--ink-2);max-width:84ch">
+    Nothing on this site is typed in by hand. Every number is parsed from an official document that
+    is archived before it is read, and each one has to pass its checks before a page is allowed to
+    show it. The gaps are listed here too, because a number you cannot audit is worth less than one
+    you can.
+  </p>
+<p class="vb-caption" style="margin-left:0">
+    Measured by <code>huskerstats vb-validate</code> at commit <code>5a554e5</code>.
+    Every hard invariant held.
+  </p>
+</div>
+<div class="fact-grid">
+<div class="fact" id="layer-box_scores">
+<div class="eyebrow">Match box scores</div>
+<div class="fact-val num">879</div>
+<div class="fact-note">one row per player per match, parsed from the official box score.</div>
+<div class="fact-check">
+<svg aria-hidden="true" fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="13">
+<path d="M20 6L9 17l-5-5"></path>
+</svg>
+<span>879 box scores parsed from 879 corpus files, 0 failed</span>
+</div>
+</div>
+<div class="fact" id="layer-play_by_play">
+<div class="eyebrow">Rally play-by-play</div>
+<div class="fact-val num">655</div>
+<div class="fact-note">every rally of a set, from three different source formats.</div>
+<div class="fact-check">
+<svg aria-hidden="true" fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="13">
+<path d="M20 6L9 17l-5-5"></path>
+</svg>
+<span>655 matches and 2260 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks</span>
+</div>
+</div>
+<div class="fact" id="layer-season_totals">
+<div class="eyebrow">Official season totals</div>
+<div class="fact-val num">341</div>
+<div class="fact-note">each player's season line as the official season report printed it.</div>
+<div class="fact-check">
+<svg aria-hidden="true" fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="13">
+<path d="M20 6L9 17l-5-5"></path>
+</svg>
+<span>76 of 139 official season lines match exactly; all 412 differences are listed</span>
+</div>
+</div>
+<div class="fact" id="layer-schedule_history">
+<div class="eyebrow">Schedules and results</div>
+<div class="fact-val num">1,882</div>
+<div class="fact-note">every scheduled match, with site, result and both rankings.</div>
+<div class="fact-check">
+<svg aria-hidden="true" fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="13">
+<path d="M20 6L9 17l-5-5"></path>
+</svg>
+<span>1882 rows over 52 seasons; 52 of 52 add up to their printed record</span>
+</div>
+</div>
+</div>
+<div class="col-3-2" style="margin-top: var(--sp-8)">
+<div>
+<p class="eyebrow" style="margin-bottom: var(--sp-3)">How a number gets onto a page</p>
+<div class="chart-card" style="padding: var(--sp-2) var(--sp-5) var(--sp-4)">
+<div class="step">
+<div class="step-n">1</div>
+<div>
+<div class="step-hd">Fetch politely, once a second</div>
+<div class="step-body">robots.txt first, including any crawl delay a site asks for, and only pages linked from pages already held.</div>
+</div>
+</div>
+<div class="step">
+<div class="step-n">2</div>
+<div>
+<div class="step-hd">Archive the raw bytes before reading them</div>
+<div class="step-body">Every document is stored under the hash of its contents, so a parse can always be re-run against exactly what was published.</div>
+</div>
+</div>
+<div class="step">
+<div class="step-n">3</div>
+<div>
+<div class="step-hd">Parse, then try to disprove the parse</div>
+<div class="step-body">A file that agrees with its own totals can still be wrong. Independent checks compare it with a second source wherever one exists.</div>
+</div>
+</div>
+<div class="step">
+<div class="step-n">4</div>
+<div>
+<div class="step-hd">Keep what fails, and say so</div>
+<div class="step-body">Untrusted rows are not deleted. They are marked, counted and kept out of the analysis, with the reason attached.</div>
+</div>
+</div>
+<div class="step">
+<div class="step-n">5</div>
+<div>
+<div class="step-hd">Show the lineage</div>
+<div class="step-body">Every page names the files it read and the checks those files passed, so any number here can be traced back to a document.</div>
+</div>
+</div>
+</div>
+<p class="eyebrow" style="margin: var(--sp-6) 0 var(--sp-3)">
+      The six checks a rally log must pass</p>
+<div class="gate-grid">
+<div class="gate failed">
+<strong>rallies equal final</strong><br/>
+<span class="num">467</span> of <span class="num">474</span> sets pass, 7 fail
+      </div>
+<div class="gate failed">
+<strong>score moves one point</strong><br/>
+<span class="num">470</span> of <span class="num">474</span> sets pass, 4 fail
+      </div>
+<div class="gate failed">
+<strong>serve changes on side out</strong><br/>
+<span class="num">460</span> of <span class="num">474</span> sets pass, 14 fail
+      </div>
+<div class="gate failed">
+<strong>server follows rotation</strong><br/>
+<span class="num">446</span> of <span class="num">474</span> sets pass, 28 fail
+      </div>
+<div class="gate failed">
+<strong>final equals box score</strong><br/>
+<span class="num">469</span> of <span class="num">474</span> sets pass, 5 fail
+      </div>
+<div class="gate failed">
+<strong>points by type</strong><br/>
+<span class="num">466</span> of <span class="num">474</span> sets pass, 8 fail
+      </div>
+</div>
+<p class="vb-caption" style="margin-left:0">
+      439 of 474 sets pass all six and are the ones the analysis uses
+      (18,778 rallies,
+      106 matches with every set trusted). The
+      35 that fail are kept and listed: each one is an error in the
+      source page, not in the parse. all six gates pass on Nebraska's side of the rallies; the opponent's own point types are reported in each set's not_gated and never untrust a set
+    </p>
+<p class="eyebrow" style="margin: var(--sp-6) 0 var(--sp-3)">
+      Every check <code>vb-validate</code> ran, and what it found</p>
+<div class="tbl-wrap">
+<table class="data">
+<thead>
+<tr>
+<th onclick="sortTable(this)">Check</th>
+<th onclick="sortTable(this)">Result</th>
+<th>What it found</th>
+</tr>
+</thead>
+<tbody>
+<tr id="check-box_scores">
+<td><code>box_scores</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              879 box scores parsed from 879 corpus files, 0 failed
+            </td>
+</tr>
+<tr id="check-player_match_rows">
+<td><code>player_match_rows</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              18419 player-match rows, 18182 from a team block that reconciles
+            </td>
+</tr>
+<tr id="check-untrusted_files">
+<td><code>untrusted_files</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              22 untrusted files, 208 of their rows kept, 237 left out
+            </td>
+</tr>
+<tr id="check-trust_rules">
+<td><code>trust_rules</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              1758 team blocks re-parsed, 1734 pass every trust rule
+            </td>
+</tr>
+<tr id="check-flags">
+<td><code>flags</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              6 files with a set-score problem, 0 flags unclassified
+            </td>
+</tr>
+<tr id="check-nebraska_players">
+<td><code>nebraska_players</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              135 Nebraska players over 874 matches and 27 seasons
+            </td>
+</tr>
+<tr id="check-team_matches">
+<td><code>team_matches</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              1758 team-match rows, 875 Nebraska rows carrying stats
+            </td>
+</tr>
+<tr id="check-sets_played">
+<td><code>sets_played</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              sets played agree with the printed set counts in 879 of 879
+            </td>
+</tr>
+<tr id="check-results_vs_schedule">
+<td><code>results_vs_schedule</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              878 results compared with the schedule, 0 disagree
+            </td>
+</tr>
+<tr id="check-schedule_coverage">
+<td><code>schedule_coverage</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              878 of 891 schedule rows have a box score, 9 open gaps
+            </td>
+</tr>
+<tr id="check-source_gaps">
+<td><code>source_gaps</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              38 known source gaps, 29 filled, 9 still open
+            </td>
+</tr>
+<tr id="check-play_by_play">
+<td><code>play_by_play</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              655 matches and 2260 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+            </td>
+</tr>
+<tr id="check-season_totals">
+<td><code>season_totals</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              76 of 139 official season lines match exactly; all 412 differences are listed
+            </td>
+</tr>
+<tr id="check-schedule_history">
+<td><code>schedule_history</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              1882 rows over 52 seasons; 52 of 52 add up to their printed record
+            </td>
+</tr>
+<tr id="check-roster_history">
+<td><code>roster_history</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              121 of 130 box-score lines match their season's roster by name and jersey; 9 are listed
+            </td>
+</tr>
+<tr id="check-opponent_names">
+<td><code>opponent_names</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              392 spellings filed under 220 teams, 0 alias failures
+            </td>
+</tr>
+<tr id="check-rally_analytics">
+<td><code>rally_analytics</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              85615 rallies in 1898 trusted sets of 616 matches
+            </td>
+</tr>
+<tr id="check-player_timeline">
+<td><code>player_timeline</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              469 rows for 135 players, 23 libero claims refused
+            </td>
+</tr>
+<tr id="check-corrections">
+<td><code>corrections</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              95 human judgments recorded as corrections (95 applied, 0 disputed and reported, 0 superseded): 47 opponent names, 18 trust, 23 roles, 3 jerseys, 1 identities
+            </td>
+</tr>
+<tr id="check-statcrew_corpus">
+<td><code>statcrew_corpus</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              530 StatCrew box scores of 2000-2015 traced to their archived pages (530 equal a fresh extraction, 75363 rally lines); 175 of 202 official season lines match exactly, 232 differences listed
+            </td>
+</tr>
+<tr id="check-analysis_exports">
+<td><code>analysis_exports</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              5 analysis exports fresh and consistent: leverage on 85471 rallies, serving on 47212 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
+            </td>
+</tr>
+<tr id="check-node_graph">
+<td><code>node_graph</code></td>
+<td>
+<span class="badge badge-W">pass</span>
+</td>
+<td>
+              15 nodes declared in the registry, 19 checks referenced
+            </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div>
+<p class="eyebrow" style="margin-bottom: var(--sp-3)">What is missing, and why</p>
+<div class="gap">
+<div class="gap-hd">9 matches have no box score</div>
+<div class="gap-body">Iowa, Kentucky, Northwestern, Purdue, UCLA. Their schools publish those pages only as JavaScript apps that ship no numbers, so nothing was fetched.</div>
+</div>
+<div class="gap">
+<div class="gap-hd">4 more are linked but not parsed</div>
+<div class="gap-body">The 2016 StatCrew HTML box scores: the page holds the numbers, the parser finds four blocks where it expects two.</div>
+</div>
+<div class="gap">
+<div class="gap-hd">237 player lines are left out as untrusted</div>
+<div class="gap-body">They are the failing team block of 22 files whose printed totals do not reconcile; the 208 rows of the block that does reconcile are kept.</div>
+</div>
+<div class="gap soft">
+<div class="gap-hd">224 matches have a box score but no rally log</div>
+<div class="gap-body">655 of 879 have rally play-by-play. Before 2016 no rally log is published at all; season totals reach back to 2000 and schedules to 1975.</div>
+</div>
+<div class="gap soft">
+<div class="gap-hd">37 differences from the season reports are unexplained</div>
+<div class="gap-body">Of 412 differences in all, 382 are matches this corpus does not have. The rest are listed, not settled by preference.</div>
+</div>
+<div class="arena" style="padding: var(--sp-5)">
+<div class="arena-hd">The strongest check we have runs backwards</div>
+<p>
+        The official season report prints every player's season line. Summing the per-match rows
+        has to reproduce it, player by player and column by column.
+        76 of 139 lines match exactly, and all
+        412 differences are written down with a reason:
+        382 of them turned out to be matches that were
+        missing, which is how we learned what to go and find.
+      </p>
+</div>
+</div>
+</div>
+<p class="sec-hd">What the data refuses to answer</p>
+<p class="vb-caption" style="margin-left:0">
+  17 questions the exports say outright they cannot answer. A refusal is a
+  finding: it is why a metric is absent here rather than estimated. Each one is quoted from the
+  export that refused it.
+</p>
+<div class="tbl-wrap">
+<table class="data">
+<thead>
+<tr>
+<th onclick="sortTable(this)">Question</th>
+<th onclick="sortTable(this)">Refused by</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="max-width: 26ch">metrics.first_ball_side_out</td>
+<td><code>rally_analytics.json</code></td>
+<td style="max-width: 70ch">a first-ball side-out can only be separated from a transition side-out by the touches inside the rally, and no source records them: all 85615 rally lines in this study print one terminal action each ({'kill by': 51026, 'attack error': 21377, 'service error': 7603, 'service ace': 3941, 'ball handling error': 883, 'bad set': 783, 'other': 2}), never a dig, a set or a second attack. The huskers.com PDFs carry first-ball numbers in an 'Enhanced Insights' section, and that section survives in 0 of the 879 extracted corpus files, so it is a separate parser and a separate collection job, not something this play-by-play can be asked for.
+          <br/><span class="muted">Instead: the terminal action does say how each reception ended, which separates a side-out the team earned from one the serving team handed over, and names the only class that certainly needed no touch at all (the opponent's service error)</span></td>
+</tr>
+<tr>
+<td style="max-width: 26ch">was this a tough serve? how many serves put the opponent out of system?</td>
+<td><code>serving.json</code></td>
+<td style="max-width: 70ch">no source in this corpus rates a pass. Every rally line prints one action, the one that ended the rally; a serve that forced an overpass and a serve that was passed to the setter's hands are the same row here unless one of them was an ace. There is no 0-3 pass rating, no 'in system' flag and no reception line anywhere in the three sources.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">float or jump? which zone was it served to? how fast?</td>
+<td><code>serving.json</code></td>
+<td style="max-width: 70ch">none of it is recorded. The huskers.com PDFs, the 2016 StatCrew pages and the opponents' Sidearm pages all print the server, the outcome and the score, and nothing about the serve itself.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">who received it?</td>
+<td><code>serving.json</code></td>
+<td style="max-width: 70ch">only an ace names the player it beat, and it names her inside the text ('Service Ace (17 Swain, Jayhlin)'). A serve that lands and is passed names nobody, so serving at a weak passer cannot be measured, and neither can the share of a team's serves aimed at one receiver.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">how much of the rally after a landed serve does the server deserve?</td>
+<td><code>serving.json</code></td>
+<td style="max-width: 70ch">the rally's touches are not recorded, so the server's share of it cannot be separated from the passer's, the setter's and the hitter's. This module measures whether the conversion depends on who served (it does not, measurably) and refuses to split the credit that is left.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">a career table for the 2016 Rolfzen serves</td>
+<td><code>serving.json</code></td>
+<td style="max-width: 70ch">the four 2016 StatCrew pages print no jersey in a rally text and both twins served, so 52 serves resolve to a surname two players share. They stay a pooled 2016 row and get no career row: merging them would invent a player and splitting them would invent a number.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">serve numbers for the seasons and matches with no play-by-play</td>
+<td><code>serving.json</code></td>
+<td style="max-width: 70ch">this study can only use the 148 matches that have a rally record at all. The official season reports in season_totals.json carry each player's season SA and SE back to 2000 and would extend the ace and error halves of this table - but they carry no rally, so the conversion, the point-scoring rate and therefore the expected value cannot be built from them. Joining the two is a separate job and is not done here.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">strength of schedule against the rest of the country</td>
+<td><code>opponent_adjusted.json</code></td>
+<td style="max-width: 70ch">every match in data/reports/box_scores.json is a Nebraska match, so no opponent's games against a third team are anywhere in this corpus. What is computed here is relative to the opponents Nebraska itself played, and nothing in it can say whether those opponents are strong nationally.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">an opponent effect for a team we hold once</td>
+<td><code>opponent_adjusted.json</code></td>
+<td style="max-width: 70ch">57 of the 138 opponents appear in exactly one match. Leaving that match out leaves nothing, so those matches carry no baseline and are excluded from every adjusted figure rather than being given the season mean and counted.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">a per-season opponent baseline for most opponents</td>
+<td><code>opponent_adjusted.json</code></td>
+<td style="max-width: 70ch">429 of the 649 opponent-seasons are a single match. The per-season table is exported for all of them, but its shrunk column at n = 1 is almost entirely the season mean, and the per-match season baseline is marked unavailable rather than silently pooled.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">how much of a kill the setter, the passer or the digger is responsible for</td>
+<td><code>opponent_adjusted.json</code></td>
+<td style="max-width: 70ch">the box score prints one line per player per match and the play-by-play prints one terminal action per rally; no source records a touch inside a rally. rally_analytics refuses first-ball side-out for the same reason and nothing is imputed here either.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">an opponent effect from an untrusted team block</td>
+<td><code>opponent_adjusted.json</code></td>
+<td style="max-width: 70ch">a block that does not reconcile with its own printed totals can have a player's numbers attached to the name above (handoff section 4). Those blocks contribute no value on their side and the row says which side is missing and why.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">does a timeout stop a run?</td>
+<td><code>runs.json</code></td>
+<td style="max-width: 70ch">a timeout has no place in the rally sequence here. The Sidearm export keeps 571 timeout lines, but in a flat per-set 'other_lines' list with no score and no position among the rallies, and only for 56 of 145 pages; the huskers.com and StatCrew parsers keep none at all. Placing a timeout between two rallies is a parser change on all three sources, not something this record can be asked for.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">what made a run happen - serving pressure, passing, blocking, the opponent falling apart?</td>
+<td><code>runs.json</code></td>
+<td style="max-width: 70ch">each rally prints exactly one line, the terminal action, and never a touch inside the rally. Attributing a run to a phase of play needs the touches, which no source here records - the same wall rally_analytics.json's first_ball_side_out runs into.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">is a hitter hot - does a player who just got a kill get the next one?</td>
+<td><code>runs.json</code></td>
+<td style="max-width: 70ch">the record names the player who ended a rally but never the players who attempted and did not end one, so a per-player conversion rate has a numerator and no denominator. Serving is the one skill whose every attempt is on the record (a serve starts a rally), which is why the server is a stratum here and the hitter is not.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">set length — refused</td>
+<td><code>era_adjusted.json</code></td>
+<td style="max-width: 70ch">rallies per set cannot be measured for 1975-1999: no season report for those years is parsed, and no play-by-play on disk starts before 2016.  The side-out figure here is 2000's alone.</td>
+</tr>
+<tr>
+<td style="max-width: 26ch">cannot be compared — refusal</td>
+<td><code>era_adjusted.json</code></td>
+<td style="max-width: 70ch">no player who played for Nebraska before 2000 appears anywhere in this file, in any table, at any rank.  Not because she was worse - because no export on this machine holds a line for her.  Every all-time table here is an all-time table of 2000-2025, and saying otherwise would be the error.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="sec-hd" id="corrections">Human judgments, written down</p>
+<p class="vb-caption" style="margin-left:0">
+  95 corrections stand in <code>data/corrections</code>
+  (95 applied, 0 disputed and
+  reported but not applied, 0 superseded by a later line).
+  A correction is a judgment the documents cannot make on their own - a misprinted jersey, two spellings
+  that are one person, a team block kept when the other block's totals do not add up - recorded as data
+  with a reason and its evidence, never as a code change, and applied over the parsed rows when an object
+  is resolved. A line is never edited: a mistake is a later line that supersedes it.
+  
+</p>
+<div class="tbl-wrap">
+<table class="data">
+<thead>
+<tr>
+<th onclick="sortTable(this)">Id</th>
+<th onclick="sortTable(this)">Kind</th>
+<th onclick="sortTable(this)">Confidence</th>
+<th>About</th>
+<th>Asserts</th>
+<th>Why, and on what evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="" id="corr-0057">
+<td><code>corr-0057</code></td>
+<td>identity merge</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Player</span><br/>printed Wong-Orantes, J, team Nebraska, seasons 2013, 2014, 2015, 2016</td>
+<td style="max-width: 20ch">player justine-wong-orantes, name Wong-Orantes, Justine</td>
+<td style="max-width: 70ch">the 2016 box scores print the first name cut to one letter ('Wong-Orantes, J', 'Wong-orantes, J', 29 lines, all #4) and never in full; the 2016 roster has one player of that surname, Justine Wong-Orantes, #4, so the group is filed under the roster's name - a rename of one printed group, not a merge of two, and every number is unchanged. The official season reports print the same 'Wong-Orantes, J' in 2013 (#11), 2014 and 2015 (#4; StatCrew cuts the first name to its column) and 'Wong-Orantes, Justine' #4 in 2016: one person over four seasons, which era_adjusted's identity rule also derives (the surname is one person in the corpus, the seasons are adjacent)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_seasons_build.py player_identities (roster-backed rename) · commit:992398b huskerstats/analytics/era_adjusted.py identity (the season-report rule) · data/rosters/huskers_vb_rosters_2016_2024.json: justine-wong-orantes 2016 jersey 4 · data/rosters/players.csv: justine-wong-orantes · data/reports/roster_check.csv: 2016 'Wong-Orantes, J' and 'Wong-orantes, J' first name truncated · data/pbp_merged/2016-09-16_vs_gonzaga.txt:31 · data/pbp_merged/2016-10-14_at_ohio-state.txt:13 · data/reports/season_totals.json: players 2013, 2014, 2015 'Wong-Orantes, J'; 2016 'Wong-Orantes, Justine' · data/reports/player_timeline.json: identity_notes "'Wong-Orantes, J' -&gt; 'Wong-Orantes, Justine' (the roster's name for the surname 'wongorantes'; the box score prints the first name cut short)"</span></td>
+</tr>
+<tr class="" id="corr-0055">
+<td><code>corr-0055</code></td>
+<td>jersey misprint</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player callie-schwarzenbach, printed Schwarzenbach, Callie, match 2019-10-19_at_maryland, team Nebraska</td>
+<td style="max-width: 20ch">jersey 25<br/><span class="muted">was jersey 15</span></td>
+<td style="max-width: 70ch">printed #15 in this one box score; the match before (2019-10-16 vs Purdue) and the match after (2019-10-25 at Indiana) both print #25, every other 2019 line prints #25, the 2019 roster page lists Callie Schwarzenbach as #25 and #15 as Fallon Stutheit. A probable misprint, not a number change
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py misprint_spells · commit:80c3a82 data/reports/roster_check.csv: 2019 'Schwarzenbach, Callie' name differs · data/pbp_merged/2019-10-19_at_maryland.txt:15 · data/pbp_merged/2019-10-16_vs_purdue.txt:35 · data/pbp_merged/2019-10-25_at_indiana.txt:16 · data/rosters/huskers_vb_rosters_2016_2024.json: callie-schwarzenbach 2019 jersey 25, fallon-stutheit 2019 jersey 15 · data/reports/player_timeline.json: probable_misprints</span></td>
+</tr>
+<tr class="" id="corr-0056">
+<td><code>corr-0056</code></td>
+<td>jersey misprint</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player jazz-sweet, printed Sweet, Jazz, match 2019-12-14_at_wisconsin, team Nebraska</td>
+<td style="max-width: 20ch">jersey 12<br/><span class="muted">was jersey 7</span></td>
+<td style="max-width: 70ch">printed #7 in this one box score; the match before (2019-12-13 vs Hawaii) and the match after (2021-02-05 vs Maryland, the next she played) both print #12, every other 2019 line prints #12, and the 2019 roster page lists Jazz Sweet as #12. A probable misprint, not a number change
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py misprint_spells · commit:80c3a82 data/reports/roster_check.csv: 2019 'Sweet, Jazz' jersey differs · data/pbp_merged/2019-12-14_at_wisconsin.txt:18 · data/pbp_merged/2019-12-13_vs_hawaii.txt:35 · data/pbp_merged/2021-02-05_vs_maryland.txt:45 · data/rosters/huskers_vb_rosters_2016_2024.json: jazz-sweet 2019 jersey 12 · data/reports/player_timeline.json: probable_misprints</span></td>
+</tr>
+<tr class="" id="corr-0094">
+<td><code>corr-0094</code></td>
+<td>jersey misprint</td>
+<td><span class="badge">likely</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player dani-busboom, printed Busboom, Dani, match 2003-12-05_vs_valparaiso, team Nebraska</td>
+<td style="max-width: 20ch">jersey 18<br/><span class="muted">was jersey 5</span></td>
+<td style="max-width: 70ch">printed #5 in this one box score; the match before (2003-11-26_at_colorado) and the match after (2003-12-06_vs_dayton) both print #18, and so do all 32 of her other 2003 lines (numbers seen: [18]); #5 in this box score is Liz Mikos on the opponent's table. No roster page reaches back to this season, so the neighbours are the whole evidence. A probable misprint, not a number change
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py misprint_spells · data/pbp_merged/2003-12-05_vs_valparaiso.txt · data/pbp_merged/2003-11-26_at_colorado.txt · data/pbp_merged/2003-12-06_vs_dayton.txt · data/reports/player_timeline.json: probable_misprints Busboom, Dani 2003-12-05</span></td>
+</tr>
+<tr class="" id="corr-0001">
+<td><code>corr-0001</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key amcorpuschristi, printed A&amp;M-Corpus Christi</td>
+<td style="max-width: 20ch">canonical Texas A&amp;M-Corpus Christi, basis match<br/><span class="muted">was canonical A&amp;M-Corpus Christi</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2022-08-26 the box score prints 'A&amp;M-Corpus Christi', the schedule prints 'Texas A&amp;M-Corpus Christi', the season report prints 'A&amp;M-Corpus Christi' (and again on 2024-08-30); 1 schedule rows print 'Texas A&amp;M-Corpus Christi'. The Phase 6 note dated this 2024-08-27, when the exports print 'Kentucky' / 'vs Kentucky'; the mapping was right, the date was not
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['amcorpuschristi']: 2024-08-27: the box score prints 'A&amp;M-Corpus Christi', the schedule 'Texas A&amp;M-Corpus Christi', the season report 'A&amp;M-Corpus Christi' · data/pbp_merged/2022-08-26_vs_texas-am-corpus-christi.txt · data/reports/box_scores.json: 2022-08-26 'A&amp;M-Corpus Christi' · data/reports/parse_audit.csv: 2022-08-26 'Texas A&amp;M-Corpus Christi' · data/reports/schedule_history.json: 2022-08-26 'Texas A&amp;M-Corpus Christi' · data/reports/team_matches.json: 2022-08-26 'Texas A&amp;M-Corpus Christi' · data/reports/season_totals.json: 2022-08-26 'A&amp;M-Corpus Christi' · data/pbp_merged/2024-08-30_vs_texas-a-m-corpus-christi.txt · data/reports/box_scores.json: 2024-08-30 'A&amp;M-Corpus Christi' · data/reports/parse_audit.csv: 2024-08-30 'Texas A&amp;M - Corpus Christi'</span></td>
+</tr>
+<tr class="" id="corr-0002">
+<td><code>corr-0002</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key texasamcorpuschristi, printed Texas A&amp;M - Corpus Christi, Texas A&amp;M-Corpus Christi</td>
+<td style="max-width: 20ch">canonical Texas A&amp;M-Corpus Christi, basis spelling<br/><span class="muted">was canonical Texas A&amp;M - Corpus Christi</span></td>
+<td style="max-width: 70ch">one of several spellings of one key, and the one printed: 'Texas A&amp;M - Corpus Christi' appears in parse_audit.csv 2024; schedule_history.json 2024; team_matches.json 2024; 1 schedule rows print 'Texas A&amp;M-Corpus Christi'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['texasamcorpuschristi']: the schedule pages print it with and without spaces around the dash · data/reports/parse_audit.csv: 2024-08-30 'Texas A&amp;M - Corpus Christi' · data/reports/schedule_history.json: 2024-08-30 'Texas A&amp;M - Corpus Christi' · data/reports/team_matches.json: 2024-08-30 'Texas A&amp;M - Corpus Christi' · data/reports/parse_audit.csv: 'Texas A&amp;M - Corpus Christi' (2024) · data/reports/schedule_history.json: 'Texas A&amp;M - Corpus Christi' (2024) · data/reports/parse_audit.csv: 'Texas A&amp;M-Corpus Christi' (2022) · data/reports/schedule_history.json: 'Texas A&amp;M-Corpus Christi' (2022)</span></td>
+</tr>
+<tr class="" id="corr-0003">
+<td><code>corr-0003</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key lmuca, printed LMU (CA)</td>
+<td style="max-width: 20ch">canonical Loyola Marymount, basis match<br/><span class="muted">was canonical LMU (CA)</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2019-09-14 the box score prints 'Loyola Marymount', the schedule prints 'Loyola Marymount', the season report prints 'LMU (CA)' (and again on 2022-09-01); 5 schedule rows print 'Loyola Marymount'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['lmuca']: 2019-09-14: the box score prints 'LMU (CA)', the schedule 'Loyola Marymount' · data/pbp_merged/2019-09-14_vs_loyola-marymount.txt · data/reports/season_totals.json: 2019-09-14 'LMU (CA)' · data/reports/box_scores.json: 2019-09-14 'Loyola Marymount' · data/reports/parse_audit.csv: 2019-09-14 'Loyola Marymount' · data/reports/schedule_history.json: 2019-09-14 'Loyola Marymount' · data/reports/team_matches.json: 2019-09-14 'Loyola Marymount' · data/pbp_merged/2022-09-01_vs_loyola-marymount.txt · data/reports/box_scores.json: 2022-09-01 'LMU (CA)' · data/reports/parse_audit.csv: 2022-09-01 'Loyola Marymount'</span></td>
+</tr>
+<tr class="" id="corr-0004">
+<td><code>corr-0004</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key smc, printed SMC</td>
+<td style="max-width: 20ch">canonical Saint Mary's, basis match<br/><span class="muted">was canonical SMC</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2017-09-02 the box score prints 'SMC', the schedule prints "Saint Mary's"; 4 schedule rows print "Saint Mary's"
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['smc']: 2017-09-02: the box score prints 'SMC', the schedule "Saint Mary's" · data/pbp_merged/2017-09-02_vs_saint-mary-s.txt · data/reports/box_scores.json: 2017-09-02 'SMC' · data/reports/parse_audit.csv: 2017-09-02 "Saint Mary's" · data/reports/schedule_history.json: 2017-09-02 "Saint Mary's" · data/reports/team_matches.json: 2017-09-02 "Saint Mary's" · data/reports/box_scores.json: 'SMC' (2017)</span></td>
+</tr>
+<tr class="" id="corr-0005">
+<td><code>corr-0005</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key stmaryscollege, printed ST MARY'S COLLEGE</td>
+<td style="max-width: 20ch">canonical Saint Mary's, basis match<br/><span class="muted">was canonical St. Mary's College</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2011-09-09 the schedule prints "Saint Mary's", the season report prints "ST MARY'S COLLEGE"; 4 schedule rows print "Saint Mary's". The Phase 6 note dated this 2017-09-02, when the exports print 'SMC' / "Saint Mary's" / "Saint Mary's (CA)"; the mapping was right, the date was not
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['stmaryscollege']: 2017-09-02: the 2017 season report prints "ST MARY'S COLLEGE" · data/reports/season_totals.json: 2011-09-09 "ST MARY'S COLLEGE" · data/reports/schedule_history.json: 2011-09-09 "Saint Mary's" · data/reports/season_totals.json: "ST MARY'S COLLEGE" (2011)</span></td>
+</tr>
+<tr class="" id="corr-0006">
+<td><code>corr-0006</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key stmarys, printed ST. MARY'S</td>
+<td style="max-width: 20ch">canonical Saint Mary's, basis match<br/><span class="muted">was canonical St. Mary's</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2013-09-12 the schedule prints "Saint Mary's", the season report prints "ST. MARY'S"; 4 schedule rows print "Saint Mary's"
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['stmarys']: 2013-09-12: the 2013 season report prints "ST. MARY'S" for the schedule's "Saint Mary's" · data/reports/season_totals.json: 2013-09-12 "ST. MARY'S" · data/reports/schedule_history.json: 2013-09-12 "Saint Mary's" · data/reports/season_totals.json: "ST. MARY'S" (2013)</span></td>
+</tr>
+<tr class="" id="corr-0007">
+<td><code>corr-0007</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key saintmarysca, printed Saint Mary's (CA)</td>
+<td style="max-width: 20ch">canonical Saint Mary's, basis match<br/><span class="muted">was canonical Saint Mary's (CA)</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2017-09-02 the schedule prints "Saint Mary's", the season report prints "Saint Mary's (CA)"; 4 schedule rows print "Saint Mary's". The Phase 6 note dated this 2011-09-09, when the exports print "ST MARY'S COLLEGE" / "Saint Mary's"; the mapping was right, the date was not
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['saintmarysca']: 2011-09-09: the 2011 season report prints "Saint Mary's (CA)" · data/pbp_merged/2017-09-02_vs_saint-mary-s.txt · data/reports/season_totals.json: 2017-09-02 "Saint Mary's (CA)" · data/reports/parse_audit.csv: 2017-09-02 "Saint Mary's" · data/reports/schedule_history.json: 2017-09-02 "Saint Mary's" · data/reports/team_matches.json: 2017-09-02 "Saint Mary's" · data/reports/season_totals.json: "Saint Mary's (CA)" (2017)</span></td>
+</tr>
+<tr class="" id="corr-0008">
+<td><code>corr-0008</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key olemiss, printed Ole Miss</td>
+<td style="max-width: 20ch">canonical Mississippi, basis match<br/><span class="muted">was canonical Ole Miss</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2022-09-03 the box score prints 'Ole Miss', the schedule prints 'Mississippi', the season report prints 'Ole Miss'; 1 schedule rows print 'Mississippi'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['olemiss']: 2022-09-03: the box score prints 'Ole Miss', the schedule 'Mississippi' · data/pbp_merged/2022-09-03_vs_mississippi.txt · data/reports/box_scores.json: 2022-09-03 'Ole Miss' · data/reports/parse_audit.csv: 2022-09-03 'Mississippi' · data/reports/schedule_history.json: 2022-09-03 'Mississippi' · data/reports/team_matches.json: 2022-09-03 'Mississippi' · data/reports/season_totals.json: 2022-09-03 'Ole Miss' · data/reports/box_scores.json: 'Ole Miss' (2022) · data/reports/season_totals.json: 'Ole Miss' (2022)</span></td>
+</tr>
+<tr class="" id="corr-0009">
+<td><code>corr-0009</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key umd, printed UMD</td>
+<td style="max-width: 20ch">canonical Maryland, basis match<br/><span class="muted">was canonical UMD</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2017-11-08 the box score prints 'UMD', the schedule prints 'Maryland', the season report prints 'Maryland'; 22 schedule rows print 'Maryland'. The Phase 6 note dated this 2021-02-05, when every export prints 'Maryland'; the mapping was right, the date was not
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['umd']: 2021-02-05: the box score prints 'UMD', the schedule 'Maryland' · data/pbp_merged/2017-11-08_vs_maryland.txt · data/reports/box_scores.json: 2017-11-08 'UMD' · data/reports/parse_audit.csv: 2017-11-08 'Maryland' · data/reports/schedule_history.json: 2017-11-08 'Maryland' · data/reports/season_totals.json: 2017-11-08 'Maryland' · data/reports/team_matches.json: 2017-11-08 'Maryland' · data/reports/box_scores.json: 'UMD' (2017)</span></td>
+</tr>
+<tr class="" id="corr-0010">
+<td><code>corr-0010</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key uni, printed UNI, vs UNI</td>
+<td style="max-width: 20ch">canonical Northern Iowa, basis match<br/><span class="muted">was canonical UNI</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2017-09-16 the box score prints 'UNI', the schedule prints 'Northern Iowa', the season report prints 'vs UNI'; 8 schedule rows print 'Northern Iowa'. The Phase 6 note dated this 2018-09-08, when no export prints any opponent; the mapping was right, the date was not
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['uni']: 2018-09-08: the box score prints 'UNI', the schedule 'Northern Iowa', the season report 'vs UNI' · data/pbp_merged/2017-09-16_vs_northern-iowa.txt · data/reports/box_scores.json: 2017-09-16 'UNI' · data/reports/parse_audit.csv: 2017-09-16 'Northern Iowa' · data/reports/schedule_history.json: 2017-09-16 'Northern Iowa' · data/reports/team_matches.json: 2017-09-16 'Northern Iowa' · data/reports/season_totals.json: 2017-09-16 'vs UNI' · data/reports/box_scores.json: 'UNI' (2017) · data/reports/season_totals.json: 'vs UNI' (2017)</span></td>
+</tr>
+<tr class="" id="corr-0011">
+<td><code>corr-0011</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key southerncalifornia, printed Southern California, at Southern California</td>
+<td style="max-width: 20ch">canonical USC, basis match<br/><span class="muted">was canonical Southern California</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2024-09-29 the box score prints 'Southern California', the schedule prints 'USC', the season report prints 'Southern California' (and again on 2025-11-16); 9 schedule rows print 'USC'. The Phase 6 note dated this 2019-08-31, when every export prints 'UCLA'; the mapping was right, the date was not
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['southerncalifornia']: 2019-08-31: the box score prints 'Southern California', the schedule 'USC' · data/pbp_merged/2024-09-29_vs_usc.txt · data/reports/box_scores.json: 2024-09-29 'Southern California' · data/reports/parse_audit.csv: 2024-09-29 'USC' · data/reports/schedule_history.json: 2024-09-29 'USC' · data/reports/team_matches.json: 2024-09-29 'USC' · data/reports/season_totals.json: 2024-09-29 'Southern California' · data/pbp_merged/2025-11-16_at_usc.txt · data/reports/season_totals.json: 2025-11-16 'at Southern California' · data/reports/box_scores.json: 2025-11-16 'USC'</span></td>
+</tr>
+<tr class="" id="corr-0012">
+<td><code>corr-0012</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key southerncal, printed Southern Cal</td>
+<td style="max-width: 20ch">canonical USC, basis match<br/><span class="muted">was canonical Southern Cal</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2002-09-02 the schedule prints 'USC', the season report prints 'Southern Cal'; 9 schedule rows print 'USC'. The Phase 6 note dated this 2008-08-31, when every export prints 'USC'; the mapping was right, the date was not
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['southerncal']: 2008-08-31: the 2008 season report prints 'Southern Cal' · data/reports/season_totals.json: 2002-09-02 'Southern Cal' · data/reports/schedule_history.json: 2002-09-02 'USC' · data/reports/season_totals.json: 'Southern Cal' (2002)</span></td>
+</tr>
+<tr class="" id="corr-0013">
+<td><code>corr-0013</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key asu, printed ASU</td>
+<td style="max-width: 20ch">canonical Arizona State, basis match<br/><span class="muted">was canonical ASU</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2002-12-07 the schedule prints 'Arizona State', the season report prints 'ASU'; 7 schedule rows print 'Arizona State'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['asu']: 2002-12-07: the season report prints 'ASU', the schedule 'Arizona State' · data/reports/season_totals.json: 2002-12-07 'ASU' · data/reports/schedule_history.json: 2002-12-07 'Arizona State' · data/reports/season_totals.json: 'ASU' (2002)</span></td>
+</tr>
+<tr class="" id="corr-0014">
+<td><code>corr-0014</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key kstate, printed K-STATE</td>
+<td style="max-width: 20ch">canonical Kansas State, basis match<br/><span class="muted">was canonical K-State</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2011-12-02 the schedule prints 'Kansas State', the season report prints 'K-STATE'; 87 schedule rows print 'Kansas State'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['kstate']: 2011-12-02: the season report prints 'K-STATE' · data/reports/season_totals.json: 2011-12-02 'K-STATE' · data/reports/schedule_history.json: 2011-12-02 'Kansas State' · data/reports/season_totals.json: 'K-STATE' (2011)</span></td>
+</tr>
+<tr class="" id="corr-0015">
+<td><code>corr-0015</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key mdeasternshore, printed MD EASTERN SHORE</td>
+<td style="max-width: 20ch">canonical UMES, basis match<br/><span class="muted">was canonical Md Eastern Shore</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2012-11-29 the schedule prints 'UMES', the season report prints 'MD EASTERN SHORE'; 1 schedule rows print 'UMES'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['mdeasternshore']: 2012-11-29: the season report prints 'MD EASTERN SHORE' · data/reports/season_totals.json: 2012-11-29 'MD EASTERN SHORE' · data/reports/schedule_history.json: 2012-11-29 'UMES' · data/reports/season_totals.json: 'MD EASTERN SHORE' (2012)</span></td>
+</tr>
+<tr class="" id="corr-0016">
+<td><code>corr-0016</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key longbeach, printed Long Beach</td>
+<td style="max-width: 20ch">canonical Long Beach State, basis match<br/><span class="muted">was canonical Long Beach</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2001-09-01 the schedule prints 'Long Beach', the season report prints 'Long Beach State'; 9 schedule rows print 'Long Beach State'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['longbeach']: 2001-09-01: the schedule prints 'Long Beach', the season report 'Long Beach State' · data/reports/schedule_history.json: 2001-09-01 'Long Beach' · data/reports/season_totals.json: 2001-09-01 'Long Beach State' · data/reports/schedule_history.json: 'Long Beach' (2001)</span></td>
+</tr>
+<tr class="" id="corr-0017">
+<td><code>corr-0017</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key ucsb, printed UCSB</td>
+<td style="max-width: 20ch">canonical UC Santa Barbara, basis match<br/><span class="muted">was canonical UCSB</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2001-09-02 the schedule prints 'UCSB', the season report prints 'UC Santa Barbara'; 5 schedule rows print 'UC Santa Barbara'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['ucsb']: 2001-09-02: the schedule prints 'UCSB', the season report 'UC Santa Barbara' · data/reports/schedule_history.json: 2001-09-02 'UCSB' · data/reports/season_totals.json: 2001-09-02 'UC Santa Barbara' · data/reports/schedule_history.json: 'UCSB' (1984) · data/reports/schedule_history.json: 'UCSB' (1999)</span></td>
+</tr>
+<tr class="" id="corr-0018">
+<td><code>corr-0018</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key ulm, printed ULM</td>
+<td style="max-width: 20ch">canonical Louisiana-Monroe, basis match<br/><span class="muted">was canonical ULM</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2013-08-30 the schedule prints 'Louisiana-Monroe', the season report prints 'ULM'; 1 schedule rows print 'Louisiana-Monroe'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['ulm']: 2013-08-30: the season report prints 'ULM' · data/reports/season_totals.json: 2013-08-30 'ULM' · data/reports/schedule_history.json: 2013-08-30 'Louisiana-Monroe' · data/reports/season_totals.json: 'ULM' (2013)</span></td>
+</tr>
+<tr class="" id="corr-0019">
+<td><code>corr-0019</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key louisianalafayette, printed Louisiana-Lafayette</td>
+<td style="max-width: 20ch">canonical UL-Lafayette, basis match<br/><span class="muted">was canonical Louisiana-Lafayette</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2009-09-04 the schedule prints 'UL-Lafayette', the season report prints 'Louisiana-Lafayette'; 1 schedule rows print 'UL-Lafayette'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['louisianalafayette']: 2009-09-04: the season report prints 'Louisiana-Lafayette', the schedule 'UL-Lafayette' (the other match that day is LSU on both sides) · data/reports/season_totals.json: 2009-09-04 'Louisiana-Lafayette' · data/reports/schedule_history.json: 2009-09-04 'UL-Lafayette' · data/reports/season_totals.json: 'Louisiana-Lafayette' (2009)</span></td>
+</tr>
+<tr class="" id="corr-0020">
+<td><code>corr-0020</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key univofneworleans, printed Univ. of New Orleans</td>
+<td style="max-width: 20ch">canonical New Orleans, basis match<br/><span class="muted">was canonical Univ. of New Orleans</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2003-09-05 the schedule prints 'New Orleans', the season report prints 'Univ. of New Orleans'; 1 schedule rows print 'New Orleans'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['univofneworleans']: 2003-09-05: the season report prints 'Univ. of New Orleans' · data/reports/season_totals.json: 2003-09-05 'Univ. of New Orleans' · data/reports/schedule_history.json: 2003-09-05 'New Orleans' · data/reports/season_totals.json: 'Univ. of New Orleans' (2003)</span></td>
+</tr>
+<tr class="" id="corr-0021">
+<td><code>corr-0021</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key universityofkansas, printed University of Kansas</td>
+<td style="max-width: 20ch">canonical Kansas, basis match<br/><span class="muted">was canonical University of Kansas</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2003-10-08 the schedule prints 'Kansas', the season report prints 'University of Kansas' (and again on 2003-11-19); 90 schedule rows print 'Kansas'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['universityofkansas']: 2004 and 2005: the season reports print 'University of Kansas' · data/reports/season_totals.json: 2003-10-08 'University of Kansas' · data/reports/schedule_history.json: 2003-10-08 'Kansas' · data/reports/season_totals.json: 2003-11-19 'University of Kansas' · data/reports/schedule_history.json: 2003-11-19 'Kansas' · data/reports/season_totals.json: 'University of Kansas' (2003)</span></td>
+</tr>
+<tr class="" id="corr-0022">
+<td><code>corr-0022</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key universityoforegon, printed University of Oregon</td>
+<td style="max-width: 20ch">canonical Oregon, basis match<br/><span class="muted">was canonical University of Oregon</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2015-09-05 the schedule prints 'Oregon', the season report prints 'University of Oregon'; 12 schedule rows print 'Oregon'. The Phase 6 note dated this 2005-09-10, when every export prints 'Pacific'; the mapping was right, the date was not
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['universityoforegon']: 2005-09-10: the season report prints 'University of Oregon' · data/reports/season_totals.json: 2015-09-05 'University of Oregon' · data/reports/schedule_history.json: 2015-09-05 'Oregon' · data/reports/season_totals.json: 'University of Oregon' (2015)</span></td>
+</tr>
+<tr class="" id="corr-0023">
+<td><code>corr-0023</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key pitt, printed PITT</td>
+<td style="max-width: 20ch">canonical Pittsburgh, basis match<br/><span class="muted">was canonical Pitt</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2015-08-29 the schedule prints 'Pittsburgh', the season report prints 'PITT'; 16 schedule rows print 'Pittsburgh'. The Phase 6 note dated this 2011-12-03, when no export prints any opponent; the mapping was right, the date was not
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['pitt']: 2011-12-03: the season report prints 'PITT' · data/reports/season_totals.json: 2015-08-29 'PITT' · data/reports/schedule_history.json: 2015-08-29 'Pittsburgh' · data/reports/season_totals.json: 'PITT' (2015)</span></td>
+</tr>
+<tr class="" id="corr-0024">
+<td><code>corr-0024</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key usf, printed USF</td>
+<td style="max-width: 20ch">canonical South Florida, basis match<br/><span class="muted">was canonical USF</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2015-09-12 the schedule prints 'USF', the season report prints 'SOUTH FLORIDA'; 1 schedule rows print 'South Florida'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['usf']: 2015-09-12: the schedule prints 'USF', the season report 'SOUTH FLORIDA' · data/reports/schedule_history.json: 2015-09-12 'USF' · data/reports/season_totals.json: 2015-09-12 'SOUTH FLORIDA' · data/reports/schedule_history.json: 'USF' (2015)</span></td>
+</tr>
+<tr class="" id="corr-0025">
+<td><code>corr-0025</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key lsutigers, printed LSU Tigers</td>
+<td style="max-width: 20ch">canonical Louisiana State, basis match<br/><span class="muted">was canonical LSU Tigers</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2003-09-06 the schedule prints 'Louisiana State', the season report prints 'LSU Tigers'; 6 schedule rows print 'Louisiana State'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['lsutigers']: 2003-09-06: the season report prints 'LSU Tigers' and 'Tulane Green Wave' for the schedule's 'Louisiana State' and 'Tulane' · data/reports/season_totals.json: 2003-09-06 'LSU Tigers' · data/reports/schedule_history.json: 2003-09-06 'Louisiana State' · data/reports/season_totals.json: 'LSU Tigers' (2003)</span></td>
+</tr>
+<tr class="" id="corr-0026">
+<td><code>corr-0026</code></td>
+<td>opponent name</td>
+<td><span class="badge">likely</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key lsu, printed LSU</td>
+<td style="max-width: 20ch">canonical Louisiana State, basis abbreviation<br/><span class="muted">was canonical LSU</span></td>
+<td style="max-width: 70ch">an abbreviation no other school in 52 seasons shares: 'LSU' appears in schedule_history.json 2008, 2009; season_totals.json 2008, 2009; 6 schedule rows print 'Louisiana State'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['lsu']: the schedule prints 'Louisiana State' 6 times (1983-2003) and 'LSU' twice (2008, 2009) · data/reports/schedule_history.json: 2008-09-12 'LSU' · data/reports/season_totals.json: 2008-09-12 'LSU' · data/reports/schedule_history.json: 2009-09-04 'LSU' · data/reports/season_totals.json: 2009-09-04 'LSU' · data/reports/schedule_history.json: 'LSU' (2008) · data/reports/schedule_history.json: 'LSU' (2009)</span></td>
+</tr>
+<tr class="" id="corr-0027">
+<td><code>corr-0027</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key tulanegreenwave, printed Tulane Green Wave</td>
+<td style="max-width: 20ch">canonical Tulane, basis match<br/><span class="muted">was canonical Tulane Green Wave</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2003-09-06 the schedule prints 'Tulane', the season report prints 'Tulane Green Wave'; 4 schedule rows print 'Tulane'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['tulanegreenwave']: 2003-09-06: the season report prints 'Tulane Green Wave' · data/reports/season_totals.json: 2003-09-06 'Tulane Green Wave' · data/reports/schedule_history.json: 2003-09-06 'Tulane' · data/reports/season_totals.json: 'Tulane Green Wave' (2003)</span></td>
+</tr>
+<tr class="" id="corr-0028">
+<td><code>corr-0028</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key centralmich, printed Central Mich.</td>
+<td style="max-width: 20ch">canonical Central Michigan, basis match<br/><span class="muted">was canonical Central Mich.</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2018-09-14 the box score prints 'Central Michigan', the schedule prints 'Central Michigan', the season report prints 'Central Mich.'; 2 schedule rows print 'Central Michigan'. The Phase 6 note dated this 2018-09-13, when no export prints any opponent; the mapping was right, the date was not
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['centralmich']: 2018-09-13: the season report prints 'Central Mich.', the schedule 'Central Michigan' · data/pbp_merged/2018-09-14_vs_central-michigan.txt · data/reports/season_totals.json: 2018-09-14 'Central Mich.' · data/reports/box_scores.json: 2018-09-14 'Central Michigan' · data/reports/parse_audit.csv: 2018-09-14 'Central Michigan' · data/reports/schedule_history.json: 2018-09-14 'Central Michigan' · data/reports/team_matches.json: 2018-09-14 'Central Michigan' · data/reports/season_totals.json: 'Central Mich.' (2018)</span></td>
+</tr>
+<tr class="" id="corr-0029">
+<td><code>corr-0029</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key miami, printed MIAMI, Miami</td>
+<td style="max-width: 20ch">canonical Miami (FL), basis match<br/><span class="muted">was canonical Miami</span></td>
+<td style="max-width: 70ch">one match that two exports name differently: on 2024-12-07 the box score prints 'Miami (FL)', the schedule prints 'Miami', the season report prints 'Miami (FL)'; 0 schedule rows print 'Miami (FL)'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['miami']: 2024-12-07: the box score prints 'Miami (FL)' for the schedule's 'Miami'; the schedule writes 'Miami (Ohio)' in all 4 rows where it means the Ohio school, so a bare 'Miami' (2002-12-13, 2024-12-07) is the Florida one · data/pbp_merged/2024-12-07_vs_miami.txt · data/reports/parse_audit.csv: 2024-12-07 'Miami' · data/reports/box_scores.json: 2024-12-07 'Miami (FL)' · data/reports/season_totals.json: 2024-12-07 'Miami (FL)' · data/reports/schedule_history.json: 2024-12-07 'Miami' · data/reports/team_matches.json: 2024-12-07 'Miami' · data/reports/season_totals.json: 'MIAMI' (2002) · data/reports/parse_audit.csv: 'Miami' (2024) · data/reports/schedule_history.json: 'Miami' (2002)</span></td>
+</tr>
+<tr class="" id="corr-0030">
+<td><code>corr-0030</code></td>
+<td>opponent name</td>
+<td><span class="badge">likely</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key ncolorado, printed N. Colorado</td>
+<td style="max-width: 20ch">canonical Northern Colorado, basis abbreviation<br/><span class="muted">was canonical N. Colorado</span></td>
+<td style="max-width: 70ch">an abbreviation no other school in 52 seasons shares: 'N. Colorado' appears in schedule_history.json 1979; 3 schedule rows print 'Northern Colorado'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['ncolorado']: the 1979-09-22 schedule row; 3 rows say 'Northern Colorado' · data/reports/schedule_history.json: 1979-09-22 'N. Colorado' · data/reports/schedule_history.json: 'N. Colorado' (1979)</span></td>
+</tr>
+<tr class="" id="corr-0031">
+<td><code>corr-0031</code></td>
+<td>opponent name</td>
+<td><span class="badge">likely</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key wmichigan, printed W. Michigan</td>
+<td style="max-width: 20ch">canonical Western Michigan, basis abbreviation<br/><span class="muted">was canonical W. Michigan</span></td>
+<td style="max-width: 70ch">an abbreviation no other school in 52 seasons shares: 'W. Michigan' appears in schedule_history.json 1983, 1987; 6 schedule rows print 'Western Michigan'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['wmichigan']: the 1983-12-16 and 1987-10-24 schedule rows; 6 rows say 'Western Michigan' · data/reports/schedule_history.json: 1983-12-16 'W. Michigan' · data/reports/schedule_history.json: 1987-10-24 'W. Michigan' · data/reports/schedule_history.json: 'W. Michigan' (1983) · data/reports/schedule_history.json: 'W. Michigan' (1987)</span></td>
+</tr>
+<tr class="" id="corr-0032">
+<td><code>corr-0032</code></td>
+<td>opponent name</td>
+<td><span class="badge">likely</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key brighamyoung, printed Brigham Young</td>
+<td style="max-width: 20ch">canonical BYU, basis abbreviation<br/><span class="muted">was canonical Brigham Young</span></td>
+<td style="max-width: 70ch">an abbreviation no other school in 52 seasons shares: 'Brigham Young' appears in schedule_history.json 1976, 1985, 1986, 1990; 6 schedule rows print 'BYU'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['brighamyoung']: the schedule says 'Brigham Young' in 1976-1990 (5 rows) and 'BYU' from 1991 (6 rows) · data/reports/schedule_history.json: 1976-12-10 'Brigham Young' · data/reports/schedule_history.json: 1985-09-28 'Brigham Young' · data/reports/schedule_history.json: 1986-10-04 'Brigham Young' · data/reports/schedule_history.json: 1990-09-28 'Brigham Young' · data/reports/schedule_history.json: 'Brigham Young' (1976) · data/reports/schedule_history.json: 'Brigham Young' (1985)</span></td>
+</tr>
+<tr class="" id="corr-0033">
+<td><code>corr-0033</code></td>
+<td>opponent name</td>
+<td><span class="badge">likely</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key southwestmissouristate, printed Southwest Missouri State</td>
+<td style="max-width: 20ch">canonical SW Missouri State, basis abbreviation<br/><span class="muted">was canonical Southwest Missouri State</span></td>
+<td style="max-width: 70ch">an abbreviation no other school in 52 seasons shares: 'Southwest Missouri State' appears in schedule_history.json 1993; 29 schedule rows print 'SW Missouri State'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['southwestmissouristate']: the 1993-09-24 schedule row; 29 rows say 'SW Missouri State' · data/reports/schedule_history.json: 1993-09-24 'Southwest Missouri State' · data/reports/schedule_history.json: 'Southwest Missouri State' (1993)</span></td>
+</tr>
+<tr class="" id="corr-0034">
+<td><code>corr-0034</code></td>
+<td>opponent name</td>
+<td><span class="badge">likely</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key saintlouis, printed Saint Louis</td>
+<td style="max-width: 20ch">canonical St. Louis, basis abbreviation<br/><span class="muted">was canonical Saint Louis</span></td>
+<td style="max-width: 70ch">an abbreviation no other school in 52 seasons shares: 'Saint Louis' appears in schedule_history.json 2013; season_totals.json 2013; 2 schedule rows print 'St. Louis'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['saintlouis']: the 2013-08-31 schedule row and the 2013 season report; the 1975 and 2012 rows say 'St. Louis' · data/reports/schedule_history.json: 2013-08-31 'Saint Louis' · data/reports/season_totals.json: 2013-08-31 'Saint Louis' · data/reports/schedule_history.json: 'Saint Louis' (2013) · data/reports/season_totals.json: 'Saint Louis' (2013)</span></td>
+</tr>
+<tr class="" id="corr-0035">
+<td><code>corr-0035</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key wisonsin, printed Wisonsin</td>
+<td style="max-width: 20ch">canonical Wisconsin, basis typo<br/><span class="muted">was canonical Wisonsin</span></td>
+<td style="max-width: 70ch">a misspelling: 'Wisonsin' appears in schedule_history.json 1990, 1995; 40 schedule rows print 'Wisconsin'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['wisonsin']: the 1990-09-29 and 1995-09-09 schedule rows; 40 rows say 'Wisconsin' · data/reports/schedule_history.json: 1990-09-29 'Wisonsin' · data/reports/schedule_history.json: 1995-09-09 'Wisonsin' · data/reports/schedule_history.json: 'Wisonsin' (1990) · data/reports/schedule_history.json: 'Wisonsin' (1995)</span></td>
+</tr>
+<tr class="" id="corr-0036">
+<td><code>corr-0036</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key kanasstate, printed Kanas State</td>
+<td style="max-width: 20ch">canonical Kansas State, basis typo<br/><span class="muted">was canonical Kanas State</span></td>
+<td style="max-width: 70ch">a misspelling: 'Kanas State' appears in schedule_history.json 1976; 87 schedule rows print 'Kansas State'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['kanasstate']: the 1976-10-12 schedule row; 87 rows say 'Kansas State' · data/reports/schedule_history.json: 1976-10-12 'Kanas State' · data/reports/schedule_history.json: 'Kanas State' (1976)</span></td>
+</tr>
+<tr class="" id="corr-0037">
+<td><code>corr-0037</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key ilinoisstate, printed Ilinois State</td>
+<td style="max-width: 20ch">canonical Illinois State, basis typo<br/><span class="muted">was canonical Ilinois State</span></td>
+<td style="max-width: 70ch">a misspelling: 'Ilinois State' appears in schedule_history.json 1982; 9 schedule rows print 'Illinois State'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['ilinoisstate']: the 1982-10-01 schedule row; 9 rows say 'Illinois State' · data/reports/schedule_history.json: 1982-10-01 'Ilinois State' · data/reports/schedule_history.json: 'Ilinois State' (1982)</span></td>
+</tr>
+<tr class="" id="corr-0038">
+<td><code>corr-0038</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key illionoischicago, printed Illionois-Chicago</td>
+<td style="max-width: 20ch">canonical Illinois-Chicago, basis typo<br/><span class="muted">was canonical Illionois-Chicago</span></td>
+<td style="max-width: 70ch">a misspelling: 'Illionois-Chicago' appears in schedule_history.json 1978; 3 schedule rows print 'Illinois-Chicago'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['illionoischicago']: the 1978-10-13 schedule row; 3 rows say 'Illinois-Chicago' · data/reports/schedule_history.json: 1978-10-13 'Illionois-Chicago' · data/reports/schedule_history.json: 'Illionois-Chicago' (1978)</span></td>
+</tr>
+<tr class="" id="corr-0039">
+<td><code>corr-0039</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key nebaskaomaha, printed Nebaska-Omaha</td>
+<td style="max-width: 20ch">canonical Nebraska-Omaha, basis typo<br/><span class="muted">was canonical Nebaska-Omaha</span></td>
+<td style="max-width: 70ch">a misspelling: 'Nebaska-Omaha' appears in schedule_history.json 1990; 14 schedule rows print 'Nebraska-Omaha'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['nebaskaomaha']: the 1990-09-01 schedule row; 14 rows say 'Nebraska-Omaha' · data/reports/schedule_history.json: 1990-09-01 'Nebaska-Omaha' · data/reports/schedule_history.json: 'Nebaska-Omaha' (1990)</span></td>
+</tr>
+<tr class="" id="corr-0040">
+<td><code>corr-0040</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key nerbaskaomaha, printed Nerbaska-Omaha</td>
+<td style="max-width: 20ch">canonical Nebraska-Omaha, basis typo<br/><span class="muted">was canonical Nerbaska-Omaha</span></td>
+<td style="max-width: 70ch">a misspelling: 'Nerbaska-Omaha' appears in schedule_history.json 1976; 14 schedule rows print 'Nebraska-Omaha'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['nerbaskaomaha']: the 1976-09-18 schedule row; 14 rows say 'Nebraska-Omaha' · data/reports/schedule_history.json: 1976-09-18 'Nerbaska-Omaha' · data/reports/schedule_history.json: 'Nerbaska-Omaha' (1976)</span></td>
+</tr>
+<tr class="" id="corr-0041">
+<td><code>corr-0041</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key texaswomens, printed Texas Women's</td>
+<td style="max-width: 20ch">canonical Texas Woman's, basis typo<br/><span class="muted">was canonical Texas Women's</span></td>
+<td style="max-width: 70ch">a misspelling: "Texas Women's" appears in schedule_history.json 1977; 4 schedule rows print "Texas Woman's"
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['texaswomens']: the 1977-09-24 schedule row; 4 rows say "Texas Woman's" · data/reports/schedule_history.json: 1977-09-24 "Texas Women's" · data/reports/schedule_history.json: "Texas Women's" (1977)</span></td>
+</tr>
+<tr class="" id="corr-0042">
+<td><code>corr-0042</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key hawaii, printed HAWAII, Hawai'i, Hawaii, vs Hawaii</td>
+<td style="max-width: 20ch">canonical Hawaii, basis spelling</td>
+<td style="max-width: 70ch">one of several spellings of one key, and the one printed: 'HAWAII' appears in season_totals.json 2002; "Hawai'i" appears in season_totals.json 2007; 'vs Hawaii' appears in season_totals.json 2019; 12 schedule rows print 'Hawaii'. The Phase 6 note put the odd spelling in 2023; the exports print it in 2002, 2007, 2019. The mapping was right, the year was not
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['hawaii']: the schedule prints 'Hawaii' 12 times, the 2023 season report "Hawai'i" · data/reports/season_totals.json: 2002-12-14 'HAWAII' · data/reports/season_totals.json: 2007-10-21 "Hawai'i" · data/reports/season_totals.json: 2019-12-13 'vs Hawaii' · data/reports/season_totals.json: 'HAWAII' (2002) · data/reports/season_totals.json: "Hawai'i" (2007) · data/reports/box_scores.json: 'Hawaii' (2019) · data/reports/parse_audit.csv: 'Hawaii' (2019) · data/reports/season_totals.json: 'vs Hawaii' (2019)</span></td>
+</tr>
+<tr class="" id="corr-0043">
+<td><code>corr-0043</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key missouri, printed #23 Missouri, MIssouri, Missouri</td>
+<td style="max-width: 20ch">canonical Missouri, basis spelling</td>
+<td style="max-width: 70ch">one of several spellings of one key, and the one printed: '#23 Missouri' appears in season_totals.json 2002; 'MIssouri' appears in schedule_history.json 1981; 78 schedule rows print 'Missouri'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['missouri']: the 1981-11-14 schedule row prints 'MIssouri' · data/reports/schedule_history.json: 1981-11-14 'MIssouri' · data/reports/season_totals.json: 2002-10-09 '#23 Missouri' · data/reports/season_totals.json: 2002-11-27 '#23 Missouri' · data/reports/season_totals.json: '#23 Missouri' (2002) · data/reports/schedule_history.json: 'MIssouri' (1981) · data/reports/box_scores.json: 'Missouri' (2018) · data/reports/box_scores.json: 'Missouri' (2019)</span></td>
+</tr>
+<tr class="" id="corr-0044">
+<td><code>corr-0044</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key wichitastate, printed WIchita State, Wichita St., Wichita State</td>
+<td style="max-width: 20ch">canonical Wichita State, basis spelling<br/><span class="muted">was canonical WIchita State</span></td>
+<td style="max-width: 70ch">one of several spellings of one key, and the one printed: 'WIchita State' appears in schedule_history.json 1986; 'Wichita St.' appears in box_scores.json 2024; season_totals.json 2019, 2024; 13 schedule rows print 'Wichita State'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['wichitastate']: the 1986-09-03 schedule row prints 'WIchita State' · data/reports/schedule_history.json: 1986-09-03 'WIchita State' · data/reports/season_totals.json: 2019-09-21 'Wichita St.' · data/reports/box_scores.json: 2024-09-14 'Wichita St.' · data/reports/season_totals.json: 2024-09-14 'Wichita St.' · data/reports/schedule_history.json: 'WIchita State' (1986) · data/reports/box_scores.json: 'Wichita St.' (2024) · data/reports/season_totals.json: 'Wichita St.' (2019) · data/reports/box_scores.json: 'Wichita State' (2019) · data/reports/parse_audit.csv: 'Wichita State' (2019)</span></td>
+</tr>
+<tr class="" id="corr-0045">
+<td><code>corr-0045</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key ucirvine, printed UC Irvine, UC-Irvine</td>
+<td style="max-width: 20ch">canonical UC Irvine, basis spelling</td>
+<td style="max-width: 70ch">one of several spellings of one key, and the one printed: 'UC-Irvine' appears in schedule_history.json 2012; 0 schedule rows print 'UC Irvine'. The Phase 6 note put the odd spelling in 1999; the exports print it in 2012. The mapping was right, the year was not
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['ucirvine']: the schedule prints 'UC-Irvine', the 1999 season report 'UC Irvine' · data/reports/schedule_history.json: 2012-09-01 'UC-Irvine' · data/reports/season_totals.json: 'UC Irvine' (2012) · data/reports/schedule_history.json: 'UC-Irvine' (2012)</span></td>
+</tr>
+<tr class="" id="corr-0046">
+<td><code>corr-0046</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key umes, printed UMES</td>
+<td style="max-width: 20ch">canonical UMES, basis spelling<br/><span class="muted">was canonical Umes</span></td>
+<td style="max-width: 70ch">one of several spellings of one key, and the one printed: 'UMES' appears in schedule_history.json 2012; 1 schedule rows print 'UMES'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['umes']: the 2012-11-29 schedule row; canonical_team would title-case it · data/reports/schedule_history.json: 'UMES' (2012)</span></td>
+</tr>
+<tr class="" id="corr-0047">
+<td><code>corr-0047</code></td>
+<td>opponent name</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">Opponent</span><br/>key redwhitescrimmage, printed Red-White Scrimmage, Red/White Scrimmage</td>
+<td style="max-width: 20ch">canonical Red/White Scrimmage, basis spelling<br/><span class="muted">was canonical Red-White Scrimmage</span></td>
+<td style="max-width: 70ch">one of several spellings of one key, and the one printed: 'Red-White Scrimmage' appears in schedule_history.json 2007, 2008, 2022, 2023, 2026; 15 schedule rows print 'Red/White Scrimmage'
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/analytics/opponent_names.py ALIASES['redwhitescrimmage']: the schedule prints 'Red/White Scrimmage' 15 times and 'Red-White Scrimmage' 5 · data/reports/schedule_history.json: 2007-08-18 'Red-White Scrimmage' · data/reports/schedule_history.json: 2008-08-23 'Red-White Scrimmage' · data/reports/schedule_history.json: 2022-08-20 'Red-White Scrimmage' · data/reports/schedule_history.json: 2023-08-19 'Red-White Scrimmage' · data/reports/schedule_history.json: 'Red-White Scrimmage' (2007) · data/reports/schedule_history.json: 'Red-White Scrimmage' (2008) · data/reports/schedule_history.json: 'Red/White Scrimmage' (2001) · data/reports/schedule_history.json: 'Red/White Scrimmage' (2003)</span></td>
+</tr>
+<tr class="" id="corr-0058">
+<td><code>corr-0058</code></td>
+<td>role override</td>
+<td><span class="badge">likely</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player madi-kubik, printed Kubik, Madi, match 2019-08-30_vs_creighton, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source sidearm_pbp_lineup, sets_claimed 1</span></td>
+<td style="max-width: 70ch">the sidearm pbp lineup names her the libero for 1 set(s), but her own line (SP 4, K 6, E 1, TA 17, A 0, DIG 6, BS 0, BA 0) is not one a libero could have: 17 attack attempts in 4 set(s) is 4.25 per set, above the 1.00 a back-row-only player stays under; the one-attempt-per-set cut is measured over this corpus, not a rule of the game, so this is likely rather than certain
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2019-08-30_vs_creighton.txt:32 · data/raw/opponent_sites/2026-09-15/f7850173e353ea05d2aa2526a7b75c6fb5c49043f19b549292ca4b3a12935baf.html (via data/reports/sidearm_pbp.json pages) · https://gocreighton.com/sports/womens-volleyball/stats/2019/nebraska/boxscore/12657 · data/reports/player_timeline.json: rejected_libero_claims 2019-08-30_vs_creighton.txt 'Kubik, Madi'</span></td>
+</tr>
+<tr class="" id="corr-0059">
+<td><code>corr-0059</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2023-08-27_vs_smu, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 1, E 0, TA 5, A 29, DIG 9, BS 0, BA 2) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 2 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2023-08-27_vs_smu.txt:38 · data/reports/player_timeline.json: rejected_libero_claims 2023-08-27_vs_smu.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0060">
+<td><code>corr-0060</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2023-09-03_at_kansas-state, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 1, E 0, TA 4, A 29, DIG 12, BS 0, BA 1) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 1 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2023-09-03_at_kansas-state.txt:9 · data/reports/player_timeline.json: rejected_libero_claims 2023-09-03_at_kansas-state.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0061">
+<td><code>corr-0061</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2023-09-06_vs_creighton, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 4</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 4 set(s), but her own line (SP 4, K 0, E 1, TA 5, A 42, DIG 11, BS 0, BA 2) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 2 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2023-09-06_vs_creighton.txt:40 · data/reports/player_timeline.json: rejected_libero_claims 2023-09-06_vs_creighton.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0062">
+<td><code>corr-0062</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2023-10-14_vs_penn-state, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 2, E 1, TA 4, A 33, DIG 9, BS 0, BA 3) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 3 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2023-10-14_vs_penn-state.txt:37 · data/reports/player_timeline.json: rejected_libero_claims 2023-10-14_vs_penn-state.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0063">
+<td><code>corr-0063</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2023-11-08_vs_northwestern, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 4</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 4 set(s), but her own line (SP 4, K 1, E 1, TA 6, A 45, DIG 12, BS 0, BA 5) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 5 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2023-11-08_vs_northwestern.txt:39 · data/reports/player_timeline.json: rejected_libero_claims 2023-11-08_vs_northwestern.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0064">
+<td><code>corr-0064</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2023-12-09_vs_arkansas, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 4</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 4 set(s), but her own line (SP 4, K 2, E 0, TA 7, A 40, DIG 16, BS 0, BA 4) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 4 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2023-12-09_vs_arkansas.txt:37 · data/reports/player_timeline.json: rejected_libero_claims 2023-12-09_vs_arkansas.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0065">
+<td><code>corr-0065</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2024-09-13_vs_arizona-state, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 1, E 0, TA 3, A 41, DIG 15, BS 0, BA 2) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 2 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2024-09-13_vs_arizona-state.txt:36 · data/reports/player_timeline.json: rejected_libero_claims 2024-09-13_vs_arizona-state.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0066">
+<td><code>corr-0066</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2024-09-27_vs_ucla, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 4</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 4 set(s), but her own line (SP 4, K 2, E 0, TA 4, A 42, DIG 13, BS 1, BA 3) is not one a libero could have: a libero may not block, and this line has 1 block solo(s) and 3 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2024-09-27_vs_ucla.txt:43 · data/reports/player_timeline.json: rejected_libero_claims 2024-09-27_vs_ucla.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0067">
+<td><code>corr-0067</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2024-10-25_vs_illinois, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 3, E 0, TA 4, A 40, DIG 10, BS 0, BA 1) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 1 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2024-10-25_vs_illinois.txt:35 · data/reports/player_timeline.json: rejected_libero_claims 2024-10-25_vs_illinois.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0068">
+<td><code>corr-0068</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2024-10-26_vs_michigan, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 4</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 4 set(s), but her own line (SP 4, K 1, E 3, TA 7, A 42, DIG 10, BS 0, BA 2) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 2 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2024-10-26_vs_michigan.txt:38 · data/reports/player_timeline.json: rejected_libero_claims 2024-10-26_vs_michigan.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0069">
+<td><code>corr-0069</code></td>
+<td>role override</td>
+<td><span class="badge">likely</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2024-11-07_at_oregon, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 3, E 0, TA 6, A 33, DIG 9, BS 0, BA 0) is not one a libero could have: 6 attack attempts in 3 set(s) is 2.00 per set, above the 1.00 a back-row-only player stays under; the one-attempt-per-set cut is measured over this corpus, not a rule of the game, so this is likely rather than certain
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2024-11-07_at_oregon.txt:9 · data/reports/player_timeline.json: rejected_libero_claims 2024-11-07_at_oregon.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0070">
+<td><code>corr-0070</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2024-11-16_vs_indiana, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 2, E 0, TA 5, A 35, DIG 7, BS 0, BA 3) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 3 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2024-11-16_vs_indiana.txt:41 · data/reports/player_timeline.json: rejected_libero_claims 2024-11-16_vs_indiana.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0071">
+<td><code>corr-0071</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2024-11-29_at_penn-state, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 4</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 4 set(s), but her own line (SP 4, K 2, E 1, TA 7, A 38, DIG 8, BS 0, BA 4) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 4 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2024-11-29_at_penn-state.txt:9 · data/reports/player_timeline.json: rejected_libero_claims 2024-11-29_at_penn-state.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0072">
+<td><code>corr-0072</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2024-11-30_at_maryland, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 4</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 4 set(s), but her own line (SP 4, K 1, E 0, TA 1, A 43, DIG 14, BS 0, BA 2) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 2 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2024-11-30_at_maryland.txt:9 · data/reports/player_timeline.json: rejected_libero_claims 2024-11-30_at_maryland.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0073">
+<td><code>corr-0073</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2024-12-15_vs_wisconsin, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 0, E 2, TA 7, A 29, DIG 8, BS 0, BA 4) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 4 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2024-12-15_vs_wisconsin.txt:34 · data/reports/player_timeline.json: rejected_libero_claims 2024-12-15_vs_wisconsin.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0074">
+<td><code>corr-0074</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2025-09-27_vs_maryland, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 4, E 0, TA 6, A 29, DIG 6, BS 0, BA 1) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 1 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2025-09-27_vs_maryland.txt:38 · data/reports/player_timeline.json: rejected_libero_claims 2025-09-27_vs_maryland.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0075">
+<td><code>corr-0075</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2025-10-10_vs_washington, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 2, E 0, TA 4, A 34, DIG 9, BS 0, BA 1) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 1 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2025-10-10_vs_washington.txt:33 · data/reports/player_timeline.json: rejected_libero_claims 2025-10-10_vs_washington.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0076">
+<td><code>corr-0076</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2025-10-12_at_purdue, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 2, E 1, TA 9, A 44, DIG 10, BS 0, BA 2) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 2 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2025-10-12_at_purdue.txt:9 · data/reports/player_timeline.json: rejected_libero_claims 2025-10-12_at_purdue.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0077">
+<td><code>corr-0077</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2025-10-25_vs_michigan-state, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 4, E 0, TA 4, A 37, DIG 8, BS 0, BA 5) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 5 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2025-10-25_vs_michigan-state.txt:37 · data/reports/player_timeline.json: rejected_libero_claims 2025-10-25_vs_michigan-state.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0078">
+<td><code>corr-0078</code></td>
+<td>role override</td>
+<td><span class="badge">likely</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2025-11-14_at_ucla, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 4</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 4 set(s), but her own line (SP 4, K 2, E 0, TA 7, A 34, DIG 11, BS 0, BA 0) is not one a libero could have: 7 attack attempts in 4 set(s) is 1.75 per set, above the 1.00 a back-row-only player stays under; the one-attempt-per-set cut is measured over this corpus, not a rule of the game, so this is likely rather than certain
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2025-11-14_at_ucla.txt:9 · data/reports/player_timeline.json: rejected_libero_claims 2025-11-14_at_ucla.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0079">
+<td><code>corr-0079</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player bergen-reilly, printed Reilly, Bergen, match 2025-11-16_at_usc, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source box_score_set_marks, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the box score set marks names her the libero for 3 set(s), but her own line (SP 3, K 2, E 0, TA 2, A 42, DIG 14, BS 0, BA 3) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 3 block assist(s)
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · data/pbp_merged/2025-11-16_at_usc.txt:9 · data/reports/player_timeline.json: rejected_libero_claims 2025-11-16_at_usc.txt 'Reilly, Bergen'</span></td>
+</tr>
+<tr class="" id="corr-0095">
+<td><code>corr-0095</code></td>
+<td>role override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">PlayerMatch</span><br/>player andi-jackson, printed Jackson, Andi, match 2026-11-22_vs_indiana, team Nebraska</td>
+<td style="max-width: 20ch">libero False<br/><span class="muted">was libero True, source presto_pbp_lineup, sets_claimed 3</span></td>
+<td style="max-width: 70ch">the presto pbp lineup reading names her the libero for 3 set(s), but her own line (SP 3, K 11, E 1, TA 14, A 0, DIG 0, BS 0, BA 4) is not one a libero could have: a libero may not block, and this line has 0 block solo(s) and 4 block assist(s). The claim is a surname collision across the net: Indiana's libero is its own #5 Audrey Jackson (Indiana's lineup line, 'libero 5 Jackson, Audrey', and every 'Libero In: 5 Jackson, Audrey (L)' line), and Nebraska's libero in this match is #10 Olivia Mauch
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:94ff453 huskerstats/analytics/player_timeline.py libero_refusal · commit:03cded3 the 2026-11-25 vb-latest catch-up that brought the match in · data/pbp_merged/2026-11-22_vs_indiana.txt:37 · data/pbp_merged/2026-11-22_vs_indiana.txt:59 · data/pbp_merged/2026-11-22_vs_indiana.txt:60 · data/reports/player_timeline.json: rejected_libero_claims 2026-11-22_vs_indiana.txt 'Jackson, Andi'</span></td>
+</tr>
+<tr class="" id="corr-0048">
+<td><code>corr-0048</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2016-09-08_vs_montreal-exhibition, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Montreal's block fails the trust rules (Montreal: digs sum 22 vs printed 27; Montreal: assists sum 17 vs printed 18; Montreal: attack errors sum 25 vs printed 26; Montreal: attempts sum 82 vs printed 88); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 12 player lines are kept and the 9 of the failing block are left out
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2016-09-08_vs_montreal-exhibition.txt · data/reports/coverage.json: checks.trust_rules.untrusted_file_blocks 2016-09-08_vs_montreal-exhibition.txt · data/reports/box_scores.flagged.txt</span></td>
+</tr>
+<tr class="" id="corr-0049">
+<td><code>corr-0049</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2016-09-23_at_michigan, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Michigan's block fails the trust rules (Michigan: kills sum 35 vs printed 38; Michigan: digs sum 46 vs printed 47; Michigan: attempts sum 110 vs printed 119; Michigan: service errors sum 2 vs printed 3; Michigan: block assists sum 7 vs printed 8); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 10 player lines are kept and the 11 of the failing block are left out
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2016-09-23_at_michigan.txt · data/reports/coverage.json: checks.trust_rules.untrusted_file_blocks 2016-09-23_at_michigan.txt · data/reports/box_scores.flagged.txt</span></td>
+</tr>
+<tr class="" id="corr-0050">
+<td><code>corr-0050</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2016-10-23_vs_minnesota, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Minnesota's block fails the trust rules (Minnesota: kills sum 56 vs printed 57; Minnesota: digs sum 57 vs printed 72; Minnesota: assists sum 6 vs printed 56; Minnesota: attack errors sum 27 vs printed 28; Minnesota: attempts sum 178 vs printed 182; Minnesota: aces sum 4 vs printed 5; Minnesota: block assists sum 23 vs printed 27); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 11 player lines are kept and the 10 of the failing block are left out
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2016-10-23_vs_minnesota.txt · data/reports/coverage.json: checks.trust_rules.untrusted_file_blocks 2016-10-23_vs_minnesota.txt · data/reports/box_scores.flagged.txt</span></td>
+</tr>
+<tr class="" id="corr-0051">
+<td><code>corr-0051</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2016-12-03_vs_tcu, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only TCU's block fails the trust rules (TCU: digs sum 50 vs printed 57; TCU: assists sum 17 vs printed 30; TCU: aces sum 0 vs printed 1; TCU: service errors sum 5 vs printed 6); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 10 player lines are kept and the 9 of the failing block are left out
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2016-12-03_vs_tcu.txt · data/reports/coverage.json: checks.trust_rules.untrusted_file_blocks 2016-12-03_vs_tcu.txt · data/reports/box_scores.flagged.txt</span></td>
+</tr>
+<tr class="" id="corr-0052">
+<td><code>corr-0052</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2018-10-06_vs_minnesota, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Minnesota's block fails the trust rules (Minnesota: kills sum 60 vs printed 66; Minnesota: digs sum 63 vs printed 77; Minnesota: assists sum 14 vs printed 59; Minnesota: attempts sum 161 vs printed 168; Minnesota: service errors sum 5 vs printed 6; Minnesota: block assists sum 13 vs printed 14); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 9 player lines are kept and the 9 of the failing block are left out
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2018-10-06_vs_minnesota.txt · data/reports/coverage.json: checks.trust_rules.untrusted_file_blocks 2018-10-06_vs_minnesota.txt · data/reports/box_scores.flagged.txt</span></td>
+</tr>
+<tr class="" id="corr-0053">
+<td><code>corr-0053</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2018-10-20_at_minnesota, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Minnesota's block fails the trust rules (Minnesota: kills sum 55 vs printed 56; Minnesota: digs sum 64 vs printed 77; Minnesota: assists sum 7 vs printed 54; Minnesota: attempts sum 165 vs printed 170; Minnesota: aces sum 4 vs printed 6; Minnesota: block assists sum 15 vs printed 16); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 9 player lines are kept and the 9 of the failing block are left out
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2018-10-20_at_minnesota.txt · data/reports/coverage.json: checks.trust_rules.untrusted_file_blocks 2018-10-20_at_minnesota.txt · data/reports/box_scores.flagged.txt</span></td>
+</tr>
+<tr class="" id="corr-0054">
+<td><code>corr-0054</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2024-10-11_vs_purdue, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Purdue's block fails the trust rules (Purdue: no Totals row parsed; 7 player line(s) cannot be reconciled (split-line layout); re-extract this PDF with pdfplumber); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 11 player lines are kept and the 7 of the failing block are left out
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2024-10-11_vs_purdue.txt · data/reports/coverage.json: checks.trust_rules.untrusted_file_blocks 2024-10-11_vs_purdue.txt · data/reports/box_scores.flagged.txt</span></td>
+</tr>
+<tr class="" id="corr-0080">
+<td><code>corr-0080</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2000-11-04_vs_colorado, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Colorado's block fails the trust rules (Colorado: service errors sum 7 vs printed 8); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 10 player lines are kept and the 10 of the failing block are left out. The O2 verification job, which read the same archived page independently of this parser, found the same column off ({"Colorado": {"se": [7, 8]}})
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2000-11-04_vs_colorado.txt · https://static.huskers.com/volleyball/stats/2000/nu23.htm · archived: data/raw/huskers_com/2026-09-17/39255b7b95dbfd4ca9702068f345535020a8ed398ef75eb4abf9c88aa66c8c44.html · data/reports/o2_verify.csv: https://static.huskers.com/volleyball/stats/2000/nu23.htm opp_reconciles=False columns_off={"Colorado": {"se": [7, 8]}}</span></td>
+</tr>
+<tr class="" id="corr-0081">
+<td><code>corr-0081</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2000-12-16_vs_wisconsin, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Wisconsin's block fails the trust rules (Wisconsin: service errors sum 5 vs printed 6); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 9 player lines are kept and the 10 of the failing block are left out. The O2 verification job, which read the same archived page independently of this parser, found the same column off ({"Wisconsin": {"se": [5, 6]}})
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2000-12-16_vs_wisconsin.txt · https://static.huskers.com/volleyball/stats/2000/nu34.htm · archived: data/raw/huskers_com/2026-09-17/7ed04df80f2f9bfd7fecd58e6179a9843ab46f5273e6ddac0279b6b4305b7b0a.html · data/reports/o2_verify.csv: https://static.huskers.com/volleyball/stats/2000/nu34.htm opp_reconciles=False columns_off={"Wisconsin": {"se": [5, 6]}}</span></td>
+</tr>
+<tr class="" id="corr-0082">
+<td><code>corr-0082</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2001-12-13_vs_stanford, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Stanford's block fails the trust rules (Stanford: digs sum 51 vs printed 52); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 10 player lines are kept and the 9 of the failing block are left out. The O2 verification job, which read the same archived page independently of this parser, found the same column off ({"Stanford": {"dig": [51, 52]}})
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2001-12-13_vs_stanford.txt · https://static.huskers.com/volleyball/stats/2001/nu33.htm · archived: data/raw/huskers_com/2026-09-17/092dac783dc6c6b74c8b535abf0fd806bf4ce3ad2a236556082e585d3e1f813a.html · data/reports/o2_verify.csv: https://static.huskers.com/volleyball/stats/2001/nu33.htm opp_reconciles=False columns_off={"Stanford": {"dig": [51, 52]}}</span></td>
+</tr>
+<tr class="" id="corr-0083">
+<td><code>corr-0083</code></td>
+<td>value override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2003-11-01_vs_oklahoma, team Nebraska, field schedule_result</td>
+<td style="max-width: 20ch">value W 3-0<br/><span class="muted">was value W 3-1</span></td>
+<td style="max-width: 70ch">the huskers.com schedule page prints 'W 3-1' for 2003-11-01 Oklahoma; the box score's printed set counts give W 3-0 (Nebraska [30, 30, 30] - Oklahoma [17, 18, 19]) and the official season page prints W 3-0 (30-17,30-18,30-19): two sources against one, the schedule page is the misprint
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:4b42f97 huskerstats/analytics/team_matches.py build (result derived from the two printed set counts alone) · data/pbp_merged/2003-11-01_vs_oklahoma.txt · https://static.huskers.com/volleyball/stats/2003/nu22.htm · data/reports/season_totals.json: matches 2003-11-01 Oklahoma W 3-0 (https://static.huskers.com/volleyball/stats/2003/teamstat.htm) · data/reports/schedule_history.json: 2003-11-01 Oklahoma result_printed 'W 3-1' · data/reports/parse_audit.csv: 2003-11-01_vs_oklahoma result 'W 3-1'</span></td>
+</tr>
+<tr class="" id="corr-0084">
+<td><code>corr-0084</code></td>
+<td>value override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2004-10-10_vs_creighton, team Nebraska, field schedule_result</td>
+<td style="max-width: 20ch">value W 3-0<br/><span class="muted">was value W 3-1</span></td>
+<td style="max-width: 70ch">the huskers.com schedule page prints 'W 3-1' for 2004-10-10 Creighton; the box score's printed set counts give W 3-0 (Nebraska [30, 30, 30] - Creighton [22, 15, 24]) and the official season page prints W 3-0 (30-22,30-15,30-24): two sources against one, the schedule page is the misprint
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:4b42f97 huskerstats/analytics/team_matches.py build (result derived from the two printed set counts alone) · data/pbp_merged/2004-10-10_vs_creighton.txt · https://static.huskers.com/volleyball/stats/2004/nu14.htm · data/reports/season_totals.json: matches 2004-10-10 Creighton W 3-0 (https://static.huskers.com/volleyball/stats/2004/teamstat.htm) · data/reports/schedule_history.json: 2004-10-10 Creighton result_printed 'W 3-1' · data/reports/parse_audit.csv: 2004-10-10_vs_creighton result 'W 3-1'</span></td>
+</tr>
+<tr class="" id="corr-0085">
+<td><code>corr-0085</code></td>
+<td>value override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2004-10-20_at_texas, team Nebraska, field schedule_result</td>
+<td style="max-width: 20ch">value W 3-2<br/><span class="muted">was value W 3-1</span></td>
+<td style="max-width: 70ch">the huskers.com schedule page prints 'W 3-1' for 2004-10-20 Texas; the box score's printed set counts give W 3-2 (Nebraska [21, 31, 30, 30, 16] - Texas [30, 33, 27, 23, 14]) and the official season page prints W 3-2 (21-30,31-33,30-27,30-23,16-14): two sources against one, the schedule page is the misprint
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:4b42f97 huskerstats/analytics/team_matches.py build (result derived from the two printed set counts alone) · data/pbp_merged/2004-10-20_at_texas.txt · https://static.huskers.com/volleyball/stats/2004/nu17.htm · data/reports/season_totals.json: matches 2004-10-20 Texas W 3-2 (https://static.huskers.com/volleyball/stats/2004/teamstat.htm) · data/reports/schedule_history.json: 2004-10-20 Texas result_printed 'W 3-1' · data/reports/parse_audit.csv: 2004-10-20_at_texas result 'W 3-1'</span></td>
+</tr>
+<tr class="" id="corr-0086">
+<td><code>corr-0086</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2003-08-29_vs_clemson, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Clemson's block fails the trust rules (Clemson: service errors sum 5 vs printed 6); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 12 player lines are kept and the 11 of the failing block are left out. The O2 verification job, which read the same archived page independently of this parser, found the same column off ({"Clemson": {"se": [5, 6]}})
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2003-08-29_vs_clemson.txt · https://static.huskers.com/volleyball/stats/2003/1nu.htm · archived: data/raw/huskers_com/2026-09-17/4d317503e6d903d7be1824002bece13054452e92fb2c37c4eea421a37cc7fbe1.html · data/reports/o2_verify.csv: https://static.huskers.com/volleyball/stats/2003/1nu.htm opp_reconciles=False columns_off={"Clemson": {"se": [5, 6]}}</span></td>
+</tr>
+<tr class="" id="corr-0087">
+<td><code>corr-0087</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2003-08-30_at_illinois-state, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Illinois State's block fails the trust rules (Illinois State: service errors sum 9 vs printed 10); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 12 player lines are kept and the 10 of the failing block are left out. The O2 verification job, which read the same archived page independently of this parser, found the same column off ({"Illinois State": {"se": [9, 10]}})
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2003-08-30_at_illinois-state.txt · https://static.huskers.com/volleyball/stats/2003/nu-3.htm · archived: data/raw/huskers_com/2026-09-17/0df224ebbc1545375e3d1bb0c37ffd3fbbe5e4a69f52a950aefeef1002708066.html · data/reports/o2_verify.csv: https://static.huskers.com/volleyball/stats/2003/nu-3.htm opp_reconciles=False columns_off={"Illinois State": {"se": [9, 10]}}</span></td>
+</tr>
+<tr class="" id="corr-0088">
+<td><code>corr-0088</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2004-09-12_vs_maryland, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Maryland's block fails the trust rules (Maryland: assists sum 25 vs printed 26; Maryland: attempts sum 122 vs printed 123; Maryland: aces sum 3 vs printed 4); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 13 player lines are kept and the 10 of the failing block are left out. The O2 verification job, which read the same archived page independently of this parser, found the same column off ({"Maryland": {"ta": [122, 123], "a": [25, 26], "sa": [3, 4]}})
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2004-09-12_vs_maryland.txt · https://static.huskers.com/volleyball/stats/2004/fnb6.htm · archived: data/raw/huskers_com/2026-09-17/51dd789d015428570cf3eb0dfeb37cee3609bc1a414f201ba96e8e7024d9a021.html · data/reports/o2_verify.csv: https://static.huskers.com/volleyball/stats/2004/fnb6.htm opp_reconciles=False columns_off={"Maryland": {"ta": [122, 123], "a": [25, 26], "sa": [3, 4]}}</span></td>
+</tr>
+<tr class="" id="corr-0089">
+<td><code>corr-0089</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2005-10-26_vs_kansas, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Kansas's block fails the trust rules (Kansas: service errors sum 10 vs printed 11); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 10 player lines are kept and the 9 of the failing block are left out. The O2 verification job, which read the same archived page independently of this parser, found the same column off ({"Kansas": {"se": [10, 11]}})
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2005-10-26_vs_kansas.txt · https://static.huskers.com/volleyball/stats/2005/nu20.htm · archived: data/raw/huskers_com/2026-09-17/02bc6b0cf15f0bdcdc3407c74a39770058223bc33f81d0adb9f4404c198567a8.html · data/reports/o2_verify.csv: https://static.huskers.com/volleyball/stats/2005/nu20.htm opp_reconciles=False columns_off={"Kansas": {"se": [10, 11]}}</span></td>
+</tr>
+<tr class="" id="corr-0090">
+<td><code>corr-0090</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2005-10-29_at_texas-tech, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Texas Tech's block fails the trust rules (Texas Tech: attack errors sum 32 vs printed 33; Texas Tech: attempts sum 106 vs printed 107); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 11 player lines are kept and the 13 of the failing block are left out. The O2 verification job, which read the same archived page independently of this parser, found the same column off ({"Texas Tech": {"e": [32, 33], "ta": [106, 107]}})
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2005-10-29_at_texas-tech.txt · https://static.huskers.com/volleyball/stats/2005/nu21.htm · archived: data/raw/huskers_com/2026-09-17/0254c43272ad2f4d40dd58d3a69daeba3202e3d425d540095487566082379234.html · data/reports/o2_verify.csv: https://static.huskers.com/volleyball/stats/2005/nu21.htm opp_reconciles=False columns_off={"Texas Tech": {"e": [32, 33], "ta": [106, 107]}}</span></td>
+</tr>
+<tr class="" id="corr-0091">
+<td><code>corr-0091</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2006-09-13_vs_kansas, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Kansas's block fails the trust rules (Kansas: service errors sum 7 vs printed 8); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 9 player lines are kept and the 12 of the failing block are left out. The O2 verification job, which read the same archived page independently of this parser, found the same column off ({"Kansas": {"se": [7, 8]}})
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2006-09-13_vs_kansas.txt · https://static.huskers.com/volleyball/stats/2006/nu8.htm · archived: data/raw/huskers_com/2026-09-17/e4927e5269b255e066313a2ac847544f9eb73180d992d592542a7d3f84cf1c8e.html · data/reports/o2_verify.csv: https://static.huskers.com/volleyball/stats/2006/nu8.htm opp_reconciles=False columns_off={"Kansas": {"se": [7, 8]}}</span></td>
+</tr>
+<tr class="" id="corr-0092">
+<td><code>corr-0092</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2008-09-05_vs_northeastern, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Northeastern's block fails the trust rules (Northeastern: kills sum 23 vs printed 24; Northeastern: digs sum 33 vs printed 34; Northeastern: assists sum 19 vs printed 20; Northeastern: attempts sum 90 vs printed 91); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 10 player lines are kept and the 10 of the failing block are left out. The O2 verification job, which read the same archived page independently of this parser, found the same column off ({"Northeastern": {"k": [23, 24], "ta": [90, 91], "a": [19, 20], "dig": [33, 34]}})
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2008-09-05_vs_northeastern.txt · https://static.huskers.com/volleyball/stats/2008/nu4.htm · archived: data/raw/huskers_com/2026-09-17/9f32cab207c81ee4b65513606fba40578d32eb0f439ef2a7dcf48add589c0b46.html · data/reports/o2_verify.csv: https://static.huskers.com/volleyball/stats/2008/nu4.htm opp_reconciles=False columns_off={"Northeastern": {"k": [23, 24], "ta": [90, 91], "a": [19, 20], "dig": [33, 34]}}</span></td>
+</tr>
+<tr class="" id="corr-0093">
+<td><code>corr-0093</code></td>
+<td>trust override</td>
+<td><span class="badge badge-W">certain</span></td>
+<td style="max-width: 24ch"><span class="muted">TeamMatch</span><br/>match 2011-09-10_vs_weber-state, team Nebraska</td>
+<td style="max-width: 20ch">trusted True<br/><span class="muted">was trusted False, basis file-level: before Phase 6 one block failing a trust rule untrusted every row of the file</span></td>
+<td style="max-width: 70ch">only Weber State's block fails the trust rules (Weber State: service errors sum 8 vs printed 9); Nebraska's block has a parsed Totals row, reconciles on all nine columns, has max SP above 0 and no overlong row, so its 12 player lines are kept and the 12 of the failing block are left out. The O2 verification job, which read the same archived page independently of this parser, found the same column off ({"WEBER STATE": {"se": [8, 9]}})
+          <br/><span class="muted" style="font-size:var(--text-xs)">commit:9e510bd huskerstats/ingest/box_score.py team_untrusted · data/pbp_merged/2011-09-10_vs_weber-state.txt · https://static.huskers.com/volleyball/stats/2011/neb7.htm · archived: data/raw/huskers_com/2026-09-17/dc8f75eead7c3569211d65cf1e2e46a981322cd3958cb26c6a3fea8b5f1a0ada.html · data/reports/o2_verify.csv: https://static.huskers.com/volleyball/stats/2011/neb7.htm opp_reconciles=False columns_off={"WEBER STATE": {"se": [8, 9]}}</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="sec-hd">The files a page is allowed to read</p>
+<div class="tbl-wrap">
+<table class="data">
+<thead>
+<tr>
+<th onclick="sortTable(this)">File</th>
+<th>What it holds</th>
+<th class="num" data-type="num" onclick="sortTable(this)">Rows</th>
+<th>Checks that cover it</th>
+</tr>
+</thead>
+<tbody>
+<tr id="coverage">
+<td><code>data/reports/coverage.json</code></td>
+<td>what vb-validate measured, and the git commit it measured</td>
+<td class="num" data-val="0">—</td>
+<td>
+<span class="muted">this file is the check</span>
+</td>
+</tr>
+<tr id="box">
+<td><code>data/reports/box_scores.json</code></td>
+<td>one row per player per match, parsed from the official box scores</td>
+<td class="num" data-val="18419">18,419<br/>
+<span class="muted" style="font-size:var(--text-xs)">player-match rows</span></td>
+<td>
+<a href="#check-box_scores"><code>box_scores</code></a>, 
+          
+          <a href="#check-player_match_rows"><code>player_match_rows</code></a>, 
+          
+          <a href="#check-trust_rules"><code>trust_rules</code></a>, 
+          
+          <a href="#check-untrusted_files"><code>untrusted_files</code></a>, 
+          
+          <a href="#check-flags"><code>flags</code></a>
+</td>
+</tr>
+<tr id="teams">
+<td><code>data/reports/team_matches.json</code></td>
+<td>one row per team per match: printed set counts, result, schedule check</td>
+<td class="num" data-val="1758">1,758<br/>
+<span class="muted" style="font-size:var(--text-xs)">team-match rows</span></td>
+<td>
+<a href="#check-team_matches"><code>team_matches</code></a>, 
+          
+          <a href="#check-sets_played"><code>sets_played</code></a>, 
+          
+          <a href="#check-results_vs_schedule"><code>results_vs_schedule</code></a>, 
+          
+          <a href="#check-schedule_coverage"><code>schedule_coverage</code></a>
+</td>
+</tr>
+<tr id="schedule">
+<td><code>data/reports/schedule_history.json</code></td>
+<td>every scheduled match 1975-2026 with site, result and rankings</td>
+<td class="num" data-val="1882">1,882<br/>
+<span class="muted" style="font-size:var(--text-xs)">scheduled matches, 1975-2026</span></td>
+<td>
+<a href="#check-schedule_history"><code>schedule_history</code></a>
+</td>
+</tr>
+<tr id="rally">
+<td><code>data/reports/rally_analytics.json</code></td>
+<td>side-out and point-scoring rates from the rally logs</td>
+<td class="num" data-val="85615">85,615<br/>
+<span class="muted" style="font-size:var(--text-xs)">rallies</span></td>
+<td>
+<a href="#check-rally_analytics"><code>rally_analytics</code></a>, 
+          
+          <a href="#check-play_by_play"><code>play_by_play</code></a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section class="lineage">
+<p class="lineage-lead">
+    Every number above is read out of a file in this repository, and every file is
+    re-derived and re-checked by <code>huskerstats vb-validate</code>, which wrote
+    <code>data/reports/coverage.json</code> at commit
+    <code>5a554e5</code>. Hover a file to read its checks.
+  </p>
+<div class="lineage-list">
+<span class="lineage-src" title="data/reports/coverage.json 
+what vb-validate measured, and the git commit it measured
+
+">
+<code>coverage.json</code>
+</span>
+<span class="lineage-src" title="data/reports/box_scores.json 
+one row per player per match, parsed from the official box scores
+18,419 player-match rows
+
+[pass] box_scores: 879 box scores parsed from 879 corpus files, 0 failed
+[pass] player_match_rows: 18419 player-match rows, 18182 from a team block that reconciles
+[pass] trust_rules: 1758 team blocks re-parsed, 1734 pass every trust rule
+[pass] untrusted_files: 22 untrusted files, 208 of their rows kept, 237 left out
+[pass] flags: 6 files with a set-score problem, 0 flags unclassified
+">
+<code>box_scores.json</code> · <span class="num">18,419</span> rows ·
+        <span class="ok">5/5</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/team_matches.json 
+one row per team per match: printed set counts, result, schedule check
+1,758 team-match rows
+
+[pass] team_matches: 1758 team-match rows, 875 Nebraska rows carrying stats
+[pass] sets_played: sets played agree with the printed set counts in 879 of 879
+[pass] results_vs_schedule: 878 results compared with the schedule, 0 disagree
+[pass] schedule_coverage: 878 of 891 schedule rows have a box score, 9 open gaps
+">
+<code>team_matches.json</code> · <span class="num">1,758</span> rows ·
+        <span class="ok">4/4</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/schedule_history.json 
+every scheduled match 1975-2026 with site, result and rankings
+1,882 scheduled matches, 1975-2026
+
+[pass] schedule_history: 1882 rows over 52 seasons; 52 of 52 add up to their printed record
+">
+<code>schedule_history.json</code> · <span class="num">1,882</span> rows ·
+        <span class="ok">1/1</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/rally_analytics.json 
+side-out and point-scoring rates from the rally logs
+85,615 rallies
+
+[pass] rally_analytics: 85615 rallies in 1898 trusted sets of 616 matches
+[pass] play_by_play: 655 matches and 2260 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+">
+<code>rally_analytics.json</code> · <span class="num">85,615</span> rows ·
+        <span class="ok">2/2</span>
+        checks
+    </span>
+<a class="lineage-src" href="index.html">What is covered, and what is missing →</a>
+</div>
+</section>
+</main>
+<footer><small>Unofficial and fan-built; not affiliated with the University of Nebraska-Lincoln or Nebraska Athletics. Computed from official box scores and play-by-play; no box score or play-by-play is redistributed here.</small></footer>
+<script>
+      /* Tiny table-sort — no dependencies */
+      function sortTable(th) {
+        const tbl = th.closest("table");
+        const col = th.cellIndex;
+        const isNum = th.dataset.type === "num";
+        const wasDesc = th.classList.contains("sorted-desc");
+        tbl
+          .querySelectorAll("thead th")
+          .forEach((t) => t.classList.remove("sorted-asc", "sorted-desc"));
+        const dir = wasDesc ? "asc" : "desc";
+        th.classList.add("sorted-" + dir);
+        const tbody = tbl.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr:not(.totals-row)"));
+        rows.sort((a, b) => {
+          const av =
+            a.cells[col]?.dataset?.val ??
+            a.cells[col]?.textContent?.trim() ??
+            "";
+          const bv =
+            b.cells[col]?.dataset?.val ??
+            b.cells[col]?.textContent?.trim() ??
+            "";
+          const ai = isNum ? parseFloat(av) || 0 : av.toLowerCase();
+          const bi = isNum ? parseFloat(bv) || 0 : bv.toLowerCase();
+          if (dir === "desc") return ai > bi ? -1 : ai < bi ? 1 : 0;
+          return ai < bi ? -1 : ai > bi ? 1 : 0;
+        });
+        rows.forEach((r) => tbody.appendChild(r));
+        const totals = tbody.querySelector(".totals-row");
+        if (totals) tbody.appendChild(totals);
+      }
+      /* Client-side filter for any list marked data-filter="<input id>" */
+      function filterList(input) {
+        const list = document.getElementById(input.dataset.target);
+        if (!list) return;
+        const q = input.value.trim().toLowerCase();
+        for (const row of list.children) {
+          row.hidden = q.length > 0 && !(row.dataset.key || "").includes(q);
+        }
+      }
+    </script>
+</body>
+</html>

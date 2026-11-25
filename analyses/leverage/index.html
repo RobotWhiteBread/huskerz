@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Win probability, and who moved it | HuskerStats</title>
+
+
+
+<link href="../../assets/tokens.css" rel="stylesheet"/>
+<link href="../../assets/app.css" rel="stylesheet"/>
+<link href="../../assets/analyses.css" rel="stylesheet"/>
+<script src="../../assets/plotly.min.js"></script>
+</head>
+<body>
+<header>
+<div class="masthead-rule"></div>
+<nav>
+<a class="brand" href="../../index.html">HuskerStats</a>
+<div class="nav-sections"><a class="nav-link" href="../../season/index.html">Season</a><a class="nav-link" href="../index.html">Studies</a><a class="nav-link" href="../../bench/season/2026/index.html">Bench</a><a class="nav-link" href="../../bench/subs/index.html">Substitutions and timeouts</a><a class="nav-link" href="../../history/index.html">History</a><a class="nav-link" href="../../coverage/index.html">Coverage</a></div>
+
+</nav>
+</header>
+<main>
+<style>
+  .study-prose p { font-size: 15.5px; line-height: 1.62; color: #2B2620; margin: 0 0 14px; max-width: 74ch; }
+  .study-prose ul { margin: 0 0 14px 20px; padding: 0; max-width: 72ch; }
+  .study-prose li { font-size: 15.5px; line-height: 1.6; color: #2B2620; margin-bottom: 8px; }
+  .study-prose code, .study-side code { font-size: 0.92em; background: #F2EDE4; padding: 0 4px; }
+  .study-side h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #6B6259; margin: 0 0 10px; }
+  .study-side li { font-size: 13.5px; line-height: 1.5; color: #3D3830; margin-bottom: 10px; }
+  @media (max-width: 900px) { .study-grid { grid-template-columns: 1fr !important; } }
+</style>
+<div style="background: #F9F6F0; padding: 40px 64px 30px;">
+<div class="eyebrow">Study 4 of 5 · <code>data/reports/leverage.json</code></div>
+<h1 style="font-family: 'Source Serif 4', Georgia, serif; font-size: 42px; font-weight: 700; margin: 10px 0 12px; letter-spacing: -0.02em; line-height: 1.1;">Win probability, and who moved it</h1>
+<p style="font-size: 13px; color: #6B6259; margin: 16px 0 0; max-width: 90ch;">
+    The text below is this study's section of <code>data/reports/findings.md</code>, as written, for a
+    reader who is not an analyst. The panel beside it is the export as it stands now; where the two
+    differ, the <a href="../index.html">studies page</a> says what has changed since the text was written.
+  </p>
+</div>
+<div class="study-grid" style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 44px; padding: 10px 64px 40px; background: #F9F6F0;">
+<div class="study-prose">
+<p><strong>What it measures.</strong> For every score in a set - 18-20, Nebraska serving, set three - the chance Nebraska wins that set, fitted on the 82,581 rallies of 1,825 sets over 26 seasons (2001 to 2026; sets of 2001-2007 are a race to 30 and are modelled as one) and tested on seasons the model never saw. Then the change in that chance across each rally, filed under the player whose action ended it: a season-long ledger of how much of a set each player's kills, errors, aces and blocks were worth.</p>
+<p><strong>What it found.</strong> The model predicts held-out set results better than knowing only the margin (Brier 0.1132 against 0.1187, lower is better; a coin scores 0.25) - after a two-number calibration, because the raw chain is over-confident; on 26 seasons the raw chain also beats the margin (0.1163), which it did not on 2016-2026. The biggest single swing in the record is 0.316 of a set, at a deuce-point tie with Nebraska receiving; at 23-23 nineteen rallies reach exactly that state. Season leaders in win probability added, one unit being one whole set: Kelsey Robinson 2013 (+10.9, the largest), Sarah Pavan 2006 (+10.4), Nancy Metcalf 2001 (+9.7), Mikaela Foecke 2015 (+9.3), Jordan Larson 2008 (+8.3), Morgan Broekhuis 2012 (+8.3), Kadie Rolfzen 2014 (+8.2), Pavan 2007 (+8.1), Foecke 2018 (+7.5), Lindsey Licht 2010 (+6.7) and Gina Mancuso 2011 (+6.6). On the eleven seasons alone Foecke 2018 led at +8.2; the 30-point era's longer sets carry more swings per set.</p>
+<p><strong>How sure.</strong> Each leader's table says whether she would still lead if the season's matches were resampled. Metcalf 2001 leads in 99.9% of resamples and Foecke 2018 in 99.8%; Robinson 2013 in 79%, Pavan 2006 in 76%, Foecke 2015 in 56%, Broekhuis 2012 in 51%. Ten of the 26 season leaders are "not established" by that test, six are firm, ten moderately firm.</p>
+<p><strong>What it cannot see.</strong> This is a hitters-and-servers table by construction: a libero or defensive specialist ends almost no rallies and sits near zero however well she played. The model knows the score and never the opponent, so in the ten seasons Nebraska was strongest (sets-won share 0.81 to 0.94) the uncalibrated chain does better than the calibrated one - the calibration is a 26-season average of how good Nebraska is. 70% of matches have play-by-play (595 of 856), none before 2001.</p>
+<p><strong>What the review changed.</strong> The table that checks calibration - "when the model says 20%, does Nebraska win 20% of the time?" - had intervals two to five times too narrow, because every rally in a set shares that set's result and the intervals were counting rallies as if they were independent sets. They now count the sets: the widths grow 2.4 to 5.4 times, three buckets that looked significantly miscalibrated no longer do, and all ten contain the prediction. The resample-of-the-leader numbers above were computed before but exported elsewhere; they now sit on the leaderboard itself.</p>
+</div>
+<div class="study-side">
+<h2>The export now · <code>summary</code></h2>
+<div class="tbl-wrap" style="margin-bottom: 26px;">
+<table class="data">
+<thead><tr><th onclick="sortTable(this)">Field</th><th class="num">Value</th></tr></thead>
+<tbody>
+<tr><td title="matches">matches</td><td class="num">614</td></tr>
+<tr><td title="sets">sets</td><td class="num">1,894</td></tr>
+<tr><td title="rallies">rallies</td><td class="num">85,471</td></tr>
+<tr><td title="seasons">seasons</td><td class="num">26</td></tr>
+<tr><td title="rallies_attributed_to_a_nebraska_player">rallies attributed to a nebraska player</td><td class="num">44,728</td></tr>
+<tr><td title="player_seasons">player seasons</td><td class="num">343</td></tr>
+<tr><td title="biggest_single_swing">biggest single swing</td><td class="num">0.3161</td></tr>
+<tr><td title="read_the_limits_first">read the limits first</td><td class="num">the ledger measures the ends of rallies only; see `limits`</td></tr>
+</tbody>
+</table>
+</div>
+<h2>Limits it states</h2>
+<ul style="padding-left: 18px; margin: 0 0 24px;">
+<li>Only the action that ended a rally is recorded, and only that action names a player. A dig that kept the point alive, the pass that made the kill easy, the set, a touch on the block and every cover are invisible to all three sources, so they are invisible here. A player's total is the worth of the rallies she ended, not the worth of what she did.</li><li>That makes the ledger a hitters-and-servers table by construction. A libero or a defensive specialist ends almost no rallies and will sit near zero however well she played; reading her row as a measure of her season would be reading the absence of data as a measurement.</li><li>A blocked attack is filed under the hitter who was blocked, because she is who the terminal action names. The blockers are in a separate table which double-counts a shared block under one convention and invents an even split under the other; no source says how a two-person block divides.</li><li>The model knows the score and nothing else. It does not know the opponent, the lineup, who is injured or which Nebraska team this is, and the held-out seasons show what that costs: it is beaten by an uncalibrated chain in exactly the seasons Nebraska was far stronger than its eleven-season average.</li><li>The swings are priced in-sample: one model, fitted on the whole corpus, prices every rally in it. The held-out scores in `validation` are the honest measure of the model's accuracy; the ledger is an attribution inside the corpus, not a forecast, and the controls show how much it moves when the pricing model is changed.</li><li>The rallies are the 45.7% of the corpus that has play-by-play at all. Seasons and opponents are not evenly covered (coverage.by_season says how unevenly), so a player whose big matches happen to have no archived play-by-play is under-counted here and there is no way to tell from her row.</li><li>Predictions are one per rally and rallies inside a set share that set's outcome, so the Brier scores rest on 480 independent set results, not on 20,503 independent trials. The calibration intervals now count that: each is a Wilson interval on the bucket's effective sample size n/deff, and the row prints `sets`, `design_effect` and the old rally-count interval beside it. The design effects run from 5.79 to 26.64, i.e. the old intervals were 2.4 to 5.5 times too narrow, and three buckets (0.1-0.2 and 0.2-0.3 clearly, 0.5-0.6 by 0.0003) read as significantly miscalibrated at the old width and do not at the honest one, which now contains the prediction in all ten. The Brier comparison itself is unaffected: the model's gain over margin-only is +0.004482 with a match-cluster bootstrap of [+0.00219, +0.00666]. The player intervals already used a match bootstrap.</li><li>Each season's top-five table carries `how_firm_is_this_leader`, because three of the eleven leaders survive a match bootstrap barely more often than a coin flip (2026 0.415, 2020-21 0.510, 2023 0.5165, against 0.9975 for 2018). Those orders are one of several the corpus is equally consistent with.</li>
+</ul>
+<h2>The other studies</h2>
+<ul style="padding-left: 18px; margin: 0;">
+<li><a href="../runs/index.html">Scoring runs are not real</a></li><li><a href="../serving/index.html">Serving harder does not pay</a></li><li><a href="../era_adjusted/index.html">A set changed size once, not twice</a></li><li><a href="../opponent_adjusted/index.html">Opponent-adjusted performance, for the two numbers it works on</a></li>
+</ul>
+</div>
+</div>
+<section class="lineage">
+<p class="lineage-lead">
+    Every number above is read out of a file in this repository, and every file is
+    re-derived and re-checked by <code>huskerstats vb-validate</code>, which wrote
+    <code>data/reports/coverage.json</code> at commit
+    <code>5a554e5</code>. Hover a file to read its checks.
+  </p>
+<div class="lineage-list">
+<span class="lineage-src" title="data/reports/leverage.json 
+win probability at every score, and who moved it
+85,471 rallies
+
+[pass] analysis_exports: 5 analysis exports fresh and consistent: leverage on 85471 rallies, serving on 47212 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
+">
+<code>leverage.json</code> · <span class="num">85,471</span> rows ·
+        <span class="ok">1/1</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/rally_analytics.json 
+side-out and point-scoring rates from the rally logs
+85,615 rallies
+
+[pass] rally_analytics: 85615 rallies in 1898 trusted sets of 616 matches
+[pass] play_by_play: 655 matches and 2260 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+">
+<code>rally_analytics.json</code> · <span class="num">85,615</span> rows ·
+        <span class="ok">2/2</span>
+        checks
+    </span>
+<a class="lineage-src" href="../../coverage/index.html">What is covered, and what is missing →</a>
+</div>
+</section>
+</main>
+<footer><small>Unofficial and fan-built; not affiliated with the University of Nebraska-Lincoln or Nebraska Athletics. Computed from official box scores and play-by-play; no box score or play-by-play is redistributed here.</small></footer>
+<script>
+      /* Tiny table-sort — no dependencies */
+      function sortTable(th) {
+        const tbl = th.closest("table");
+        const col = th.cellIndex;
+        const isNum = th.dataset.type === "num";
+        const wasDesc = th.classList.contains("sorted-desc");
+        tbl
+          .querySelectorAll("thead th")
+          .forEach((t) => t.classList.remove("sorted-asc", "sorted-desc"));
+        const dir = wasDesc ? "asc" : "desc";
+        th.classList.add("sorted-" + dir);
+        const tbody = tbl.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr:not(.totals-row)"));
+        rows.sort((a, b) => {
+          const av =
+            a.cells[col]?.dataset?.val ??
+            a.cells[col]?.textContent?.trim() ??
+            "";
+          const bv =
+            b.cells[col]?.dataset?.val ??
+            b.cells[col]?.textContent?.trim() ??
+            "";
+          const ai = isNum ? parseFloat(av) || 0 : av.toLowerCase();
+          const bi = isNum ? parseFloat(bv) || 0 : bv.toLowerCase();
+          if (dir === "desc") return ai > bi ? -1 : ai < bi ? 1 : 0;
+          return ai < bi ? -1 : ai > bi ? 1 : 0;
+        });
+        rows.forEach((r) => tbody.appendChild(r));
+        const totals = tbody.querySelector(".totals-row");
+        if (totals) tbody.appendChild(totals);
+      }
+      /* Client-side filter for any list marked data-filter="<input id>" */
+      function filterList(input) {
+        const list = document.getElementById(input.dataset.target);
+        if (!list) return;
+        const q = input.value.trim().toLowerCase();
+        for (const row of list.children) {
+          row.hidden = q.length > 0 && !(row.dataset.key || "").includes(q);
+        }
+      }
+    </script>
+</body>
+</html>

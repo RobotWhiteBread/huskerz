@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Serving harder does not pay | HuskerStats</title>
+
+
+
+<link href="../../assets/tokens.css" rel="stylesheet"/>
+<link href="../../assets/app.css" rel="stylesheet"/>
+<link href="../../assets/analyses.css" rel="stylesheet"/>
+<script src="../../assets/plotly.min.js"></script>
+</head>
+<body>
+<header>
+<div class="masthead-rule"></div>
+<nav>
+<a class="brand" href="../../index.html">HuskerStats</a>
+<div class="nav-sections"><a class="nav-link" href="../../season/index.html">Season</a><a class="nav-link" href="../index.html">Studies</a><a class="nav-link" href="../../bench/season/2026/index.html">Bench</a><a class="nav-link" href="../../bench/subs/index.html">Substitutions and timeouts</a><a class="nav-link" href="../../history/index.html">History</a><a class="nav-link" href="../../coverage/index.html">Coverage</a></div>
+
+</nav>
+</header>
+<main>
+<style>
+  .study-prose p { font-size: 15.5px; line-height: 1.62; color: #2B2620; margin: 0 0 14px; max-width: 74ch; }
+  .study-prose ul { margin: 0 0 14px 20px; padding: 0; max-width: 72ch; }
+  .study-prose li { font-size: 15.5px; line-height: 1.6; color: #2B2620; margin-bottom: 8px; }
+  .study-prose code, .study-side code { font-size: 0.92em; background: #F2EDE4; padding: 0 4px; }
+  .study-side h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #6B6259; margin: 0 0 10px; }
+  .study-side li { font-size: 13.5px; line-height: 1.5; color: #3D3830; margin-bottom: 10px; }
+  @media (max-width: 900px) { .study-grid { grid-template-columns: 1fr !important; } }
+</style>
+<div style="background: #F9F6F0; padding: 40px 64px 30px;">
+<div class="eyebrow">Study 2 of 5 · <code>data/reports/serving.json</code></div>
+<h1 style="font-family: 'Source Serif 4', Georgia, serif; font-size: 42px; font-weight: 700; margin: 10px 0 12px; letter-spacing: -0.02em; line-height: 1.1;">Serving harder does not pay</h1>
+<p style="font-size: 13px; color: #6B6259; margin: 16px 0 0; max-width: 90ch;">
+    The text below is this study's section of <code>data/reports/findings.md</code>, as written, for a
+    reader who is not an analyst. The panel beside it is the export as it stands now; where the two
+    differ, the <a href="../index.html">studies page</a> says what has changed since the text was written.
+  </p>
+</div>
+<div class="study-grid" style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 44px; padding: 10px 64px 40px; background: #F9F6F0;">
+<div class="study-prose">
+<p><strong>What it measures.</strong> What a Nebraska serve is worth in points, and whether the aces a riskier server wins pay for the serves she misses.</p>
+<p><strong>What it found.</strong> Over 45,535 serves in 26 seasons: 5.2% aces, 8.1% errors, and after a serve that lands and is not an ace, Nebraska wins the rally 48.7% of the time. From that last number alone comes the break-even: <strong>one extra point of error rate costs about 0.95 points of ace rate</strong> to pay for (a missed serve throws away a rally Nebraska would have won 49% of the time). Measured two ways, Nebraska's servers get nowhere near that:</p>
+<ul><li>Comparing servers with each other, the riskier ones buy <strong>about 0.34</strong> aces per extra point of error rate (95% interval +0.17 to +0.30 - the interval sits below the point, for a reason the file explains, and either way it is far under 0.95). On 2016-2026 alone it was 0.26.</li><li>Following one server from one season to the next, the same exchange is <strong>about 0.16</strong> (95% interval +0.06 to +0.27, 97 season-to-season pairs from 49 players; 36 pairs from 21 players on 2016-2026, where it read 0.15). This is the number the coaching question actually needs - "if <em>she</em> served harder, what would she buy?" - and twenty-six seasons agree with eleven.</li></ul>
+<p>Without any model: rank each season's servers by error rate on the odd-numbered matches and read the even-numbered ones. The riskiest third misses 11.7% and aces 6.6%; the safest third misses 5.1% and aces 4.0%. That is 6.6 points of error bought with 2.6 points of ace, an exchange of about 0.4 - still under half the break-even. On 2016-2026 more than half of the in-sample spread between the thirds vanished out of sample; on 26 seasons only 18% does, because the thirds are now bands of real servers rather than of one season's luck.</p>
+<p>As a package, Nebraska's serving is worth <strong>-0.0131 points per serve</strong> against a serve that never missed and never aced, about <strong>-597 points</strong> over 26 seasons; 25 of 26 seasons are negative, only the shortened 2020-21 season positive. The error rate is a property of the server (it repeats from half a season to the other half); the ace rate barely is.</p>
+<p><strong>A verdict that moved with the record.</strong> On 2016-2026 what happened after a serve landed was not the server's doing at all, on four separate tests: every player's conversion was shrunk entirely to her team's. On 26 seasons three of the four tests find a small player component - it repeats within a season at +0.17 (95% interval +0.01 to +0.31) over 164 player-seasons and across consecutive seasons at +0.26 over 92 pairs, and her own shrunk rate now beats her team's out of sample - while the turn permutation still does not (p = 0.36). The shrinkage leaves a player at most 40% of her own conversion. The exchange-rate conclusion above does not depend on it either way; the file says which.</p>
+<p><strong>What it cannot see.</strong> How tough a serve was, or whether it took the opponent out of system - no source rates a pass, so a serve that forced an overpass and one passed cleanly are the same line unless one was an ace. Serve type, target and speed. Who received.</p>
+<p><strong>What the review changed.</strong> The headline 0.26 was published without its interval and without saying it compares <em>different</em> servers - it mixes "serves harder" with "is a worse server". Both are fixed: the interval is on the summary line, the number is labelled as between-player, and the within-player 0.15 sits beside it. The riskiest-third table used to be formed on the same serves it then reported, which selects the unlucky as well as the risky; read out of sample, 55% of its error spread disappears (it was 7.6 points, it is 3.4). The conclusion survives its own correction; the numbers a reader quotes are now the honest ones.</p>
+</div>
+<div class="study-side">
+<h2>The export now · <code>summary</code></h2>
+<div class="tbl-wrap" style="margin-bottom: 26px;">
+<table class="data">
+<thead><tr><th onclick="sortTable(this)">Field</th><th class="num">Value</th></tr></thead>
+<tbody>
+<tr><td title="matches">matches</td><td class="num">616</td></tr>
+<tr><td title="sets">sets</td><td class="num">1,898</td></tr>
+<tr><td title="serves">serves</td><td class="num">47,212</td></tr>
+<tr><td title="aces">aces</td><td class="num">2,453</td></tr>
+<tr><td title="errors">errors</td><td class="num">3,856</td></tr>
+<tr><td title="seasons">seasons</td><td class="num">26</td></tr>
+<tr><td title="point_scoring_rate">point scoring rate</td><td class="num">0.4748</td></tr>
+<tr><td title="point_scoring_rate_when_the_serve_lands">point scoring rate when the serve lands</td><td class="num">0.517</td></tr>
+<tr><td title="conversion_after_a_landed_non_ace_serve">conversion after a landed non ace serve</td><td class="num">0.4881</td></tr>
+<tr><td title="required_aces_per_extra_error">required aces per extra error</td><td class="num">0.9534</td></tr>
+<tr><td title="aggression_value_per_serve">aggression value per serve</td><td class="num">-0.01327</td></tr>
+<tr><td title="aggression_value_total_points">aggression value total points</td><td class="num">-626.3</td></tr>
+<tr><td title="player_seasons">player seasons</td><td class="num">272</td></tr>
+<tr><td title="players">players</td><td class="num">109</td></tr>
+<tr><td title="player_seasons_on_the_wrong_side">player seasons on the wrong side</td><td class="num">73</td></tr>
+<tr><td title="player_seasons_confidently_on_the_wrong_side">player seasons confidently on the wrong side</td><td class="num">19</td></tr>
+<tr><td title="read_the_refusals_first">read the refusals first</td><td class="num">the record has no pass rating and no touch inside a rally; see `refused`</td></tr>
+</tbody>
+</table>
+</div>
+<h2>What the export says · <code>break_even.verdict</code></h2>
+<ul style="padding-left: 18px; margin: 0 0 24px;">
+<li>break-even needs 0.953 points of ace rate per point of error rate. Comparing Nebraska's servers with each other, the riskier ones buy 0.336 (uncorrected 0.258, bootstrap 95% 0.165 to 0.299). That is short of break-even at every minimum-serve floor tried, and the bootstrap interval stays below it: on this corpus the extra errors are not paid for, and the aces the riskier servers win are a small fraction of what their misses cost. The within-player slope - the same exchange measured from a player's own season-to-season change, which is the quantity this argument needs - is +0.1565 [+0.0539, +0.2685] on 97 consecutive-season pairs, so the two agree and both are far under break-even.</li>
+</ul>
+<h2>Limits it states</h2>
+<ul style="padding-left: 18px; margin: 0 0 24px;">
+<li>The corpus is the 148 matches with trusted play-by-play, 45.7% of the box scores, and it is not evenly spread: 2026 has 547 serves and 2016 has 1,421. A player whose big matches have no archived play-by-play is under-counted and nothing in her row says so.</li><li>Every interval on a player number is a match bootstrap conditional on the fitted kappa. Re-fitting kappa inside each draw would widen them; the widening is not measured here.</li><li>The prior a player is shrunk toward is her own season's other servers, so it is a within-team comparison. It says who served better than her team-mates, never who served well in the sport.</li><li>The opponent control can only use the 28 teams this corpus covers, and 13 of them appear once. It is a Big Ten corpus: a schedule effect shared by every Nebraska server in a season is invisible to a within-season comparison by construction.</li><li>The zero-risk benchmark - what the serving was worth against a serve that never missed and never aced - assumes such a serve would convert at the same rate. The record cannot check it directly, only rule out a large relationship between a server's error rate and her conversion.</li><li>A serve and its rally are one trial here. Because the serving team serves again after it wins, a player's serves arrive in turns whose lengths are their outcomes; the chi-square tables treat serves as independent and the permutation test does not, which is why both are reported.</li>
+</ul>
+<h2>Questions it refuses</h2>
+<ul style="padding-left: 18px; margin: 0 0 24px;">
+<li><strong>was this a tough serve? how many serves put the opponent out of system?</strong> — no source in this corpus rates a pass. Every rally line prints one action, the one that ended the rally; a serve that forced an overpass and a serve that was passed to the setter's hands are the same row here unless one of them was an ace. There is no 0-3 pass rating, no 'in system' flag and no reception line anywhere in the three sources.</li><li><strong>float or jump? which zone was it served to? how fast?</strong> — none of it is recorded. The huskers.com PDFs, the 2016 StatCrew pages and the opponents' Sidearm pages all print the server, the outcome and the score, and nothing about the serve itself.</li><li><strong>who received it?</strong> — only an ace names the player it beat, and it names her inside the text ('Service Ace (17 Swain, Jayhlin)'). A serve that lands and is passed names nobody, so serving at a weak passer cannot be measured, and neither can the share of a team's serves aimed at one receiver.</li><li><strong>how much of the rally after a landed serve does the server deserve?</strong> — the rally's touches are not recorded, so the server's share of it cannot be separated from the passer's, the setter's and the hitter's. This module measures whether the conversion depends on who served (it does not, measurably) and refuses to split the credit that is left.</li><li><strong>a career table for the 2016 Rolfzen serves</strong> — the four 2016 StatCrew pages print no jersey in a rally text and both twins served, so 52 serves resolve to a surname two players share. They stay a pooled 2016 row and get no career row: merging them would invent a player and splitting them would invent a number.</li><li><strong>serve numbers for the seasons and matches with no play-by-play</strong> — this study can only use the 148 matches that have a rally record at all. The official season reports in season_totals.json carry each player's season SA and SE back to 2000 and would extend the ace and error halves of this table - but they carry no rally, so the conversion, the point-scoring rate and therefore the expected value cannot be built from them. Joining the two is a separate job and is not done here.</li>
+</ul>
+<h2>The other studies</h2>
+<ul style="padding-left: 18px; margin: 0;">
+<li><a href="../runs/index.html">Scoring runs are not real</a></li><li><a href="../era_adjusted/index.html">A set changed size once, not twice</a></li><li><a href="../leverage/index.html">Win probability, and who moved it</a></li><li><a href="../opponent_adjusted/index.html">Opponent-adjusted performance, for the two numbers it works on</a></li>
+</ul>
+</div>
+</div>
+<section class="lineage">
+<p class="lineage-lead">
+    Every number above is read out of a file in this repository, and every file is
+    re-derived and re-checked by <code>huskerstats vb-validate</code>, which wrote
+    <code>data/reports/coverage.json</code> at commit
+    <code>5a554e5</code>. Hover a file to read its checks.
+  </p>
+<div class="lineage-list">
+<span class="lineage-src" title="data/reports/serving.json 
+what a Nebraska serve is worth, and whether serving harder pays
+47,212 Nebraska serves
+
+[pass] analysis_exports: 5 analysis exports fresh and consistent: leverage on 85471 rallies, serving on 47212 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
+">
+<code>serving.json</code> · <span class="num">47,212</span> rows ·
+        <span class="ok">1/1</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/rally_analytics.json 
+side-out and point-scoring rates from the rally logs
+85,615 rallies
+
+[pass] rally_analytics: 85615 rallies in 1898 trusted sets of 616 matches
+[pass] play_by_play: 655 matches and 2260 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+">
+<code>rally_analytics.json</code> · <span class="num">85,615</span> rows ·
+        <span class="ok">2/2</span>
+        checks
+    </span>
+<a class="lineage-src" href="../../coverage/index.html">What is covered, and what is missing →</a>
+</div>
+</section>
+</main>
+<footer><small>Unofficial and fan-built; not affiliated with the University of Nebraska-Lincoln or Nebraska Athletics. Computed from official box scores and play-by-play; no box score or play-by-play is redistributed here.</small></footer>
+<script>
+      /* Tiny table-sort — no dependencies */
+      function sortTable(th) {
+        const tbl = th.closest("table");
+        const col = th.cellIndex;
+        const isNum = th.dataset.type === "num";
+        const wasDesc = th.classList.contains("sorted-desc");
+        tbl
+          .querySelectorAll("thead th")
+          .forEach((t) => t.classList.remove("sorted-asc", "sorted-desc"));
+        const dir = wasDesc ? "asc" : "desc";
+        th.classList.add("sorted-" + dir);
+        const tbody = tbl.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr:not(.totals-row)"));
+        rows.sort((a, b) => {
+          const av =
+            a.cells[col]?.dataset?.val ??
+            a.cells[col]?.textContent?.trim() ??
+            "";
+          const bv =
+            b.cells[col]?.dataset?.val ??
+            b.cells[col]?.textContent?.trim() ??
+            "";
+          const ai = isNum ? parseFloat(av) || 0 : av.toLowerCase();
+          const bi = isNum ? parseFloat(bv) || 0 : bv.toLowerCase();
+          if (dir === "desc") return ai > bi ? -1 : ai < bi ? 1 : 0;
+          return ai < bi ? -1 : ai > bi ? 1 : 0;
+        });
+        rows.forEach((r) => tbody.appendChild(r));
+        const totals = tbody.querySelector(".totals-row");
+        if (totals) tbody.appendChild(totals);
+      }
+      /* Client-side filter for any list marked data-filter="<input id>" */
+      function filterList(input) {
+        const list = document.getElementById(input.dataset.target);
+        if (!list) return;
+        const q = input.value.trim().toLowerCase();
+        for (const row of list.children) {
+          row.hidden = q.length > 0 && !(row.dataset.key || "").includes(q);
+        }
+      }
+    </script>
+</body>
+</html>

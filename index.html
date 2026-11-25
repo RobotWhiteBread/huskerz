@@ -24,6 +24,9 @@
   p { margin: 0 0 14px; }
   .lede { font-size: 19px; color: var(--ink-2); }
   .disclaimer { font-size: 14px; color: var(--muted); border-left: 3px solid var(--rule); padding: 4px 0 4px 12px; }
+  nav.reports { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 4px; }
+  nav.reports a { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); padding: 8px 14px; text-decoration: none; font-weight: 600; font-size: 15px; }
+  nav.reports a:hover { border-color: var(--accent); }
   .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(136px, 1fr)); gap: 12px; margin: 22px 0; }
   .stat { background: var(--surface); border: 1px solid var(--rule); padding: 12px 14px; }
   .stat b { display: block; font: 700 26px/1.1 Georgia, serif; }
@@ -65,6 +68,9 @@
     here is computed from the official box scores and play-by-play the schools publish; counts sit beside every rate,
     and every rate carries a 95% interval.</p>
 </header>
+
+<nav class="reports" aria-label="Reports">
+<a href="season/index.html">Season</a><a href="analyses/index.html">Studies</a><a href="bench/season/2026/index.html">Bench</a><a href="bench/subs/index.html">Substitutions and timeouts</a><a href="history/index.html">History</a><a href="coverage/index.html">Coverage</a></nav>
 
 <h2>2026 so far</h2>
 <div class="stat-row">
@@ -159,7 +165,11 @@
   That leaves 21 like-for-like changes, the only ones that could be a reaction to how a set was going.
 None of 7 possible triggers the record can see &mdash; a player's own errors just
   before, an opponent run, a stretch of failed side-outs, the score &mdash; shows up at those moments more than chance
-  allows. With so few, that rules out a big, regular trigger, not a subtle one. The same test does find triggers in Cook 2016-2024 (41 like-for-like
+  allows once 7 tests are allowed for.
+The closest is the score itself: Nebraska&#39;s margin in the set, in points
+  (2.2 at these changes against
+  4.1 at comparable moments,
+  p = 0.0072, just short of the 0.0071 needed).  With so few, that rules out a big, regular trigger, not a subtle one. The same test does find triggers in Cook 2016-2024 (41 like-for-like
   changes), so it can find one when one is there.</p>
 <p><strong>Do timeouts stop a run?</strong> Of the 3,815 timeouts the logs place between rallies, Nebraska called
   1,242. Nebraska won 794 of the rallies right after them, against 804

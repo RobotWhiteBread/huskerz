@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>When and why the coach subs · HuskerStats</title>
+
+
+
+<link href="../../assets/tokens.css" rel="stylesheet"/>
+<link href="../../assets/app.css" rel="stylesheet"/>
+<link href="../../assets/analyses.css" rel="stylesheet"/>
+<script src="../../assets/plotly.min.js"></script>
+</head>
+<body>
+<header>
+<div class="masthead-rule"></div>
+<nav>
+<a class="brand" href="../../index.html">HuskerStats</a>
+<div class="nav-sections"><a class="nav-link" href="../../season/index.html">Season</a><a class="nav-link" href="../../analyses/index.html">Studies</a><a class="nav-link" href="../season/2026/index.html">Bench</a><a class="nav-link active" href="index.html">Substitutions and timeouts</a><a class="nav-link" href="../../history/index.html">History</a><a class="nav-link" href="../../coverage/index.html">Coverage</a></div>
+
+</nav>
+</header>
+<main>
+<style>
+  .bench-ci { font-size: var(--text-xs); white-space: nowrap; }
+  .bench-small { background: #FEF3C7; color: #7A4A00; font-size: var(--text-xs); }
+  .bench-note { font-size: var(--text-sm); margin: .5rem 0 1.25rem; max-width: 80ch; }
+  .bench-h3 { font-size: var(--text-base); margin: 1rem 0 .4rem; }
+  .bench-answer { font-size: var(--text-lg, 1.15rem); line-height: 1.55; max-width: 78ch; }
+  .bench-answer strong { color: var(--ink); }   /* scarlet marks Nebraska, never a finding */
+  .bench-section { margin-top: 2rem; }
+  .bench-links { display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
+  table.data td .bench-ci { display: block; }
+</style>
+<div class="page-hd">
+<h1>When, and why, does the coach substitute?</h1>
+<p class="muted">Busboom Kelly 2025-2026, with Cook 2016-2024 as the comparison. Every number below is read from
+    <code>bench_stats.json</code>.</p>
+</div>
+<section class="card">
+<div class="chart-card-hd"><strong>The answer</strong></div>
+<p class="bench-answer">
+<strong>No — that's all we find.</strong>
+    
+    In the 94 sets of Busboom Kelly 2025-2026 whose substitutions the record lets us read (of
+    129 trusted sets), Nebraska made 394 substitutions.
+    235 (60%) were planned rotation swaps — the same back-row specialist or front-row
+    platoon in and out at the same turn of the rotation, set after set. 82 (21%) came with
+    Nebraska ahead by 6 or more late in the set, or one set from the match: the
+    "give a reserve experience" sub. 56 (14%) changed position group outside
+    that rotation pattern, or involve a player no file gives a position. That leaves <strong>21</strong>
+    like-for-like subs — a player for a player of the same position group, with the score not
+    in hand — the only ones that could be a reaction to how the match was going.
+    
+    Against matched moments when the same player stayed on court at the same stage of a set, none of the
+    7 candidate triggers the record can see (her own errors just before, an opponent run, a
+    side-out slump, trailing, the margin, who is about to serve) is more common at those subs than chance allows. The nearest is Nebraska's margin in the set, in points (2.19 at the sub against 4.08, p = 0.0072):
+    below 0.05 on its own, not below the 0.0071 that 7 tests require.
+    
+    With 21 like-for-like subs this is a small sample: it can rule out a large, regular
+    trigger, not a subtle or occasional one.
+  </p>
+<p class="bench-answer">
+    The comparison is not empty. Under Cook 2016-2024, the 41 like-for-like subs
+    did follow a visible trigger:
+    the outgoing player made a terminal error (attack error, blocked attack, service error, ball-handling error, bad set or block error, or was aced) in the previous 6 rallies (42% of the subs against 12% of matched moments, p &lt; 0.001); the opponent had just scored 3 or more in a row (15% of the subs against 5% of matched moments, p = 0.0047); Nebraska was behind in the set (49% of the subs against 19% of matched moments, p &lt; 0.001); Nebraska's margin in the set, in points (-1.39 at the sub against 3.60, p &lt; 0.001).
+    
+    So the method can find a reactive sub when there is one to find.
+  </p>
+<p class="muted bench-note" style="margin-bottom:0">7 candidate triggers are tested, so each must reach p &lt; 0.05 / 7 = 0.0071 (Bonferroni) to count; with no trigger at all, at least one of 7 independent tests falls below 0.05 by chance 30% of the time.</p>
+</section>
+<h2 class="bench-section">What the record can read</h2>
+<p class="muted bench-note" style="margin-top:0">huskers.com PDFs print each substitution with the player in, the player out and the score, and log libero replacements on their own lines; Sidearm pages print one 'subs' line per stoppage that reads as in; out pairs with libero swaps mixed in (the set's libero is identified from the swaps themselves); StatCrew pairs names on some pages and names only the incoming player on others. A set is used only if its substitutions read as pairs and agree with who served: nobody serves while off court, comes in while on it or goes out while off it.</p>
+<div class="tbl-wrap">
+<table class="data">
+<thead><tr><th>Era</th><th class="num">Trusted sets</th><th class="num">Sets whose subs can be read</th></tr></thead>
+<tbody><tr><td>Busboom Kelly 2025-2026</td><td class="num">129</td><td class="num">94</td></tr><tr><td>Cook 2016-2024</td><td class="num">426</td><td class="num">134</td></tr><tr><td>Cook 2001-2015</td><td class="num">1343</td><td class="num">64</td></tr></tbody>
+</table>
+</div>
+<details><summary class="muted">Why the other sets cannot be read</summary>
+<table class="data"><thead><tr><th>Era</th><th>Source</th><th>Why</th><th class="num">Sets</th></tr></thead>
+<tbody><tr><td>Cook 2001-2015</td><td>statcrew_corpus</td><td>a substitution names nobody going out</td><td class="num">924</td></tr><tr><td>Cook 2001-2015</td><td>statcrew_corpus</td><td>a server is off court in the record</td><td class="num">204</td></tr><tr><td>Cook 2001-2015</td><td>statcrew_corpus</td><td>a player comes in while on court, or goes out while off it</td><td class="num">151</td></tr><tr><td>Cook 2016-2024</td><td>sidearm</td><td>a server is off court in the record</td><td class="num">132</td></tr><tr><td>Cook 2016-2024</td><td>sidearm</td><td>a subs line during play lists an odd number of names, so it is not in; out pairs</td><td class="num">107</td></tr><tr><td>Cook 2016-2024</td><td>sidearm</td><td>a player comes in while on court, or goes out while off it</td><td class="num">42</td></tr><tr><td>Busboom Kelly 2025-2026</td><td>presto</td><td>a substitution names nobody going out</td><td class="num">14</td></tr><tr><td>Busboom Kelly 2025-2026</td><td>sidearm</td><td>a subs line during play lists an odd number of names, so it is not in; out pairs</td><td class="num">9</td></tr><tr><td>Cook 2016-2024</td><td>statcrew</td><td>a substitution names nobody going out</td><td class="num">6</td></tr><tr><td>Busboom Kelly 2025-2026</td><td>presto</td><td>a player comes in while on court, or goes out while off it</td><td class="num">4</td></tr><tr><td>Busboom Kelly 2025-2026</td><td>sidearm</td><td>a player comes in while on court, or goes out while off it</td><td class="num">4</td></tr><tr><td>Cook 2016-2024</td><td>presto</td><td>a substitution names nobody going out</td><td class="num">3</td></tr><tr><td>Busboom Kelly 2025-2026</td><td>presto</td><td>a server is off court in the record</td><td class="num">2</td></tr><tr><td>Busboom Kelly 2025-2026</td><td>sidearm</td><td>a server is off court in the record</td><td class="num">2</td></tr><tr><td>Cook 2016-2024</td><td>statcrew</td><td>a server is off court in the record</td><td class="num">2</td></tr></tbody></table>
+</details>
+<h2 class="bench-section">The four kinds of sub</h2>
+<ul><li><strong>(a)</strong> planned rotation swap: a back-row specialist or a front-row platoon in and out at the matching rotation, the slot in one row throughout, a pair that recurs in other sets</li><li><strong>(b)</strong> blowout / experience: Nebraska well ahead late in the set, or one set from the match</li><li><strong>(c)</strong> like-for-like: the same position group in and out, neither of the above</li><li><strong>(other)</strong> other: a different position group, or a position no file records</li></ul>
+<div class="chart-card">
+<div class="chart-card-hd">Share of substitutions by kind, by coaching era</div>
+<div> <div class="plotly-graph-div" id="48f85c8d-4825-49d9-ac7f-13f61ae57b0d" style="height:300px; width:100%;"></div> <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("48f85c8d-4825-49d9-ac7f-13f61ae57b0d")) {                    Plotly.newPlot(                        "48f85c8d-4825-49d9-ac7f-13f61ae57b0d",                        [{"customdata":[[235,394],[553,801],[172,435]],"hovertemplate":"%{x}\u003cbr\u003eplanned rotation swap: %{y:.1%} (%{customdata[0]} of %{customdata[1]} subs)\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#2a78d6","line":{"color":"#FFFFFF","width":2}},"name":"planned rotation swap","x":["Busboom Kelly 2025-2026","Cook 2016-2024","Cook 2001-2015"],"y":[0.596,0.69,0.395],"type":"bar"},{"customdata":[[82,394],[73,801],[21,435]],"hovertemplate":"%{x}\u003cbr\u003eblowout \u002f experience: %{y:.1%} (%{customdata[0]} of %{customdata[1]} subs)\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#eb6834","line":{"color":"#FFFFFF","width":2}},"name":"blowout \u002f experience","x":["Busboom Kelly 2025-2026","Cook 2016-2024","Cook 2001-2015"],"y":[0.208,0.091,0.048],"type":"bar"},{"customdata":[[21,394],[41,801],[116,435]],"hovertemplate":"%{x}\u003cbr\u003elike-for-like: %{y:.1%} (%{customdata[0]} of %{customdata[1]} subs)\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#7a5195","line":{"color":"#FFFFFF","width":2}},"name":"like-for-like","x":["Busboom Kelly 2025-2026","Cook 2016-2024","Cook 2001-2015"],"y":[0.053,0.051,0.267],"type":"bar"},{"customdata":[[56,394],[134,801],[126,435]],"hovertemplate":"%{x}\u003cbr\u003eother: %{y:.1%} (%{customdata[0]} of %{customdata[1]} subs)\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#A09080","line":{"color":"#FFFFFF","width":2}},"name":"other","x":["Busboom Kelly 2025-2026","Cook 2016-2024","Cook 2001-2015"],"y":[0.142,0.167,0.29],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"yaxis":{"title":{"text":"share of substitutions"},"tickformat":".0%","range":[0,1],"gridcolor":"#E5DFD4","zeroline":false},"barmode":"stack","margin":{"t":16,"l":56,"r":16,"b":44},"font":{"family":"Source Sans 3, sans-serif","color":"#1A1714"},"legend":{"orientation":"h","y":1.12,"x":0,"entrywidth":198,"entrywidthmode":"pixels"},"height":300,"plot_bgcolor":"#FFFFFF","paper_bgcolor":"#FFFFFF","bargap":0.25,"bargroupgap":0.08},                        {"displayModeBar": false, "responsive": true, "scrollZoom": false}                    )                };            </script> </div>
+<p class="vb-caption">Hover a segment for its count. The same numbers, with intervals, are in the table.</p>
+</div>
+<div class="tbl-wrap">
+<table class="data">
+<thead><tr><th>Era</th><th class="num">Sets read</th><th class="num">Subs</th><th class="num">Subs per set</th>
+<th class="num">Returns per set</th><th class="num">(a) planned</th><th class="num">(b) blowout</th>
+<th class="num">(c) like-for-like</th><th class="num">other</th><th class="num">Median score at the sub</th>
+<th class="num">Median stint (rallies)</th></tr></thead>
+<tbody>
+<tr><td>Busboom Kelly 2025-2026<br/><span class="muted bench-ci">presto 72, sidearm 22</span></td>
+<td class="num">94</td><td class="num">394</td><td class="num">4.19</td>
+<td class="num">2.62</td>
+<td class="num"><span class="num" data-k="235" data-n="394">0.596</span>
+<span class="muted bench-ci">235/394 · 0.547–0.644</span></td><td class="num"><span class="num" data-k="82" data-n="394">0.208</span>
+<span class="muted bench-ci">82/394 · 0.171–0.251</span></td><td class="num"><span class="num" data-k="21" data-n="394">0.053</span>
+<span class="muted bench-ci">21/394 · 0.035–0.080</span></td><td class="num"><span class="num" data-k="56" data-n="394">0.142</span>
+<span class="muted bench-ci">56/394 · 0.111–0.180</span></td>
+<td class="num">13.5-9.0</td><td class="num">9.0</td></tr>
+<tr><td>Cook 2016-2024<br/><span class="muted bench-ci">sidearm 121, presto 8, statcrew 5</span></td>
+<td class="num">134</td><td class="num">801</td><td class="num">5.98</td>
+<td class="num">4.26</td>
+<td class="num"><span class="num" data-k="553" data-n="801">0.690</span>
+<span class="muted bench-ci">553/801 · 0.658–0.721</span></td><td class="num"><span class="num" data-k="73" data-n="801">0.091</span>
+<span class="muted bench-ci">73/801 · 0.073–0.113</span></td><td class="num"><span class="num" data-k="41" data-n="801">0.051</span>
+<span class="muted bench-ci">41/801 · 0.038–0.069</span></td><td class="num"><span class="num" data-k="134" data-n="801">0.167</span>
+<span class="muted bench-ci">134/801 · 0.143–0.195</span></td>
+<td class="num">12-9</td><td class="num">8</td></tr>
+<tr><td>Cook 2001-2015<br/><span class="muted bench-ci">statcrew_corpus 64</span></td>
+<td class="num">64</td><td class="num">435</td><td class="num">6.80</td>
+<td class="num">2.91</td>
+<td class="num"><span class="num" data-k="172" data-n="435">0.395</span>
+<span class="muted bench-ci">172/435 · 0.351–0.442</span></td><td class="num"><span class="num" data-k="21" data-n="435">0.048</span>
+<span class="muted bench-ci">21/435 · 0.032–0.073</span></td><td class="num"><span class="num" data-k="116" data-n="435">0.267</span>
+<span class="muted bench-ci">116/435 · 0.227–0.310</span></td><td class="num"><span class="num" data-k="126" data-n="435">0.290</span>
+<span class="muted bench-ci">126/435 · 0.249–0.334</span></td>
+<td class="num">11-10</td><td class="num">8</td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted bench-note">The eras are read from different sources (the era table names them), and a source that prints
+  more sets readably weighs more; subs per set are comparable, the Cook 2001-2015 position groups less so (that era predates every
+  roster page huskers.com publishes, so many of its players are only "attacker").</p>
+<h3 class="bench-h3">If the blowout line moves</h3>
+<div class="tbl-wrap">
+<table class="data">
+<thead><tr><th>Era</th><th class="num">ahead by 4+</th><th class="num">ahead by 6+</th><th class="num">ahead by 8+</th></tr></thead>
+<tbody><tr><td>Busboom Kelly 2025-2026</td>
+<td class="num"><span class="num" data-k="103" data-n="394">0.261</span>
+<span class="muted bench-ci">103/394 · 0.220–0.307</span></td><td class="num"><span class="num" data-k="82" data-n="394">0.208</span>
+<span class="muted bench-ci">82/394 · 0.171–0.251</span></td><td class="num"><span class="num" data-k="56" data-n="394">0.142</span>
+<span class="muted bench-ci">56/394 · 0.111–0.180</span></td></tr><tr><td>Cook 2016-2024</td>
+<td class="num"><span class="num" data-k="103" data-n="801">0.129</span>
+<span class="muted bench-ci">103/801 · 0.107–0.154</span></td><td class="num"><span class="num" data-k="73" data-n="801">0.091</span>
+<span class="muted bench-ci">73/801 · 0.073–0.113</span></td><td class="num"><span class="num" data-k="38" data-n="801">0.047</span>
+<span class="muted bench-ci">38/801 · 0.035–0.064</span></td></tr><tr><td>Cook 2001-2015</td>
+<td class="num"><span class="num" data-k="44" data-n="435">0.101</span>
+<span class="muted bench-ci">44/435 · 0.076–0.133</span></td><td class="num"><span class="num" data-k="21" data-n="435">0.048</span>
+<span class="muted bench-ci">21/435 · 0.032–0.073</span></td><td class="num"><span class="num" data-k="13" data-n="435">0.030</span>
+<span class="muted bench-ci">13/435 · 0.018–0.050</span></td></tr></tbody>
+</table>
+</div>
+<p class="muted bench-note">Share of subs classed (b) at each margin rule; the rule used above is 6.</p>
+<h2 class="bench-section">The trigger tests</h2>
+<h3 class="bench-h3">Busboom Kelly 2025-2026: 21 like-for-like subs <span class="badge bench-small">small sample</span></h3>
+<div class="chart-card">
+<div class="chart-card-hd">At the sub against matched moments without one · Busboom Kelly 2025-2026</div>
+<div> <div class="plotly-graph-div" id="71a60ba9-42e7-43c3-8a7f-338c6c8cf6ed" style="height:300px; width:100%;"></div> <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("71a60ba9-42e7-43c3-8a7f-338c6c8cf6ed")) {                    Plotly.newPlot(                        "71a60ba9-42e7-43c3-8a7f-338c6c8cf6ed",                        [{"customdata":[[1,21],[2,21],[4,21],[7,21],[3,21]],"error_y":{"array":[0.179,0.19399999999999998,0.21000000000000002,0.21300000000000002,0.20299999999999999],"arrayminus":[0.04,0.068,0.113,0.16100000000000003,0.09299999999999999],"color":"#5A5247","symmetric":false,"thickness":1,"type":"data","width":3},"hovertemplate":"%{x}\u003cbr\u003eat the sub %{y:.1%} (%{customdata[0]} of %{customdata[1]})\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#2a78d6"},"name":"at the sub","x":["own error","run against 3","trailing","receiving next","server has aced us"],"y":[0.048,0.095,0.19,0.333,0.143],"type":"bar"},{"hovertemplate":"%{x}\u003cbr\u003ematched moments %{y:.1%}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#eb6834"},"name":"matched moments, no sub","x":["own error","run against 3","trailing","receiving next","server has aced us"],"y":[0.115,0.0491,0.112,0.4479,0.1126],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"yaxis":{"title":{"text":"share of moments"},"tickformat":".0%","range":[0,1],"gridcolor":"#E5DFD4","zeroline":false},"barmode":"group","margin":{"t":16,"l":56,"r":16,"b":44},"font":{"family":"Source Sans 3, sans-serif","color":"#1A1714"},"legend":{"orientation":"h","y":1.12,"x":0,"entrywidth":212,"entrywidthmode":"pixels"},"height":300,"plot_bgcolor":"#FFFFFF","paper_bgcolor":"#FFFFFF","bargap":0.25,"bargroupgap":0.08},                        {"displayModeBar": false, "responsive": true, "scrollZoom": false}                    )                };            </script> </div>
+</div>
+<div class="tbl-wrap">
+<table class="data">
+<thead><tr><th>Candidate trigger</th><th class="num">At the sub</th><th class="num">Matched moments</th>
+<th class="num">Control moments</th><th class="num">z</th><th class="num">p</th></tr></thead>
+<tbody>
+<tr><td>the outgoing player made a terminal error (attack error, blocked attack, service error, ball-handling error, bad set or block error, or was aced) in the previous 6 rallies</td>
+<td class="num"><span class="num" data-k="1" data-n="21">0.048</span>
+<span class="muted bench-ci">1/21 · 0.008–0.227</span> <span class="badge bench-small" title="fewer than 30 chances: not ranked">small sample</span></td>
+<td class="num">0.115</td>
+<td class="num">7,755</td>
+<td class="num">-0.993</td>
+<td class="num">0.321</td></tr>
+<tr><td>the opponent had just scored 3 or more in a row</td>
+<td class="num"><span class="num" data-k="2" data-n="21">0.095</span>
+<span class="muted bench-ci">2/21 · 0.027–0.289</span> <span class="badge bench-small" title="fewer than 30 chances: not ranked">small sample</span></td>
+<td class="num">0.049</td>
+<td class="num">7,755</td>
+<td class="num">0.983</td>
+<td class="num">0.326</td></tr>
+<tr><td>Nebraska's side-out share over its last 6 receptions of the set</td>
+<td class="num">0.650 <span class="muted bench-ci">mean of 20</span></td>
+<td class="num">0.714</td>
+<td class="num">7,247</td>
+<td class="num">-1.35</td>
+<td class="num">0.177</td></tr>
+<tr><td>Nebraska was behind in the set</td>
+<td class="num"><span class="num" data-k="4" data-n="21">0.190</span>
+<span class="muted bench-ci">4/21 · 0.077–0.400</span> <span class="badge bench-small" title="fewer than 30 chances: not ranked">small sample</span></td>
+<td class="num">0.112</td>
+<td class="num">7,755</td>
+<td class="num">1.19</td>
+<td class="num">0.234</td></tr>
+<tr><td>Nebraska's margin in the set, in points</td>
+<td class="num">2.191 <span class="muted bench-ci">mean of 21</span></td>
+<td class="num">4.079</td>
+<td class="num">7,755</td>
+<td class="num">-2.687</td>
+<td class="num">0.0072</td></tr>
+<tr><td>the opponent was about to serve</td>
+<td class="num"><span class="num" data-k="7" data-n="21">0.333</span>
+<span class="muted bench-ci">7/21 · 0.172–0.546</span> <span class="badge bench-small" title="fewer than 30 chances: not ranked">small sample</span></td>
+<td class="num">0.448</td>
+<td class="num">7,755</td>
+<td class="num">-1.06</td>
+<td class="num">0.289</td></tr>
+<tr><td>the opponent's next server had already aced Nebraska in this match</td>
+<td class="num"><span class="num" data-k="3" data-n="21">0.143</span>
+<span class="muted bench-ci">3/21 · 0.050–0.346</span> <span class="badge bench-small" title="fewer than 30 chances: not ranked">small sample</span></td>
+<td class="num">0.113</td>
+<td class="num">7,755</td>
+<td class="num">0.442</td>
+<td class="num">0.659</td></tr>
+</tbody>
+</table>
+</div>
+<h3 class="bench-h3">Cook 2016-2024: 41 like-for-like subs</h3>
+<div class="chart-card">
+<div class="chart-card-hd">At the sub against matched moments without one · Cook 2016-2024</div>
+<div> <div class="plotly-graph-div" id="4053caf9-85bd-4e34-befc-2e8becbfc826" style="height:300px; width:100%;"></div> <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("4053caf9-85bd-4e34-befc-2e8becbfc826")) {                    Plotly.newPlot(                        "4053caf9-85bd-4e34-befc-2e8becbfc826",                        [{"customdata":[[17,41],[6,41],[20,41],[17,41],[5,41]],"error_y":{"array":[0.15099999999999997,0.13799999999999998,0.14700000000000002,0.15099999999999997,0.133],"arrayminus":[0.13699999999999996,0.07699999999999999,0.14499999999999996,0.13699999999999996,0.069],"color":"#5A5247","symmetric":false,"thickness":1,"type":"data","width":3},"hovertemplate":"%{x}\u003cbr\u003eat the sub %{y:.1%} (%{customdata[0]} of %{customdata[1]})\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#2a78d6"},"name":"at the sub","x":["own error","run against 3","trailing","receiving next","server has aced us"],"y":[0.415,0.146,0.488,0.415,0.122],"type":"bar"},{"hovertemplate":"%{x}\u003cbr\u003ematched moments %{y:.1%}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#eb6834"},"name":"matched moments, no sub","x":["own error","run against 3","trailing","receiving next","server has aced us"],"y":[0.1157,0.051,0.1874,0.4945,0.0813],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"yaxis":{"title":{"text":"share of moments"},"tickformat":".0%","range":[0,1],"gridcolor":"#E5DFD4","zeroline":false},"barmode":"group","margin":{"t":16,"l":56,"r":16,"b":44},"font":{"family":"Source Sans 3, sans-serif","color":"#1A1714"},"legend":{"orientation":"h","y":1.12,"x":0,"entrywidth":212,"entrywidthmode":"pixels"},"height":300,"plot_bgcolor":"#FFFFFF","paper_bgcolor":"#FFFFFF","bargap":0.25,"bargroupgap":0.08},                        {"displayModeBar": false, "responsive": true, "scrollZoom": false}                    )                };            </script> </div>
+</div>
+<div class="tbl-wrap">
+<table class="data">
+<thead><tr><th>Candidate trigger</th><th class="num">At the sub</th><th class="num">Matched moments</th>
+<th class="num">Control moments</th><th class="num">z</th><th class="num">p</th></tr></thead>
+<tbody>
+<tr><td>the outgoing player made a terminal error (attack error, blocked attack, service error, ball-handling error, bad set or block error, or was aced) in the previous 6 rallies</td>
+<td class="num"><span class="num" data-k="17" data-n="41">0.415</span>
+<span class="muted bench-ci">17/41 · 0.278–0.566</span></td>
+<td class="num">0.116</td>
+<td class="num">4,963</td>
+<td class="num">6.251</td>
+<td class="num">&lt; 0.001 <span class="badge badge-W">survives</span></td></tr>
+<tr><td>the opponent had just scored 3 or more in a row</td>
+<td class="num"><span class="num" data-k="6" data-n="41">0.146</span>
+<span class="muted bench-ci">6/41 · 0.069–0.284</span></td>
+<td class="num">0.051</td>
+<td class="num">4,963</td>
+<td class="num">2.825</td>
+<td class="num">0.0047 <span class="badge badge-W">survives</span></td></tr>
+<tr><td>Nebraska's side-out share over its last 6 receptions of the set</td>
+<td class="num">0.630 <span class="muted bench-ci">mean of 41</span></td>
+<td class="num">0.707</td>
+<td class="num">4,935</td>
+<td class="num">-2.535</td>
+<td class="num">0.011</td></tr>
+<tr><td>Nebraska was behind in the set</td>
+<td class="num"><span class="num" data-k="20" data-n="41">0.488</span>
+<span class="muted bench-ci">20/41 · 0.343–0.635</span></td>
+<td class="num">0.187</td>
+<td class="num">4,963</td>
+<td class="num">5.176</td>
+<td class="num">&lt; 0.001 <span class="badge badge-W">survives</span></td></tr>
+<tr><td>Nebraska's margin in the set, in points</td>
+<td class="num">-1.390 <span class="muted bench-ci">mean of 41</span></td>
+<td class="num">3.598</td>
+<td class="num">4,963</td>
+<td class="num">-7.789</td>
+<td class="num">&lt; 0.001 <span class="badge badge-W">survives</span></td></tr>
+<tr><td>the opponent was about to serve</td>
+<td class="num"><span class="num" data-k="17" data-n="41">0.415</span>
+<span class="muted bench-ci">17/41 · 0.278–0.566</span></td>
+<td class="num">0.494</td>
+<td class="num">4,963</td>
+<td class="num">-1.029</td>
+<td class="num">0.303</td></tr>
+<tr><td>the opponent's next server had already aced Nebraska in this match</td>
+<td class="num"><span class="num" data-k="5" data-n="41">0.122</span>
+<span class="muted bench-ci">5/41 · 0.053–0.255</span></td>
+<td class="num">0.081</td>
+<td class="num">4,963</td>
+<td class="num">0.968</td>
+<td class="num">0.333</td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted bench-note">Each like-for-like sub is set against every other moment of the same season when the same player was on court at the same stage of a set (early, middle, late) and was not subbed; the expectation is the average of those moments, one per sub, and the test adds the subs up (observed against expected, normal approximation, two-sided). Seven candidates are tested, so one p below 0.05 in seven is close to what chance alone gives.</p>
+<h2 class="bench-section">What happened after</h2>
+<div class="tbl-wrap">
+<table class="data">
+<thead><tr><th>Era</th><th class="num">Subs</th><th class="num">Side-out before</th><th class="num">Side-out after</th>
+<th class="num">Same slump, no sub: after</th><th class="num">Point-scoring before</th><th class="num">Point-scoring after</th>
+<th class="num">Same slump, no sub: after</th></tr></thead>
+<tbody>
+<tr><td>Busboom Kelly 2025-2026 <span class="badge bench-small">small sample</span></td><td class="num">21</td>
+<td class="num"><span class="num" data-k="59" data-n="96">0.615</span>
+<span class="muted bench-ci">59/96 · 0.515–0.706</span></td><td class="num"><span class="num" data-k="42" data-n="68">0.618</span>
+<span class="muted bench-ci">42/68 · 0.499–0.724</span></td>
+<td class="num">0.699</td>
+<td class="num"><span class="num" data-k="45" data-n="103">0.437</span>
+<span class="muted bench-ci">45/103 · 0.345–0.533</span></td><td class="num"><span class="num" data-k="73" data-n="119">0.613</span>
+<span class="muted bench-ci">73/119 · 0.524–0.696</span></td>
+<td class="num">0.519</td></tr>
+<tr><td>Cook 2016-2024</td><td class="num">41</td>
+<td class="num"><span class="num" data-k="123" data-n="213">0.577</span>
+<span class="muted bench-ci">123/213 · 0.510–0.642</span></td><td class="num"><span class="num" data-k="99" data-n="152">0.651</span>
+<span class="muted bench-ci">99/152 · 0.573–0.723</span></td>
+<td class="num">0.664</td>
+<td class="num"><span class="num" data-k="59" data-n="180">0.328</span>
+<span class="muted bench-ci">59/180 · 0.263–0.399</span></td><td class="num"><span class="num" data-k="87" data-n="191">0.455</span>
+<span class="muted bench-ci">87/191 · 0.386–0.526</span></td>
+<td class="num">0.467</td></tr>
+</tbody>
+</table>
+</div>
+<p class="muted bench-note">Each sub's 10 rallies before it are matched to every moment of the same era with no Nebraska sub whose preceding rallies had the same length and the same number won; the expectation is what those moments' next rallies did, weighted to the sub's own receptions and serves. Windows overlap and rallies of one set are not independent, so the intervals on the pooled shares are too narrow. Read the "after" column against the "same slump, no sub" column,
+  not against "before": a stretch bad enough to draw a sub tends to end whether or not anyone is subbed.</p>
+<h2 class="bench-section">The box-score angle: does a reserve play more after the starter's bad match?</h2>
+<p>Over 66 trusted box scores of 2025-2026 (358 reserve-match rows, 11 reserves),
+  a reserve played 0.220 of the match's sets when the starters at her position
+  hit below their median (175 rows) and 0.225 otherwise (183 rows).</p>
+<div class="tbl-wrap">
+<table class="data">
+<thead><tr><th>Term (share of the match's sets the reserve played)</th><th class="num">Coefficient</th><th class="num">Std. error</th></tr></thead>
+<tbody><tr><td>intercept</td><td class="num">+0.1372</td><td class="num">0.0612</td></tr><tr><td>starters had a poor line</td><td class="num">+0.0355</td><td class="num">0.0307</td></tr><tr><td>final point margin</td><td class="num">+0.0057</td><td class="num">0.0021</td></tr><tr><td>opponent ranked</td><td class="num">-0.1608</td><td class="num">0.0312</td></tr></tbody>
+</table>
+</div>
+<div class="tbl-wrap">
+<table class="data">
+<thead><tr><th>Season</th><th>Group</th><th>Starters</th><th>Reserves</th><th class="num">Matches</th>
+<th class="num">Reserve share, starters poor</th><th class="num">Otherwise</th></tr></thead>
+<tbody><tr><td>2025</td><td>middle</td><td>Andi Jackson, Rebekah Allick</td>
+<td>Manaia Ogbechie</td><td class="num">34</td>
+<td class="num">0.302 <span class="muted bench-ci">17 rows</span></td>
+<td class="num">0.196 <span class="muted bench-ci">17 rows</span></td></tr><tr><td>2025</td><td>pin</td><td>Harper Murray, Taylor Landfair, Teraya Sigler, Virginia Adriano</td>
+<td>Allie Sczech, Skyler Pierce</td><td class="num">34</td>
+<td class="num">0.267 <span class="muted bench-ci">34 rows</span></td>
+<td class="num">0.245 <span class="muted bench-ci">34 rows</span></td></tr><tr><td>2025</td><td>setter</td><td>Bergen Reilly</td>
+<td>Campbell Flynn</td><td class="num">33</td>
+<td class="num">0.244 <span class="muted bench-ci">16 rows</span></td>
+<td class="num">0.235 <span class="muted bench-ci">17 rows</span></td></tr><tr><td>2026</td><td>middle</td><td>Andi Jackson, Manaia Ogbechie</td>
+<td>Kenna Cogill, Keoni Williams</td><td class="num">32</td>
+<td class="num">0.136 <span class="muted bench-ci">30 rows</span></td>
+<td class="num">0.206 <span class="muted bench-ci">34 rows</span></td></tr><tr><td>2026</td><td>pin</td><td>Harper Murray, Teraya Sigler, Virginia Adriano</td>
+<td>Gabby DiVita, Jayden Robinson, Ryan Hunter, Skyler Pierce</td><td class="num">32</td>
+<td class="num">0.173 <span class="muted bench-ci">64 rows</span></td>
+<td class="num">0.213 <span class="muted bench-ci">64 rows</span></td></tr><tr><td>2026</td><td>setter</td><td>Bergen Reilly</td>
+<td>Campbell Flynn</td><td class="num">31</td>
+<td class="num">0.375 <span class="muted bench-ci">14 rows</span></td>
+<td class="num">0.284 <span class="muted bench-ci">17 rows</span></td></tr></tbody>
+</table>
+</div>
+<p class="muted bench-note">A starter is a pin, middle or setter (player_timeline position) who played 75% or more of the season's sets in the trusted box scores; every other player of that group is a reserve in every match of the season (no file says who was injured or unavailable, so a match she missed counts as 0 sets). 'Poor line' = the starters' combined hitting percentage in that match below the group's season median. Controls: the final point margin and whether the opponent was ranked (schedule_history.json). One row per reserve per match, so rows of one match are not independent and the standard errors are too small.</p>
+<h2 class="bench-section">Timeouts</h2>
+<div class="gap soft">
+<div class="gap-hd">A correction to findings.md</div>
+<div class="gap-body">Findings.md section 1 says no source places a timeout among the rallies; these sources do, and this block reads them. The Sidearm pages keep timeouts apart from the rallies, so 2016-2025 Sidearm matches contribute none. 3,815 timeouts carry a score.</div>
+</div>
+<h3 class="bench-h3">Nebraska timeouts: does the caller win the next rally more often?</h3>
+<div class="tbl-wrap">
+<table class="data">
+<thead><tr><th>Rallies just lost in a row by the caller</th><th class="num">After a timeout</th><th class="num">Same moment, no timeout</th></tr></thead>
+<tbody><tr><td>0</td><td class="num"><span class="num" data-k="8" data-n="13">0.615</span>
+<span class="muted bench-ci">8/13 · 0.355–0.823</span> <span class="badge bench-small" title="fewer than 30 chances: not ranked">small sample</span></td><td class="num"><span class="num" data-k="21948" data-n="46220">0.475</span>
+<span class="muted bench-ci">21948/46220 · 0.470–0.479</span></td></tr><tr><td>1</td><td class="num"><span class="num" data-k="50" data-n="79">0.633</span>
+<span class="muted bench-ci">50/79 · 0.523–0.731</span></td><td class="num"><span class="num" data-k="16512" data-n="24863">0.664</span>
+<span class="muted bench-ci">16512/24863 · 0.658–0.670</span></td></tr><tr><td>2</td><td class="num"><span class="num" data-k="298" data-n="467">0.638</span>
+<span class="muted bench-ci">298/467 · 0.594–0.680</span></td><td class="num"><span class="num" data-k="5094" data-n="7775">0.655</span>
+<span class="muted bench-ci">5094/7775 · 0.645–0.666</span></td></tr><tr><td>3</td><td class="num"><span class="num" data-k="280" data-n="443">0.632</span>
+<span class="muted bench-ci">280/443 · 0.586–0.676</span></td><td class="num"><span class="num" data-k="1537" data-n="2356">0.652</span>
+<span class="muted bench-ci">1537/2356 · 0.633–0.671</span></td></tr><tr><td>4</td><td class="num"><span class="num" data-k="115" data-n="168">0.685</span>
+<span class="muted bench-ci">115/168 · 0.611–0.750</span></td><td class="num"><span class="num" data-k="500" data-n="799">0.626</span>
+<span class="muted bench-ci">500/799 · 0.592–0.659</span></td></tr><tr><td>5+</td><td class="num"><span class="num" data-k="43" data-n="72">0.597</span>
+<span class="muted bench-ci">43/72 · 0.482–0.703</span></td><td class="num"><span class="num" data-k="292" data-n="462">0.632</span>
+<span class="muted bench-ci">292/462 · 0.587–0.675</span></td></tr></tbody>
+</table>
+</div>
+<p class="muted bench-note">1,242 timeouts: the caller won 794.0 next rallies against
+  804.2471 expected from the matched moments (z -0.609, p = 0.542).</p>
+<h3 class="bench-h3">Opponent timeouts: does the caller win the next rally more often?</h3>
+<div class="tbl-wrap">
+<table class="data">
+<thead><tr><th>Rallies just lost in a row by the caller</th><th class="num">After a timeout</th><th class="num">Same moment, no timeout</th></tr></thead>
+<tbody><tr><td>0</td><td class="num"><span class="num" data-k="0" data-n="4">0.000</span>
+<span class="muted bench-ci">0/4 · 0.000–0.490</span> <span class="badge bench-small" title="fewer than 30 chances: not ranked">small sample</span></td><td class="num"><span class="num" data-k="12763" data-n="37480">0.341</span>
+<span class="muted bench-ci">12763/37480 · 0.336–0.345</span></td></tr><tr><td>1</td><td class="num"><span class="num" data-k="79" data-n="136">0.581</span>
+<span class="muted bench-ci">79/136 · 0.497–0.660</span></td><td class="num"><span class="num" data-k="13303" data-n="24943">0.533</span>
+<span class="muted bench-ci">13303/24943 · 0.527–0.540</span></td></tr><tr><td>2</td><td class="num"><span class="num" data-k="420" data-n="798">0.526</span>
+<span class="muted bench-ci">420/798 · 0.492–0.561</span></td><td class="num"><span class="num" data-k="5481" data-n="10483">0.523</span>
+<span class="muted bench-ci">5481/10483 · 0.513–0.532</span></td></tr><tr><td>3</td><td class="num"><span class="num" data-k="393" data-n="735">0.535</span>
+<span class="muted bench-ci">393/735 · 0.499–0.570</span></td><td class="num"><span class="num" data-k="2289" data-n="4449">0.514</span>
+<span class="muted bench-ci">2289/4449 · 0.500–0.529</span></td></tr><tr><td>4</td><td class="num"><span class="num" data-k="181" data-n="349">0.519</span>
+<span class="muted bench-ci">181/349 · 0.466–0.571</span></td><td class="num"><span class="num" data-k="1038" data-n="2063">0.503</span>
+<span class="muted bench-ci">1038/2063 · 0.482–0.525</span></td></tr><tr><td>5+</td><td class="num"><span class="num" data-k="111" data-n="275">0.404</span>
+<span class="muted bench-ci">111/275 · 0.347–0.463</span></td><td class="num"><span class="num" data-k="982" data-n="2002">0.491</span>
+<span class="muted bench-ci">982/2002 · 0.469–0.512</span></td></tr></tbody>
+</table>
+</div>
+<p class="muted bench-note">2,297 timeouts: the caller won 1184.0 next rallies against
+  1179.7728 expected from the matched moments (z 0.177, p = 0.860).</p>
+<p class="muted bench-note">A timeout line sits between two rallies in the huskers.com PDFs and the StatCrew text, so it has a score and the run before it. The next rally after a timeout is compared with every other moment in the same sets when the same team had just lost the same number of rallies in a row and called nothing; the run team serves either way, because it won the last rally.</p>
+<section class="lineage">
+<p class="lineage-lead">
+    Every number above is read out of a file in this repository, and every file is
+    re-derived and re-checked by <code>huskerstats vb-validate</code>, which wrote
+    <code>data/reports/coverage.json</code> at commit
+    <code>5a554e5</code>. Hover a file to read its checks.
+  </p>
+<div class="lineage-list">
+<span class="lineage-src" title="data/reports/rally_analytics.json 
+side-out and point-scoring rates from the rally logs
+85,615 rallies
+
+[pass] rally_analytics: 85615 rallies in 1898 trusted sets of 616 matches
+[pass] play_by_play: 655 matches and 2260 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+">
+<code>rally_analytics.json</code> · <span class="num">85,615</span> rows ·
+        <span class="ok">2/2</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/box_scores.json 
+one row per player per match, parsed from the official box scores
+18,419 player-match rows
+
+[pass] box_scores: 879 box scores parsed from 879 corpus files, 0 failed
+[pass] player_match_rows: 18419 player-match rows, 18182 from a team block that reconciles
+[pass] trust_rules: 1758 team blocks re-parsed, 1734 pass every trust rule
+[pass] untrusted_files: 22 untrusted files, 208 of their rows kept, 237 left out
+[pass] flags: 6 files with a set-score problem, 0 flags unclassified
+">
+<code>box_scores.json</code> · <span class="num">18,419</span> rows ·
+        <span class="ok">5/5</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/team_matches.json 
+one row per team per match: printed set counts, result, schedule check
+1,758 team-match rows
+
+[pass] team_matches: 1758 team-match rows, 875 Nebraska rows carrying stats
+[pass] sets_played: sets played agree with the printed set counts in 879 of 879
+[pass] results_vs_schedule: 878 results compared with the schedule, 0 disagree
+[pass] schedule_coverage: 878 of 891 schedule rows have a box score, 9 open gaps
+">
+<code>team_matches.json</code> · <span class="num">1,758</span> rows ·
+        <span class="ok">4/4</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/player_timeline.json 
+each player's jersey, listed position and derived role over time
+469 attribute spells
+
+[pass] player_timeline: 469 rows for 135 players, 23 libero claims refused
+">
+<code>player_timeline.json</code> · <span class="num">469</span> rows ·
+        <span class="ok">1/1</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/schedule_history.json 
+every scheduled match 1975-2026 with site, result and rankings
+1,882 scheduled matches, 1975-2026
+
+[pass] schedule_history: 1882 rows over 52 seasons; 52 of 52 add up to their printed record
+">
+<code>schedule_history.json</code> · <span class="num">1,882</span> rows ·
+        <span class="ok">1/1</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/bench_stats.json 
+the sheets a bench stats person feeds the staff, rebuilt from the public rally logs and box scores
+85,615 rallies
+
+">
+<code>bench_stats.json</code> · <span class="num">85,615</span> rows
+    </span>
+<a class="lineage-src" href="../../coverage/index.html">What is covered, and what is missing →</a>
+</div>
+</section>
+</main>
+<footer><small>Unofficial and fan-built; not affiliated with the University of Nebraska-Lincoln or Nebraska Athletics. Computed from official box scores and play-by-play; no box score or play-by-play is redistributed here.</small></footer>
+<script>
+      /* Tiny table-sort — no dependencies */
+      function sortTable(th) {
+        const tbl = th.closest("table");
+        const col = th.cellIndex;
+        const isNum = th.dataset.type === "num";
+        const wasDesc = th.classList.contains("sorted-desc");
+        tbl
+          .querySelectorAll("thead th")
+          .forEach((t) => t.classList.remove("sorted-asc", "sorted-desc"));
+        const dir = wasDesc ? "asc" : "desc";
+        th.classList.add("sorted-" + dir);
+        const tbody = tbl.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr:not(.totals-row)"));
+        rows.sort((a, b) => {
+          const av =
+            a.cells[col]?.dataset?.val ??
+            a.cells[col]?.textContent?.trim() ??
+            "";
+          const bv =
+            b.cells[col]?.dataset?.val ??
+            b.cells[col]?.textContent?.trim() ??
+            "";
+          const ai = isNum ? parseFloat(av) || 0 : av.toLowerCase();
+          const bi = isNum ? parseFloat(bv) || 0 : bv.toLowerCase();
+          if (dir === "desc") return ai > bi ? -1 : ai < bi ? 1 : 0;
+          return ai < bi ? -1 : ai > bi ? 1 : 0;
+        });
+        rows.forEach((r) => tbody.appendChild(r));
+        const totals = tbody.querySelector(".totals-row");
+        if (totals) tbody.appendChild(totals);
+      }
+      /* Client-side filter for any list marked data-filter="<input id>" */
+      function filterList(input) {
+        const list = document.getElementById(input.dataset.target);
+        if (!list) return;
+        const q = input.value.trim().toLowerCase();
+        for (const row of list.children) {
+          row.hidden = q.length > 0 && !(row.dataset.key || "").includes(q);
+        }
+      }
+    </script>
+</body>
+</html>
