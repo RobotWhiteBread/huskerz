@@ -67,6 +67,9 @@
   <p class="disclaimer">Not affiliated with the University of Nebraska&ndash;Lincoln or Nebraska Athletics. Every number
     here is computed from the official box scores and play-by-play the schools publish; counts sit beside every rate,
     and every rate carries a 95% interval.</p>
+  <p class="disclaimer">Built by one fan with help from an AI model (Anthropic's Claude), which wrote much of the code
+    and the prose. The numbers are not written by the model: code computes them, and the checks below stop the build
+    if they do not add up.</p>
 </header>
 
 <nav class="reports" aria-label="Reports">
@@ -191,6 +194,17 @@ The closest is the score itself: Nebraska&#39;s margin in the set, in points
   serve changes on every side-out, the server follows the rotation, the final matches the box score, and the points by
   type match the box score. Where a school's site publishes the same match, the two logs are compared rally for rally.
 Every one of these checks held when this page was built.</p>
+<p>The pipeline, the checks and much of this page's wording were written with an AI model (Anthropic's Claude) and
+  reviewed by the one person who runs it. No number on the page comes from the model: each is computed by that code
+  from the records above, and the tests compare the page's headline numbers with the files they come from.</p>
+
+<h2>Contributors</h2>
+<ul>
+  <li><strong>RobotWhiteBread</strong> (<a href="https://github.com/RobotWhiteBread">GitHub</a>): the idea, the
+    questions, the source rules, every decision about what counts, and the checking.</li>
+  <li><strong>Claude</strong>, an AI model by Anthropic: most of the code that parses, checks and analyses the record,
+    and much of the writing on this page.</li>
+</ul>
 
 <footer>
   <p>Sources: official box scores and play-by-play published by Nebraska Athletics (huskers.com) and by opponents' athletics
