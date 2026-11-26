@@ -346,14 +346,14 @@
 <summary>6. The libero is a rotation shortcut</summary>
 <div class="body">
 <p>The libero wears a contrasting jersey and is a back-row-only player. She can replace any back-row teammate between rallies, as many times as needed, without it counting as a substitution. Almost every team uses her for the middle blockers, whose job is at the net: when a middle rotates to the back row, the libero goes in for her; when the middle is due back in the front row, she returns.</p>
-<p>Limits: the libero cannot block, cannot attack a ball that is above the net at contact, and cannot set with her hands in front of the attack line if the ball is then attacked above the net. NCAA rules let her serve, but only in one spot in the serving order per set. That is why Nebraska usually lets its libero serve for one middle and brings in a defensive specialist to serve for the other.</p>
+<p>Limits: the libero cannot block, cannot attack a ball that is above the net at contact, and cannot set with her hands in front of the attack line if the ball is then attacked above the net. NCAA rules let her serve, but only in one spot in the serving order per set. So a team lets its libero serve for one middle, and the other middle either serves herself or gives the turn to a substitute. In 2026 Olivia Mauch serves in Manaia Ogbechie's spot and Andi Jackson usually serves her own.</p>
 </div>
 </details>
 <details>
 <summary>7. Substitutions: 15 per set in college</summary>
 <div class="body">
 <p>NCAA teams get 15 substitutions per set (international rules allow only six), so a college coach can afford a defensive specialist who subs in for a middle blocker's back-row trip, then subs back out. A substitute is paired with the player she replaced and must re-enter for that same player.</p>
-<p>Nebraska ran a two-libero rotation in 2025 and again in 2026: Laney Choboy and Olivia Mauch trade the libero jersey, and whoever is not in it is available as a defensive specialist on the other middle's side of the rotation.</p>
+<p>In 2025 Laney Choboy and Olivia Mauch traded the libero jersey. In 2026 Mauch has worn it in every set, and Choboy is the defensive specialist: she comes in for the opposite, Virginia Adriano, when that spot reaches the back row, serves there, and goes out when it returns to the front.</p>
 </div>
 </details>
 <details>
@@ -371,7 +371,7 @@
 </section>
 <section id="sheet">
 <h2>The lineup sheets side by side</h2>
-<p>Here are the two six-player lineups used in the court above, written the way a coach's lineup sheet reads: in serving order, with the setter in slot 1. These are the regular starters from each season; the actual starting rotation changed match to match.</p>
+<p>Here are the two six-player lineups used in the court above, written the way a coach's lineup sheet reads: in serving order, with the setter in slot 1. The 2026 order is the one the official play-by-play shows in most sets this season (Reilly, Sigler, Ogbechie, Adriano, Murray, Jackson). The 2025 column is the regular starters in an illustrative order, not checked against play-by-play. The starting rotation changed match to match.</p>
 <div id="sheetTable"></div>
 <p class="small" style="margin-top:10px">Note the number change: Virginia Adriano wore #9 as a freshman in 2025 and switched to #3 in 2026, the number Allie Sczech wore last season.</p>
 </section>
@@ -390,13 +390,13 @@
   // ---------- Data ----------
   var ROSTER = {
     2026: [
-      { n: 1,  name: 'Keri Leimbach',    pos: 'DS/L', cls: 'So.', ht: '5-4', home: 'Lincoln, Neb.',              note: 'Third back-row option; projected serving specialist for a middle' },
+      { n: 1,  name: 'Keri Leimbach',    pos: 'DS/L', cls: 'So.', ht: '5-4', home: 'Lincoln, Neb.',              note: 'Third back-row option; serving substitute' },
       { n: 2,  name: 'Bergen Reilly',    pos: 'S',    cls: 'Sr.', ht: '6-1', home: 'Sioux Falls, S.D.',          note: 'Starting setter, runs the 5-1' },
       { n: 3,  name: 'Virginia Adriano', pos: 'OPP',  cls: 'So.', ht: '6-5', home: 'Turin, Italy',               note: 'Starting opposite (wore #9 in 2025); season-high 7 kills vs. New Mexico' },
       { n: 4,  name: 'Campbell Flynn',   pos: 'S',    cls: 'So.', ht: '6-3', home: 'Oakland, Mich.',             note: 'Second setter' },
-      { n: 6,  name: 'Laney Choboy',     pos: 'DS/L', cls: 'Sr.', ht: '5-3', home: 'Raleigh, N.C.',              note: 'Co-libero; two aces in the Baylor match' },
+      { n: 6,  name: 'Laney Choboy',     pos: 'DS/L', cls: 'Sr.', ht: '5-3', home: 'Raleigh, N.C.',              note: 'Defensive specialist; serves and plays the back row in the opposite\'s spot' },
       { n: 8,  name: 'Kenna Cogill',     pos: 'MB',   cls: 'So.', ht: '6-4', home: 'Gilbert, Ariz.',             note: 'First career start vs. DePaul (7 blocks) while Jackson was out' },
-      { n: 10, name: 'Olivia Mauch',     pos: 'DS/L', cls: 'Jr.', ht: '5-6', home: 'Bennington, Neb.',           note: 'Co-libero; 11 digs in the home opener; plays DS when Choboy wears the jersey' },
+      { n: 10, name: 'Olivia Mauch',     pos: 'DS/L', cls: 'Jr.', ht: '5-6', home: 'Bennington, Neb.',           note: 'Libero in every set of 2026; serves in a middle\'s spot' },
       { n: 11, name: 'Teraya Sigler',    pos: 'OH',   cls: 'So.', ht: '6-3', home: 'Scottsdale, Ariz.',          note: 'Second outside hitter; 9 kills vs. New Mexico' },
       { n: 14, name: 'Manaia Ogbechie',  pos: 'MB',   cls: 'So.', ht: '6-3', home: 'Santa Rosa Valley, Calif.',  note: 'Starting middle; 9 kills on .538 hitting and 5 blocks vs. New Mexico' },
       { n: 15, name: 'Andi Jackson',     pos: 'MB',   cls: 'Sr.', ht: '6-3', home: 'Brighton, Colo.',            note: 'Starting middle; back from an early-season injury' },
@@ -430,11 +430,13 @@
 
   var SEASONS = {
     2026: {
-      lineup: { S: 2, OH1: 27, MB1: 15, OPP: 3, OH2: 11, MB2: 14, L: 6, DS: 10 },
+      lineup: { S: 2, OH1: 11, MB1: 14, OPP: 3, OH2: 27, MB2: 15, L: 10, DS: 6 },
+      liberoServesFor: 'MB1', dsFor: 'OPP',
       blurb: 'Ranked No. 1 in September 2026. Opened the renovated Devaney Center (John Cook Arena) with an arena-record crowd of 10,497 against New Mexico.'
     },
     2025: {
       lineup: { S: 2, OH1: 27, MB1: 15, OPP: 9, OH2: 12, MB2: 5, L: 6, DS: 10 },
+      liberoServesFor: 'MB2', dsFor: 'MB',
       blurb: 'Went 33-1 with an unbeaten regular season and a Big Ten title. The season ended in a five-set regional final loss to Texas A&M in Lincoln.'
     }
   };
@@ -443,7 +445,7 @@
   var ROLE_LABEL = { S: 'setter', OH: 'outside hitter', MB: 'middle blocker', OPP: 'opposite', L: 'libero', DS: 'defensive specialist' };
   var ZONE_XY = { 4: [93, 96], 3: [200, 96], 2: [307, 96], 5: [93, 258], 6: [200, 258], 1: [307, 258] };
   var SPOT = { LF: [93, 96], MF: [200, 96], RF: [307, 96], LB: [93, 258], MBk: [200, 258], RB: [307, 258] };
-  var BENCH = [[392, 245], [392, 318]];
+  var BENCH = [[392, 245], [392, 300], [392, 355]];
   var ZONE_NAME = { 1: 'right back', 2: 'right front', 3: 'middle front', 4: 'left front', 5: 'left back', 6: 'middle back' };
 
   var state = { season: 2026, k: 0, view: 'serve' };
@@ -469,9 +471,19 @@
       var b = base(role);
       var p = player(state.season, L[role]);
       var tok = { id: role, base: b, num: p.n, name: last(p.name), zone: z, front: isFront(z) };
+      var cfg = SEASONS[state.season];
+      // The libero may serve in one middle's spot only. In the other middle's serving turn the
+      // season decides: a DS serves for her (2025), or she serves herself (2026).
+      var otherMiddleServing = b === 'MB' && z === 1 && role !== cfg.liberoServesFor;
+      var repRole = null;
       if (b === 'MB' && !tok.front) {
-        // Back-row middle: the libero (or a DS in the middle's serving spot) takes her place.
-        var repRole = (z === 1 && role === 'MB1') ? 'DS' : 'L';
+        if (!otherMiddleServing) repRole = 'L';
+        else if (cfg.dsFor === 'MB') repRole = 'DS';
+        else if (state.view !== 'serve') repRole = 'L';
+      } else if (b === 'OPP' && !tok.front && cfg.dsFor === 'OPP') {
+        repRole = 'DS';   // 2026: the DS takes the opposite's three back-row turns
+      }
+      if (repRole) {
         var rp = player(state.season, L[repRole]);
         var rep = { id: repRole, base: repRole, num: rp.n, name: last(rp.name), zone: z, front: false, replaces: tok };
         if (repRole === 'L') liberoOnCourt = true;
@@ -497,7 +509,8 @@
     }
     if (tok.base === 'S' || tok.base === 'OPP') return SPOT.RB;
     if (tok.base === 'OH') return SPOT.MBk;
-    return SPOT.LB; // libero or DS
+    if (tok.replaces && tok.replaces.base === 'OPP') return SPOT.RB; // DS in the opposite's spot
+    return SPOT.LB; // libero, DS for a middle, or a middle about to be replaced
   }
 
   // Serve-receive formations (typical three-passer stacks), by rotation then zone.
@@ -512,7 +525,7 @@
     { 2: [315, 66],  3: [165, 175], 4: [75, 66],   5: [64, 180],  6: [150, 275], 1: [305, 265] }
   ];
   function receiveSpot(tok) { return RECEIVE[state.k][tok.zone]; }
-  function isPasser(tok) { return tok.base === 'OH' || tok.base === 'L' || tok.base === 'DS'; }
+  function isPasser(tok) { return tok.base === 'OH' || tok.base === 'L' || (tok.base === 'DS' && !(tok.replaces && tok.replaces.base === 'OPP')); }
 
   // ---------- SVG tokens ----------
   var svgNS = 'http://www.w3.org/2000/svg';
@@ -714,26 +727,36 @@
       }
     }
 
-    // libero / DS note
-    var rep = null;
-    lay.court.forEach(function (t) { if (t.replaces) rep = t; });
-    if (rep) {
+    // libero / DS notes: one for each replacement on the floor
+    var cfg = SEASONS[state.season];
+    lay.court.forEach(function (rep) {
+      if (!rep.replaces) return;
       if (rep.base === 'L') {
         if (rep.zone === 1) {
           html += '<p><b>Libero:</b> ' + tag(rep) + ' is in for ' + tag(rep.replaces) + ', and this is the one spot in the order where NCAA rules let the libero serve. When ' + last(rep.replaces.name) + ' is due back in the front row, ' + rep.name + ' steps off and ' + last(rep.replaces.name) + ' returns. None of this counts as a substitution.</p>';
         } else {
           html += '<p><b>Libero:</b> ' + tag(rep) + ' is in for ' + tag(rep.replaces) + ' while the middle is in the back row. Libero swaps happen between rallies and never count as substitutions.</p>';
         }
+      } else if (rep.replaces.base === 'OPP') {
+        html += '<p><b>Defensive specialist:</b> ' + tag(rep) + ' subs in for ' + tag(rep.replaces) + ' for the opposite\'s three back-row turns, serving in her spot and passing, and ' + last(rep.replaces.name) + ' comes back when the spot reaches the front row. Each swap uses one of the 15 substitutions.</p>';
       } else {
-        html += '<p><b>Defensive specialist:</b> ' + tag(rep) + ' subs in for ' + tag(rep.replaces) + ' to serve and play the back row (that uses one of the 15 substitutions). The libero, ' + tag({ num: L.L, name: last(player(state.season, L.L).name) }) + ', can only serve in one spot per set, so Nebraska uses a DS for the other middle. Once the serve is lost, the libero can replace ' + rep.name + ' too.</p>';
+        html += '<p><b>Defensive specialist:</b> ' + tag(rep) + ' subs in for ' + tag(rep.replaces) + ' to serve and play the back row (that uses one of the 15 substitutions). The libero, ' + tag({ num: L.L, name: last(player(state.season, L.L).name) }) + ', can only serve in one spot per set, so a DS serves for the other middle. Once the serve is lost, the libero can replace ' + rep.name + ' too.</p>';
       }
+    });
+    if (cfg.dsFor === 'OPP' && server.base === 'MB' && !switched && !receive) {
+      html += '<p><b>Middle serving:</b> the libero may serve in only one spot per set, and that is the other middle\'s. So ' + tag(server) + ' serves this turn herself, and the libero comes in for her once the serve is lost.</p>';
     }
 
     var z5 = byZone[5];
     var stepUp = z5.replaces
       ? tag(z5.replaces) + ' comes back in for ' + tag(z5) + ' and steps up into the front row'
       : tag(z5) + ' steps up into the front row';
-    html += '<p><b>Next side-out:</b> ' + tag(next) + ' rotates back to zone 1 to serve, ' + tag(server) + ' slides to middle back, and ' + stepUp + '.</p>';
+    var nextServer = tag(next) + ' rotates back to zone 1 to serve';
+    if (cfg.dsFor === 'OPP' && next.base === 'OPP') {
+      var dsp = player(state.season, L.DS);
+      nextServer = tag({ num: dsp.n, name: last(dsp.name) }) + ' subs in for ' + tag(next) + ' and serves from zone 1';
+    }
+    html += '<p><b>Next side-out:</b> ' + nextServer + ', ' + tag(server) + ' slides to middle back, and ' + stepUp + '.</p>';
     html += '<p class="small">' + SEASONS[state.season].blurb + '</p>';
     document.getElementById('caption').innerHTML = html;
   }
@@ -752,9 +775,13 @@
     lay.court.forEach(function (t) {
       if (t.id === 'S' || t.id === 'OPP' || t.id === 'OH1' || t.id === 'OH2') names[t.id] = tag(t);
       if (t.base === 'MB') names.MBf = tag(t);
-      if (t.base === 'L' || t.base === 'DS') names.P = tag(t);
+      if (t.replaces && t.replaces.id === 'OPP') names.OPP = tag(t);
+      else if (t.base === 'L' || t.base === 'DS') names.P = tag(t);
     });
     var txt = RECEIVE_TEXT[state.k].replace(/\{(\w+)\}/g, function (m, key) { return names[key] || m; });
+    lay.court.forEach(function (t) {
+      if (t.replaces && t.replaces.id === 'OPP') txt += ' ' + t.name + ' is a defensive specialist in for ' + t.replaces.name + ', so in a real match she would more likely pass than hide; the picture keeps the generic shape.';
+    });
     return '<p>' + txt + '</p><p class="small">Dashed rings mark the three passers. Serve receive is where the overlap rule bites: passers want to spread out, non-passers want out of the way, and every stack has to keep the rotational order legal until the ball is contacted. This is a typical three-passer look, not a diagram of Nebraska\'s exact system.</p>';
   }
 

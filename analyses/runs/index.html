@@ -63,22 +63,22 @@
 <table class="data">
 <thead><tr><th onclick="sortTable(this)">Field</th><th class="num">Value</th></tr></thead>
 <tbody>
-<tr><td title="matches">matches</td><td class="num">617</td></tr>
-<tr><td title="sets">sets</td><td class="num">1,901</td></tr>
-<tr><td title="rallies">rallies</td><td class="num">85,742</td></tr>
-<tr><td title="nebraska_serves">nebraska serves</td><td class="num">47,286</td></tr>
-<tr><td title="nebraska_receptions">nebraska receptions</td><td class="num">38,456</td></tr>
-<tr><td title="skipped_files">skipped files</td><td class="num">483</td></tr>
+<tr><td title="matches">matches</td><td class="num">620</td></tr>
+<tr><td title="sets">sets</td><td class="num">1,911</td></tr>
+<tr><td title="rallies">rallies</td><td class="num">86,174</td></tr>
+<tr><td title="nebraska_serves">nebraska serves</td><td class="num">47,532</td></tr>
+<tr><td title="nebraska_receptions">nebraska receptions</td><td class="num">38,642</td></tr>
+<tr><td title="skipped_files">skipped files</td><td class="num">480</td></tr>
 </tbody>
 </table>
 </div>
 <h2>What the export says · <code>verdict</code></h2>
 <ul style="padding-left: 18px; margin: 0 0 24px;">
-<li>Naively, Nebraska wins 0.4943 of the rallies that follow three it has just won (9887 rallies), against a base rate of 0.5575 over all 85742. That is -0.0633, and it is negative because winning hands over the serve.</li><li>Inside the serving state the gap runs the other way: having won the last three rallies (two serves already won) Nebraska takes 0.4943 of the fourth, on 10126 of them, against 0.4657 on a serve that starts a turn (25637): +0.0286.</li><li>But a within-set reshuffle of the same serves produces +0.0238 of that on its own. What is left - the answer to the question - is +0.0048 [-0.0060, +0.0155], p = 0.381.</li><li>One rally longer - four already won, so the fifth - the corrected estimate is +0.0103 [-0.0041, +0.0246], p = 0.158, on 4813 rallies.</li><li>Nebraska's 5389 runs of three or more are fewer than the 6473 the same sets produce when the order of their own rallies is shuffled at random. Long runs are not evidence of momentum until the serving rule is taken out, because the team that wins a rally has to serve the next one, and serving is worth less than receiving.</li><li>the three streak indicators change held-out log loss by +0.000001 nats per rally, and help in 14 of 26 held-out seasons. A term that mattered would help in most of them.</li><li>14 specifications, 4 significant at 5%. The closest is 'match_server_score' asking about rally 3 (having won the last 2), corrected +0.0130, p = 0.001 - and it is the one that shuffles inside bands of the score, which the streak itself moves, so it is reported here rather than adopted. Every corrected estimate in the table is smaller than the 0.0131 this corpus could have detected with 80% power.</li>
+<li>Naively, Nebraska wins 0.4945 of the rallies that follow three it has just won (9943 rallies), against a base rate of 0.5577 over all 86174. That is -0.0631, and it is negative because winning hands over the serve.</li><li>Inside the serving state the gap runs the other way: having won the last three rallies (two serves already won) Nebraska takes 0.4945 of the fourth, on 10182 of them, against 0.4656 on a serve that starts a turn (25773): +0.0289.</li><li>But a within-set reshuffle of the same serves produces +0.0236 of that on its own. What is left - the answer to the question - is +0.0053 [-0.0053, +0.0158], p = 0.322.</li><li>One rally longer - four already won, so the fifth - the corrected estimate is +0.0104 [-0.0037, +0.0246], p = 0.151, on 4842 rallies.</li><li>Nebraska's 5416 runs of three or more are fewer than the 6509 the same sets produce when the order of their own rallies is shuffled at random. Long runs are not evidence of momentum until the serving rule is taken out, because the team that wins a rally has to serve the next one, and serving is worth less than receiving.</li><li>the three streak indicators change held-out log loss by +0.000005 nats per rally, and help in 14 of 26 held-out seasons. A term that mattered would help in most of them.</li><li>14 specifications, 4 significant at 5%. The closest is 'match_server_score' asking about rally 3 (having won the last 2), corrected +0.0135, p = 0.000 - and it is the one that shuffles inside bands of the score, which the streak itself moves, so it is reported here rather than adopted. Every corrected estimate in the table is smaller than the 0.0129 this corpus could have detected with 80% power.</li>
 </ul>
 <h2>Questions it refuses</h2>
 <ul style="padding-left: 18px; margin: 0 0 24px;">
-<li><strong>does a timeout stop a run?</strong> — a timeout has no place in the rally sequence here. The Sidearm export keeps 571 timeout lines, but in a flat per-set 'other_lines' list with no score and no position among the rallies, and only for 56 of 145 pages; the huskers.com and StatCrew parsers keep none at all. Placing a timeout between two rallies is a parser change on all three sources, not something this record can be asked for.</li><li><strong>what made a run happen - serving pressure, passing, blocking, the opponent falling apart?</strong> — each rally prints exactly one line, the terminal action, and never a touch inside the rally. Attributing a run to a phase of play needs the touches, which no source here records - the same wall rally_analytics.json's first_ball_side_out runs into.</li><li><strong>is a hitter hot - does a player who just got a kill get the next one?</strong> — the record names the player who ended a rally but never the players who attempted and did not end one, so a per-player conversion rate has a numerator and no denominator. Serving is the one skill whose every attempt is on the record (a serve starts a rally), which is why the server is a stratum here and the hitter is not.</li>
+<li><strong>does a timeout stop a run?</strong> — a timeout has no place in the rally sequence here. The Sidearm export keeps 571 timeout lines, but in a flat per-set 'other_lines' list with no score and no position among the rallies, and only for 56 of 146 pages; the huskers.com and StatCrew parsers keep none at all. Placing a timeout between two rallies is a parser change on all three sources, not something this record can be asked for.</li><li><strong>what made a run happen - serving pressure, passing, blocking, the opponent falling apart?</strong> — each rally prints exactly one line, the terminal action, and never a touch inside the rally. Attributing a run to a phase of play needs the touches, which no source here records - the same wall rally_analytics.json's first_ball_side_out runs into.</li><li><strong>is a hitter hot - does a player who just got a kill get the next one?</strong> — the record names the player who ended a rally but never the players who attempted and did not end one, so a per-player conversion rate has a numerator and no denominator. Serving is the one skill whose every attempt is on the record (a serve starts a rally), which is why the server is a stratum here and the hitter is not.</li>
 </ul>
 <h2>The other studies</h2>
 <ul style="padding-left: 18px; margin: 0;">
@@ -91,27 +91,27 @@
     Every number above is read out of a file in this repository, and every file is
     re-derived and re-checked by <code>huskerstats vb-validate</code>, which wrote
     <code>data/reports/coverage.json</code> at commit
-    <code>e7a4b96</code>. Hover a file to read its checks.
+    <code>866015d</code>. Hover a file to read its checks.
   </p>
 <div class="lineage-list">
 <span class="lineage-src" title="data/reports/runs.json 
 whether winning rallies makes Nebraska likelier to win the next one
-85,742 rallies
+86,174 rallies
 
-[pass] analysis_exports: 5 analysis exports fresh and consistent: leverage on 85598 rallies, serving on 47286 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
+[pass] analysis_exports: 5 analysis exports fresh and consistent: leverage on 86030 rallies, serving on 47532 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
 ">
-<code>runs.json</code> · <span class="num">85,742</span> rows ·
+<code>runs.json</code> · <span class="num">86,174</span> rows ·
         <span class="ok">1/1</span>
         checks
     </span>
 <span class="lineage-src" title="data/reports/rally_analytics.json 
 side-out and point-scoring rates from the rally logs
-85,742 rallies
+86,174 rallies
 
-[pass] rally_analytics: 85742 rallies in 1901 trusted sets of 617 matches
-[pass] play_by_play: 656 matches and 2263 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+[pass] rally_analytics: 86174 rallies in 1911 trusted sets of 620 matches
+[pass] play_by_play: 657 matches and 2266 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
 ">
-<code>rally_analytics.json</code> · <span class="num">85,742</span> rows ·
+<code>rally_analytics.json</code> · <span class="num">86,174</span> rows ·
         <span class="ok">2/2</span>
         checks
     </span>

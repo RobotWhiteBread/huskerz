@@ -34,7 +34,7 @@
     you can.
   </p>
 <p class="vb-caption" style="margin-left:0">
-    Measured by <code>huskerstats vb-validate</code> at commit <code>e7a4b96</code>, with 30 uncommitted input(s).
+    Measured by <code>huskerstats vb-validate</code> at commit <code>866015d</code>, with 21 uncommitted input(s).
     Every hard invariant held.
   </p>
 </div>
@@ -52,13 +52,13 @@
 </div>
 <div class="fact" id="layer-play_by_play">
 <div class="eyebrow">Rally play-by-play</div>
-<div class="fact-val num">656</div>
+<div class="fact-val num">657</div>
 <div class="fact-note">every rally of a set, from three different source formats.</div>
 <div class="fact-check">
 <svg aria-hidden="true" fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="13">
 <path d="M20 6L9 17l-5-5"></path>
 </svg>
-<span>656 matches and 2263 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks</span>
+<span>657 matches and 2266 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks</span>
 </div>
 </div>
 <div class="fact" id="layer-season_totals">
@@ -129,33 +129,33 @@
 <div class="gate-grid">
 <div class="gate failed">
 <strong>rallies equal final</strong><br/>
-<span class="num">467</span> of <span class="num">474</span> sets pass, 7 fail
+<span class="num">470</span> of <span class="num">477</span> sets pass, 7 fail
       </div>
 <div class="gate failed">
 <strong>score moves one point</strong><br/>
-<span class="num">470</span> of <span class="num">474</span> sets pass, 4 fail
+<span class="num">473</span> of <span class="num">477</span> sets pass, 4 fail
       </div>
 <div class="gate failed">
 <strong>serve changes on side out</strong><br/>
-<span class="num">460</span> of <span class="num">474</span> sets pass, 14 fail
+<span class="num">463</span> of <span class="num">477</span> sets pass, 14 fail
       </div>
 <div class="gate failed">
 <strong>server follows rotation</strong><br/>
-<span class="num">446</span> of <span class="num">474</span> sets pass, 28 fail
+<span class="num">449</span> of <span class="num">477</span> sets pass, 28 fail
       </div>
 <div class="gate failed">
 <strong>final equals box score</strong><br/>
-<span class="num">469</span> of <span class="num">474</span> sets pass, 5 fail
+<span class="num">472</span> of <span class="num">477</span> sets pass, 5 fail
       </div>
 <div class="gate failed">
 <strong>points by type</strong><br/>
-<span class="num">466</span> of <span class="num">474</span> sets pass, 8 fail
+<span class="num">469</span> of <span class="num">477</span> sets pass, 8 fail
       </div>
 </div>
 <p class="vb-caption" style="margin-left:0">
-      439 of 474 sets pass all six and are the ones the analysis uses
-      (18,778 rallies,
-      106 matches with every set trusted). The
+      442 of 477 sets pass all six and are the ones the analysis uses
+      (18,906 rallies,
+      107 matches with every set trusted). The
       35 that fail are kept and listed: each one is an error in the
       source page, not in the parse. all six gates pass on Nebraska's side of the rallies; the opponent's own point types are reported in each set's not_gated and never untrust a set
     </p>
@@ -276,7 +276,7 @@
 <span class="badge badge-W">pass</span>
 </td>
 <td>
-              656 matches and 2263 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+              657 matches and 2266 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
             </td>
 </tr>
 <tr id="check-season_totals">
@@ -321,7 +321,7 @@
 <span class="badge badge-W">pass</span>
 </td>
 <td>
-              85742 rallies in 1901 trusted sets of 617 matches
+              86174 rallies in 1911 trusted sets of 620 matches
             </td>
 </tr>
 <tr id="check-player_timeline">
@@ -357,7 +357,7 @@
 <span class="badge badge-W">pass</span>
 </td>
 <td>
-              5 analysis exports fresh and consistent: leverage on 85598 rallies, serving on 47286 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
+              5 analysis exports fresh and consistent: leverage on 86030 rallies, serving on 47532 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
             </td>
 </tr>
 <tr id="check-node_graph">
@@ -388,8 +388,8 @@
 <div class="gap-body">They are the failing team block of 22 files whose printed totals do not reconcile; the 208 rows of the block that does reconcile are kept.</div>
 </div>
 <div class="gap soft">
-<div class="gap-hd">224 matches have a box score but no rally log</div>
-<div class="gap-body">656 of 880 have rally play-by-play. Before 2016 no rally log is published at all; season totals reach back to 2000 and schedules to 1975.</div>
+<div class="gap-hd">223 matches have a box score but no rally log</div>
+<div class="gap-body">657 of 880 have rally play-by-play. Before 2016 no rally log is published at all; season totals reach back to 2000 and schedules to 1975.</div>
 </div>
 <div class="gap soft">
 <div class="gap-hd">37 differences from the season reports are unexplained</div>
@@ -427,7 +427,7 @@
 <tr>
 <td style="max-width: 26ch">metrics.first_ball_side_out</td>
 <td><code>rally_analytics.json</code></td>
-<td style="max-width: 70ch">a first-ball side-out can only be separated from a transition side-out by the touches inside the rally, and no source records them: all 85742 rally lines in this study print one terminal action each ({'kill by': 51109, 'attack error': 21404, 'service error': 7611, 'service ace': 3949, 'ball handling error': 883, 'bad set': 784, 'other': 2}), never a dig, a set or a second attack. The huskers.com PDFs carry first-ball numbers in an 'Enhanced Insights' section, and that section survives in 0 of the 880 extracted corpus files, so it is a separate parser and a separate collection job, not something this play-by-play can be asked for.
+<td style="max-width: 70ch">a first-ball side-out can only be separated from a transition side-out by the touches inside the rally, and no source records them: all 86174 rally lines in this study print one terminal action each ({'kill by': 51359, 'attack error': 21504, 'service error': 7664, 'service ace': 3971, 'ball handling error': 884, 'bad set': 790, 'other': 2}), never a dig, a set or a second attack. The huskers.com PDFs carry first-ball numbers in an 'Enhanced Insights' section, and that section survives in 0 of the 880 extracted corpus files, so it is a separate parser and a separate collection job, not something this play-by-play can be asked for.
           <br/><span class="muted">Instead: the terminal action does say how each reception ended, which separates a side-out the team earned from one the serving team handed over, and names the only class that certainly needed no touch at all (the opponent's service error)</span></td>
 </tr>
 <tr>
@@ -488,7 +488,7 @@
 <tr>
 <td style="max-width: 26ch">does a timeout stop a run?</td>
 <td><code>runs.json</code></td>
-<td style="max-width: 70ch">a timeout has no place in the rally sequence here. The Sidearm export keeps 571 timeout lines, but in a flat per-set 'other_lines' list with no score and no position among the rallies, and only for 56 of 145 pages; the huskers.com and StatCrew parsers keep none at all. Placing a timeout between two rallies is a parser change on all three sources, not something this record can be asked for.</td>
+<td style="max-width: 70ch">a timeout has no place in the rally sequence here. The Sidearm export keeps 571 timeout lines, but in a flat per-set 'other_lines' list with no score and no position among the rallies, and only for 56 of 146 pages; the huskers.com and StatCrew parsers keep none at all. Placing a timeout between two rallies is a parser change on all three sources, not something this record can be asked for.</td>
 </tr>
 <tr>
 <td style="max-width: 26ch">what made a run happen - serving pressure, passing, blocking, the opponent falling apart?</td>
@@ -1459,7 +1459,7 @@
 <tr id="rally">
 <td><code>data/reports/rally_analytics.json</code></td>
 <td>side-out and point-scoring rates from the rally logs</td>
-<td class="num" data-val="85742">85,742<br/>
+<td class="num" data-val="86174">86,174<br/>
 <span class="muted" style="font-size:var(--text-xs)">rallies</span></td>
 <td>
 <a href="#check-rally_analytics"><code>rally_analytics</code></a>, 
@@ -1475,7 +1475,7 @@
     Every number above is read out of a file in this repository, and every file is
     re-derived and re-checked by <code>huskerstats vb-validate</code>, which wrote
     <code>data/reports/coverage.json</code> at commit
-    <code>e7a4b96</code>. Hover a file to read its checks.
+    <code>866015d</code>. Hover a file to read its checks.
   </p>
 <div class="lineage-list">
 <span class="lineage-src" title="data/reports/coverage.json 
@@ -1523,12 +1523,12 @@ every scheduled match 1975-2026 with site, result and rankings
     </span>
 <span class="lineage-src" title="data/reports/rally_analytics.json 
 side-out and point-scoring rates from the rally logs
-85,742 rallies
+86,174 rallies
 
-[pass] rally_analytics: 85742 rallies in 1901 trusted sets of 617 matches
-[pass] play_by_play: 656 matches and 2263 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+[pass] rally_analytics: 86174 rallies in 1911 trusted sets of 620 matches
+[pass] play_by_play: 657 matches and 2266 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
 ">
-<code>rally_analytics.json</code> · <span class="num">85,742</span> rows ·
+<code>rally_analytics.json</code> · <span class="num">86,174</span> rows ·
         <span class="ok">2/2</span>
         checks
     </span>
