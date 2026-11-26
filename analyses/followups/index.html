@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Follow-up questions | HuskerStats</title>
+
+
+
+<link href="../../assets/tokens.css" rel="stylesheet"/>
+<link href="../../assets/app.css" rel="stylesheet"/>
+<link href="../../assets/analyses.css" rel="stylesheet"/>
+<script src="../../assets/plotly.min.js"></script>
+</head>
+<body>
+<header>
+<div class="masthead-rule"></div>
+<nav>
+<a class="brand" href="../../index.html">HuskerStats</a>
+<div class="nav-sections"><a class="nav-link" href="../../season/index.html">Season</a><a class="nav-link" href="../index.html">Studies</a><a class="nav-link" href="../../bench/season/2026/index.html">Bench</a><a class="nav-link" href="../../bench/subs/index.html">Substitutions and timeouts</a><a class="nav-link" href="../../rotations/index.html">Rotations explained</a><a class="nav-link" href="../../history/index.html">History</a><a class="nav-link" href="../../coverage/index.html">Coverage</a></div>
+
+</nav>
+</header>
+<main>
+<style>
+  .fu { background: #F9F6F0; padding: 40px 64px 40px; }
+  .fu h1 { font-family: 'Source Serif 4', Georgia, serif; font-size: 42px; font-weight: 700; margin: 10px 0 12px; letter-spacing: -0.02em; line-height: 1.1; }
+  .fu section { border-top: 1px solid #E5DFD4; padding: 28px 0 8px; }
+  .fu h2 { font-family: 'Source Serif 4', Georgia, serif; font-size: 25px; font-weight: 600; margin: 6px 0 12px; line-height: 1.25; max-width: 40ch; }
+  .fu-answer { background: #FFFFFF; border: 1px solid #E5DFD4; border-left: 4px solid #1A1714; padding: 14px 20px 6px; max-width: 86ch; margin-bottom: 16px; }
+  .fu-answer p { font-size: 14.5px; line-height: 1.55; color: #3D3830; margin: 0 0 10px; }
+  .fu-answer p.lead { font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; font-weight: 600; color: #1A1714; }
+  .fu-notes { max-width: 86ch; margin: 12px 0 18px; font-size: 13.5px; color: #3D3830; }
+  .fu-notes summary { cursor: pointer; color: #6B6259; }
+  .fu-notes p, .fu-notes li { line-height: 1.55; margin: 8px 0; }
+  .fu .tbl-wrap { max-width: 980px; margin-bottom: 8px; }
+  .fu .cap { font-size: 12.5px; color: #6B6259; margin: 0 0 6px; max-width: 86ch; }
+  @media (max-width: 900px) { .fu { padding: 24px 16px; } .fu h1 { font-size: 30px; } }
+</style>
+<div class="fu">
+<div class="eyebrow">Analyses · <code>data/reports/followups.json</code></div>
+<h1>Follow-up questions</h1>
+<p style="font-size: 15px; color: #3D3830; max-width: 86ch; line-height: 1.6;">
+    Seven follow-up questions, each answered with one comparison fixed before it was run. They draw on 879 box scores
+    (2000–2026) and
+    85,615 rallies from 616 matches with play-by-play.
+    The answers lean on 14 tests in all, so a result counts only
+    below p = 0.00357: seven questions asked of one record: a p-value under 0.05 somewhere among them is expected by chance, so each is held to 0.05 divided by the number of tests.
+  </p>
+<section>
+<div class="eyebrow">Question one</div>
+<h2>Does a set carry into the next one, beyond what the two teams' strength already predicts?</h2>
+<div class="fu-answer">
+<p class="lead">No: across 879 matches, the margin of one set says nothing about the next that a reordering of the same sets does not already say (p = 0.26).</p><p>Nebraska won the next set 85.9% of the time after winning one (84.7% if order did not matter) and 62.8% after losing one (63.9%).</p>
+</div>
+<div class="tbl-wrap"><table class="data">
+<thead><tr><th>After</th><th class="num">Sets</th><th class="num">Won the next set</th><th class="num">If order did not matter</th></tr></thead>
+<tbody>
+<tr><td>a set Nebraska won</td><td class="num">1,598</td>
+<td class="num">85.9%</td><td class="num">84.7%</td></tr>
+<tr><td>a set Nebraska lost</td><td class="num">457</td>
+<td class="num">62.8%</td><td class="num">63.9%</td></tr>
+</tbody></table></div>
+<p class="cap">After a set won by 8+ points, the next set's margin averaged
+      +7.47 points against
+      +7.38 if order did not matter
+      (p = 0.475).</p>
+<details class="fu-notes">
+<summary>How it was tested, and what it cannot say</summary>
+<p>Each match's own sets are the comparison. Every order of its non-deciding sets that is still a possible match (the last one won by the match winner) is equally likely if sets do not carry over; the observed order is compared with the exact mean and variance over those orders. A deciding set stays in place and is left out of the pairs.</p>
+<ul><li>Set scores only: a carry-over that shows inside a set and not in its margin is not seen.</li><li>A 3-0 sweep has one winner throughout, so it informs the margin test and not the same-winner test.</li><li>One team's matches. The opponents are different every night; the reordering holds each night fixed.</li></ul>
+</details>
+</section>
+<section>
+<div class="eyebrow">Question two</div>
+<h2>Do servers change under pressure: at set point, late in a close set, or right after a timeout?</h2>
+<div class="fu-answer">
+<p class="lead">Yes, in one place: right after the other team's timeout, Nebraska's service-error rate was 5.6% against 7.8% for the same servers on the same nights otherwise.</p><p>Serving for the set: service-error rate 8.2% on 1,636 serves, 7.5% for the same servers on the same nights otherwise (p = 0.53).</p><p>Serving to stay in the set: service-error rate 8.1% on 298 serves, 7.7% for the same servers on the same nights otherwise (p = 0.93).</p><p>Late in a close set: service-error rate 7.4% on 1,166 serves, 8.2% for the same servers on the same nights otherwise (p = 0.14).</p><p>Right after the other team's timeout: service-error rate 5.6% on 2,086 serves, 7.8% for the same servers on the same nights otherwise (p &lt; 0.0001).</p><p>Opponents' servers after a Nebraska timeout: service-error rate 7.8% on 1,020 serves against 7.0% otherwise (p = 0.65); ace rate 2.6% against 4.8% (p = 0.0057, short of the cutoff).</p>
+</div>
+<p class="cap"><strong>Nebraska serving</strong> · each rate beside the same servers' rate on the same nights otherwise</p>
+<div class="tbl-wrap"><table class="data">
+<thead><tr><th>Serve</th><th class="num">Serves</th><th class="num">Error rate</th><th class="num">Otherwise</th><th class="num">p</th>
+<th class="num">Ace rate</th><th class="num">Otherwise</th><th class="num">p</th></tr></thead>
+<tbody>
+<tr><td title="the serving team wins the set with this rally">set point for</td>
+<td class="num">1,636</td>
+<td class="num">8.2%</td><td class="num">7.5%</td><td class="num">0.528</td>
+<td class="num">5.0%</td><td class="num">5.4%</td><td class="num">0.659</td></tr>
+<tr><td title="the receiving team wins the set with this rally">set point against</td>
+<td class="num">298</td>
+<td class="num">8.1%</td><td class="num">7.7%</td><td class="num">0.932</td>
+<td class="num">4.0%</td><td class="num">3.9%</td><td class="num">0.805</td></tr>
+<tr><td title="both teams within five of the target and within two of each other, no set point">late and close</td>
+<td class="num">1,166</td>
+<td class="num">7.4%</td><td class="num">8.2%</td><td class="num">0.145</td>
+<td class="num">2.7%</td><td class="num">4.3%</td><td class="num">0.021</td></tr>
+<tr><td title="">after a timeout called by the receiver</td>
+<td class="num">2,086</td>
+<td class="num">5.6%</td><td class="num">7.8%</td><td class="num">&lt; 0.0001</td>
+<td class="num">5.7%</td><td class="num">5.8%</td><td class="num">0.796</td></tr>
+</tbody></table></div>
+<p class="cap"><strong>Opponents serving</strong> · each rate beside the same servers' rate on the same nights otherwise</p>
+<div class="tbl-wrap"><table class="data">
+<thead><tr><th>Serve</th><th class="num">Serves</th><th class="num">Error rate</th><th class="num">Otherwise</th><th class="num">p</th>
+<th class="num">Ace rate</th><th class="num">Otherwise</th><th class="num">p</th></tr></thead>
+<tbody>
+<tr><td title="the serving team wins the set with this rally">set point for</td>
+<td class="num">546</td>
+<td class="num">8.2%</td><td class="num">7.5%</td><td class="num">0.998</td>
+<td class="num">3.3%</td><td class="num">4.1%</td><td class="num">0.473</td></tr>
+<tr><td title="the receiving team wins the set with this rally">set point against</td>
+<td class="num">1,021</td>
+<td class="num">8.2%</td><td class="num">9.7%</td><td class="num">0.023</td>
+<td class="num">2.4%</td><td class="num">4.1%</td><td class="num">0.057</td></tr>
+<tr><td title="both teams within five of the target and within two of each other, no set point">late and close</td>
+<td class="num">1,293</td>
+<td class="num">8.0%</td><td class="num">8.6%</td><td class="num">0.179</td>
+<td class="num">4.1%</td><td class="num">4.2%</td><td class="num">0.984</td></tr>
+<tr><td title="">after a timeout called by the receiver</td>
+<td class="num">1,020</td>
+<td class="num">7.8%</td><td class="num">7.0%</td><td class="num">0.648</td>
+<td class="num">2.6%</td><td class="num">4.8%</td><td class="num">0.0057</td></tr>
+</tbody></table></div>
+<details class="fu-notes">
+<summary>How it was tested, and what it cannot say</summary>
+<p>Cochran-Mantel-Haenszel: one server in one match, her serves in the state against her ordinary serves that night; the counts expected from her own ordinary rate are summed across servers and matches. Only a server with serves on both sides of the comparison contributes. The same match matters: a set is close late mostly because the opponent is good, and a good opponent is aced less all night. Timeouts are read only in sets whose source places a timeout line among the rallies, and a serve after a timeout is compared with the same server's serves at the same place in a service turn (first, second, third or later), because a timeout is called on a server who is already on a run.</p>
+<ul><li>Who serves at set point is not random. Comparing each server with herself on the same night removes that; it does not remove a coach choosing a serving substitute for the moment.</li><li>A match that reaches a late, close score is one in which the earlier rallies went a particular way. That selection can move the 'won' rows a little; it has no clear direction for errors and aces.</li><li>An ace and a service error are all the record says about a serve. A safer serve that stays in and is passed well looks the same as any other serve in play.</li><li>Servers are matched on the name as printed within one match.</li></ul>
+</details>
+</section>
+<section>
+<div class="eyebrow">Question three</div>
+<h2>How many matches until a team number is more signal than noise?</h2>
+<div class="fu-answer">
+<p class="lead">service errors per set: about 7 matches; hitting percentage: about 9 matches; digs per set: about 10 matches; aces per set: about 12 matches; kills per set: about 14 matches; share of all points won: about 17 matches; point-scoring percentage (rallies won on serve): about 23 matches until an average is half signal.</p><p>Seasons cannot be told apart at all in: opponent hitting percentage, blocks per set, side-out percentage. Nebraska's level in these has been too steady from year to year for any number of matches to rank one season over another.</p><p>Rotations: in 5 of 19 seasons the six rotations' side-out rates could be told apart by the end of the season (about 0.9 expected by chance alone).</p>
+</div>
+<div class="tbl-wrap"><table class="data">
+<thead><tr><th>Number</th><th class="num">Matches until half signal</th>
+<th class="num">Signal after 5</th><th class="num">Signal after 10</th><th class="num">Signal after 20</th><th class="num">Signal after 30</th>
+<th class="num">Seasons differ, p</th></tr></thead>
+<tbody>
+<tr><td>service errors per set</td>
+<td class="num">7</td>
+<td class="num">42%</td><td class="num">59%</td><td class="num">74%</td><td class="num">81%</td>
+<td class="num">0.0005</td></tr>
+<tr><td>hitting percentage</td>
+<td class="num">9</td>
+<td class="num">37%</td><td class="num">54%</td><td class="num">70%</td><td class="num">78%</td>
+<td class="num">0.0005</td></tr>
+<tr><td>digs per set</td>
+<td class="num">10</td>
+<td class="num">33%</td><td class="num">50%</td><td class="num">66%</td><td class="num">75%</td>
+<td class="num">0.0005</td></tr>
+<tr><td>aces per set</td>
+<td class="num">12</td>
+<td class="num">30%</td><td class="num">46%</td><td class="num">63%</td><td class="num">72%</td>
+<td class="num">0.0005</td></tr>
+<tr><td>kills per set</td>
+<td class="num">14</td>
+<td class="num">26%</td><td class="num">41%</td><td class="num">58%</td><td class="num">68%</td>
+<td class="num">0.0005</td></tr>
+<tr><td>share of all points won</td>
+<td class="num">17</td>
+<td class="num">22%</td><td class="num">37%</td><td class="num">54%</td><td class="num">64%</td>
+<td class="num">0.0005</td></tr>
+<tr><td>point-scoring percentage (rallies won on serve)</td>
+<td class="num">23</td>
+<td class="num">18%</td><td class="num">30%</td><td class="num">47%</td><td class="num">57%</td>
+<td class="num">0.010</td></tr>
+<tr><td>opponent hitting percentage</td>
+<td class="num">none</td>
+<td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td>
+<td class="num">0.051</td></tr>
+<tr><td>blocks per set</td>
+<td class="num">none</td>
+<td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td>
+<td class="num">0.211</td></tr>
+<tr><td>side-out percentage</td>
+<td class="num">none</td>
+<td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td>
+<td class="num">0.305</td></tr>
+</tbody></table></div>
+<p class="cap">Seasons 2008–2026, 601 matches. "Signal after n" is the share of an
+      n-match average that reflects the team's level that season; the rest is the opponent and chance.</p>
+<p class="cap"><strong>Rotations.</strong> Nebraska's side-out rate in each of its six rotations, one season at a time: told apart in 5
+      of 19 seasons.</p>
+<details class="fu-notes">
+<summary>How it was tested, and what it cannot say</summary>
+<p>For each number: its match-to-match variance inside a season, and the variance of season levels once the part that is only sampling is taken out. Their ratio is the number of matches at which an average is half signal; after n matches the share that is signal is n / (n + that). The early-against-rest correlations are the plain check: across seasons, the first n matches against all the later ones.</p>
+<ul><li>Match-to-match spread includes the opponent: a number moves because the other team was better, not only by chance. That is part of why early numbers mislead, and it is counted here as noise.</li><li>The first matches of a season are non-conference, so early-against-rest also carries a change in opposition.</li><li>Seasons from 2008 only, so every set is to 25 and per-set counts mean the same thing throughout.</li><li>A number whose seasons cannot be told apart at all (matches dealt to seasons at random spread as much, p of 0.05 or more) has no stabilisation point and is listed as none. That says the program's level in it has been steady, not that the number is meaningless in a match.</li></ul>
+</details>
+</section>
+<section>
+<div class="eyebrow">Question four</div>
+<h2>Is there a home-court edge once the opponent is held fixed, and does the size of the crowd matter?</h2>
+<div class="fu-answer">
+<p class="lead">Yes: against the same opponent in the same season (195 pairs), Nebraska's share of points was 2.26 points higher at home (1.62 to 2.89, p &lt; 0.0001).</p><p>Away crowd size: no measurable link with how much worse Nebraska did there (rank correlation -0.10, p = 0.15).</p>
+</div>
+<div class="tbl-wrap"><table class="data">
+<thead><tr><th>Same opponent, same season: home minus away</th><th class="num">Pairs</th><th class="num">Difference, points</th><th class="num">Low</th><th class="num">High</th><th class="num">p</th></tr></thead>
+<tbody>
+<tr><td>Share of all points won</td><td class="num">195</td><td class="num">+2.26</td><td class="num">+1.62</td><td class="num">+2.89</td><td class="num">&lt; 0.0001</td></tr>
+<tr><td>Side-out percentage</td><td class="num">149</td><td class="num">+3.05</td><td class="num">+1.57</td><td class="num">+4.53</td><td class="num">&lt; 0.0001</td></tr>
+<tr><td>Point-scoring percentage</td><td class="num">149</td><td class="num">+2.09</td><td class="num">+0.64</td><td class="num">+3.54</td><td class="num">0.0048</td></tr>
+</tbody></table></div>
+<p class="cap">Unadjusted, for comparison:
+      home 58.0% of points over 451 matches; away 55.5% of points over 298 matches; neutral 55.5% of points over 90 matches.
+      The unadjusted gap mixes venue with a softer home schedule.</p>
+<p class="cap"><strong>Home crowd.</strong> Not tested: home matches sell out, so attendance barely moves inside a season; there is nothing to compare.</p>
+<details class="fu-notes">
+<summary>How it was tested, and what it cannot say</summary>
+<p>The unadjusted rows mix venue with opposition (the home schedule is softer). The test takes every opponent Nebraska met both at home and away in the same season and differences the two matches, so the opponent and both rosters are the same. Rally-scoring seasons only.</p>
+<ul><li>The paired opponents are conference opponents, so this is the home edge in conference play.</li><li>Two matches against one opponent are weeks apart; either team may have changed between them. That adds noise to each pair, not a direction.</li><li>Crowd size at an away match goes with the quality of the home team, which the pairing already holds; it also goes with how much that school cares about the match, which it does not.</li></ul>
+</details>
+</section>
+<section>
+<div class="eyebrow">Question five</div>
+<h2>Does Nebraska play worse on the second night of back-to-back matches?</h2>
+<div class="fu-answer">
+<p class="lead">No: on a second night, against an opponent it also met rested, Nebraska's share of points differed by -0.30 points (-1.58 to +0.98, p = 0.65; 48 such opponents).</p>
+</div>
+<div class="tbl-wrap"><table class="data">
+<thead><tr><th>Days since the last match</th><th class="num">Matches</th><th class="num">Share of points won (unadjusted)</th></tr></thead>
+<tbody>
+<tr><td>1 (the night after a match)</td><td class="num">175</td><td class="num">56.4%</td></tr>
+<tr><td>2</td><td class="num">74</td><td class="num">55.9%</td></tr>
+<tr><td>3 to 4</td><td class="num">314</td><td class="num">56.8%</td></tr>
+<tr><td>5 to 8</td><td class="num">207</td><td class="num">56.8%</td></tr>
+<tr><td>9 or more</td><td class="num">5</td><td class="num">57.2%</td></tr>
+</tbody></table></div>
+<p class="cap">Night two against the night before, different opponents (165 weekends): -1.36 points
+      (p = 0.016). That comparison does not hold the opponent fixed, and the second match of a weekend is often the harder one; the answer above does.</p>
+<details class="fu-notes">
+<summary>How it was tested, and what it cannot say</summary>
+<p>Days since the previous match come from the schedule page. The test takes every opponent met twice in one season and regresses the difference in point share on the difference in venue (home or not) and the difference in rest (second night or not), so the opponent is the same in both halves of each pair.</p>
+<ul><li>In conference play the opponent is usually on a second night too. This measures whether Nebraska fares worse relative to its opponent, not whether both teams are tired.</li><li>The schedule is not random: who is played on which night is set by the conference.</li><li>Two matches on one date are left out, because the schedule page does not say which came first.</li></ul>
+</details>
+</section>
+<section>
+<div class="eyebrow">Question six</div>
+<h2>Does it matter who serves first in a set?</h2>
+<div class="fu-answer">
+<p class="lead">No: Nebraska won 79.9% of 717 sets it served first and 79.0% of 682 it received first; against reorderings of each match's own results, p = 0.66.</p><p>Measured edge to serving first: +0.8 points of set-win share (-2.6 to +4.2). The arithmetic predicts -1.3 at Nebraska's rates and -3.9 between two even teams.</p>
+</div>
+<div class="tbl-wrap"><table class="data">
+<thead><tr><th>Non-deciding sets</th><th class="num">Sets</th><th class="num">Won</th><th class="num">Mean margin</th></tr></thead>
+<tbody>
+<tr><td>Nebraska served first</td><td class="num">717</td><td class="num">79.9%</td>
+<td class="num">+5.57</td></tr>
+<tr><td>Nebraska received first</td><td class="num">682</td><td class="num">79.0%</td>
+<td class="num">+5.26</td></tr>
+</tbody></table></div>
+<p class="cap">First serve alternated in 980 of 980
+      back-to-back sets, which is what makes each match its own experiment.</p>
+<details class="fu-notes">
+<summary>How it was tested, and what it cannot say</summary>
+<p>First serve alternates from set to set, so inside one match Nebraska serves first in about half the sets and receives first in the rest. The serve-first pattern is held where it was and the match's set results are reordered in every valid way, as in block 1; the sets won (and the points margin) in serve-first sets are compared with the exact mean over those orders. The prediction is a plain calculation from side-out and point-scoring rates.</p>
+<ul><li>The deciding set has its own coin toss and is reported, not tested: a team that wins the toss may choose, so who serves first in it is not an accident.</li><li>A match with a set missing from the play-by-play is left out, because its orders cannot be listed.</li><li>The prediction assumes every rally is an independent draw at fixed rates. Between two even teams it gives the receiving side a few points of set-win probability; for a team as far ahead of its opponents as Nebraska it gives about one. This many sets can rule out a large effect and cannot confirm one that size.</li></ul>
+</details>
+</section>
+<section>
+<div class="eyebrow">Question seven</div>
+<h2>Did the libero (2002) or the relaxed double-contact rule (2024) change the numbers?</h2>
+<div class="fu-answer">
+<p class="lead">The libero (2002): no number moved more than it does in an ordinary year.</p><p>The double-contact rule (2024): larger than every other year-to-year change in rallies that ended on a ball-handling error, per 1,000 (9.23 to 0.00).</p><p>The printed season totals agree: ball-handling errors per set over both teams went from 0.26 to 0.02.</p>
+</div>
+<p class="cap"><strong>The libero, first season 2002</strong></p>
+<div class="tbl-wrap"><table class="data">
+<thead><tr><th>Number</th><th class="num">Season before</th><th class="num">Rule season</th><th class="num">Other year-to-year changes</th><th class="num">Of those, at least as large</th></tr></thead>
+<tbody>
+<tr><td>digs per set, both teams</td><td class="num">16.048</td><td class="num">15.209</td>
+<td class="num">5</td><td class="num">3</td></tr>
+<tr><td>hitting percentage, both teams</td><td class="num">0.198</td><td class="num">0.212</td>
+<td class="num">5</td><td class="num">3</td></tr>
+<tr><td>aces per set, both teams</td><td class="num">1.391</td><td class="num">1.238</td>
+<td class="num">5</td><td class="num">2</td></tr>
+<tr><td>kills per set, both teams</td><td class="num">14.929</td><td class="num">14.869</td>
+<td class="num">5</td><td class="num">4</td></tr>
+</tbody></table></div>
+<p class="cap"><strong>Relaxed double contact, first season 2024</strong></p>
+<div class="tbl-wrap"><table class="data">
+<thead><tr><th>Number</th><th class="num">Season before</th><th class="num">Rule season</th><th class="num">Other year-to-year changes</th><th class="num">Of those, at least as large</th></tr></thead>
+<tbody>
+<tr><td>rallies that ended on a ball-handling error, per 1,000</td><td class="num">9.229</td><td class="num">0.000</td>
+<td class="num">15</td><td class="num">0</td></tr>
+<tr><td>ball-handling errors per set in the printed season totals, both teams</td><td class="num">0.265</td><td class="num">0.016</td>
+<td class="num">16</td><td class="num">1</td></tr>
+<tr><td>rallies that ended on a bad set, per 1,000</td><td class="num">7.383</td><td class="num">7.418</td>
+<td class="num">15</td><td class="num">15</td></tr>
+<tr><td>hitting percentage, both teams</td><td class="num">0.205</td><td class="num">0.208</td>
+<td class="num">17</td><td class="num">17</td></tr>
+<tr><td>assists per kill, both teams</td><td class="num">0.932</td><td class="num">0.942</td>
+<td class="num">17</td><td class="num">6</td></tr>
+<tr><td>kills per set, both teams</td><td class="num">12.157</td><td class="num">12.585</td>
+<td class="num">17</td><td class="num">6</td></tr>
+</tbody></table></div>
+<details class="fu-notes">
+<summary>How it was tested, and what it cannot say</summary>
+<p>For each number, the season average over both teams in every Nebraska match, then the change from the season before the rule to the season of the rule. That change is set beside every other year-to-year change in the same scoring era: a rule matters here only if its year stands out from ordinary years, which move with rosters and schedules.</p>
+<ul><li>Both teams are counted, but every match has Nebraska in it. This is the rule as seen from one schedule.</li><li>One season before against one season after: a change that took several seasons to show is understated.</li><li>With about a dozen ordinary years to compare with, the smallest p a single number can reach is one over that count; this block can flag a change, not prove one.</li><li>The year the libero was allowed to serve is not tested: the project has not confirmed it against the rulebook.</li></ul>
+</details>
+</section>
+<p style="font-size: 13px; margin-top: 18px;"><a href="../index.html">The five studies</a></p>
+</div>
+<section class="lineage">
+<p class="lineage-lead">
+    Every number above is read out of a file in this repository, and every file is
+    re-derived and re-checked by <code>huskerstats vb-validate</code>, which wrote
+    <code>data/reports/coverage.json</code> at commit
+    <code>5a554e5</code>. Hover a file to read its checks.
+  </p>
+<div class="lineage-list">
+<span class="lineage-src" title="data/reports/followups.json 
+seven follow-up questions, one fixed comparison each
+85,615 rallies
+
+">
+<code>followups.json</code> · <span class="num">85,615</span> rows
+    </span>
+<span class="lineage-src" title="data/reports/team_matches.json 
+one row per team per match: printed set counts, result, schedule check
+1,758 team-match rows
+
+[pass] team_matches: 1758 team-match rows, 875 Nebraska rows carrying stats
+[pass] sets_played: sets played agree with the printed set counts in 879 of 879
+[pass] results_vs_schedule: 878 results compared with the schedule, 0 disagree
+[pass] schedule_coverage: 878 of 891 schedule rows have a box score, 9 open gaps
+">
+<code>team_matches.json</code> · <span class="num">1,758</span> rows ·
+        <span class="ok">4/4</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/schedule_history.json 
+every scheduled match 1975-2026 with site, result and rankings
+1,882 scheduled matches, 1975-2026
+
+[pass] schedule_history: 1882 rows over 52 seasons; 52 of 52 add up to their printed record
+">
+<code>schedule_history.json</code> · <span class="num">1,882</span> rows ·
+        <span class="ok">1/1</span>
+        checks
+    </span>
+<span class="lineage-src" title="data/reports/rally_analytics.json 
+side-out and point-scoring rates from the rally logs
+85,615 rallies
+
+[pass] rally_analytics: 85615 rallies in 1898 trusted sets of 616 matches
+[pass] play_by_play: 655 matches and 2260 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+">
+<code>rally_analytics.json</code> · <span class="num">85,615</span> rows ·
+        <span class="ok">2/2</span>
+        checks
+    </span>
+<a class="lineage-src" href="../../coverage/index.html">What is covered, and what is missing →</a>
+</div>
+</section>
+</main>
+<footer><small>Unofficial and fan-built; not affiliated with the University of Nebraska-Lincoln or Nebraska Athletics. Computed from official box scores and play-by-play; no box score or play-by-play is redistributed here.</small></footer>
+<script>
+      /* Tiny table-sort — no dependencies */
+      function sortTable(th) {
+        const tbl = th.closest("table");
+        const col = th.cellIndex;
+        const isNum = th.dataset.type === "num";
+        const wasDesc = th.classList.contains("sorted-desc");
+        tbl
+          .querySelectorAll("thead th")
+          .forEach((t) => t.classList.remove("sorted-asc", "sorted-desc"));
+        const dir = wasDesc ? "asc" : "desc";
+        th.classList.add("sorted-" + dir);
+        const tbody = tbl.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr:not(.totals-row)"));
+        rows.sort((a, b) => {
+          const av =
+            a.cells[col]?.dataset?.val ??
+            a.cells[col]?.textContent?.trim() ??
+            "";
+          const bv =
+            b.cells[col]?.dataset?.val ??
+            b.cells[col]?.textContent?.trim() ??
+            "";
+          const ai = isNum ? parseFloat(av) || 0 : av.toLowerCase();
+          const bi = isNum ? parseFloat(bv) || 0 : bv.toLowerCase();
+          if (dir === "desc") return ai > bi ? -1 : ai < bi ? 1 : 0;
+          return ai < bi ? -1 : ai > bi ? 1 : 0;
+        });
+        rows.forEach((r) => tbody.appendChild(r));
+        const totals = tbody.querySelector(".totals-row");
+        if (totals) tbody.appendChild(totals);
+      }
+      /* Client-side filter for any list marked data-filter="<input id>" */
+      function filterList(input) {
+        const list = document.getElementById(input.dataset.target);
+        if (!list) return;
+        const q = input.value.trim().toLowerCase();
+        for (const row of list.children) {
+          row.hidden = q.length > 0 && !(row.dataset.key || "").includes(q);
+        }
+      }
+    </script>
+</body>
+</html>

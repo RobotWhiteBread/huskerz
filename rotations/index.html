@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Volleyball rotations, explained with the Huskers</title>
+
+<style>
+  :root {
+    --scarlet: #D00000;
+    --ink: #000;
+    --body: #2A2A2A;
+    --muted: #6B6B6B;
+    --paper: #FFFFFF;
+    --panel: #F3F3F1;
+    --line: #DADAD6;
+    --court: #EFD9B4;
+    --court-front: #E7CB9C;
+    --court-line: #FFFFFF;
+    --s: #E9A800;
+    --oh: #D00000;
+    --mb: #000000;
+    --opp: #0E7C7B;
+    --lib: #FFFFFF;
+    --ds: #C9CCD1;
+    --display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+    --text: "Barlow", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--body);
+    font-family: var(--text);
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 20px 16px 64px; }
+
+  /* Header */
+  header { border-bottom: 4px solid var(--scarlet); padding-bottom: 14px; margin-bottom: 20px; }
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(38px, 9vw, 60px);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+  header p { margin: 0; font-size: 18px; max-width: 60ch; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 40px 0 10px;
+  }
+  h3 { font-family: var(--display); font-weight: 600; font-size: 22px; margin: 18px 0 6px; color: var(--ink); }
+  p { margin: 0 0 12px; max-width: 66ch; }
+  small, .small { font-size: 14px; color: var(--muted); }
+
+  /* Controls */
+  .controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 12px 0; }
+  .seg { display: inline-flex; border: 2px solid var(--ink); border-radius: 6px; overflow: hidden; }
+  .seg button {
+    font: 600 15px var(--text);
+    padding: 7px 12px;
+    background: var(--paper);
+    color: var(--ink);
+    border: 0;
+    cursor: pointer;
+  }
+  .seg button + button { border-left: 2px solid var(--ink); }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+  .btn {
+    font: 600 16px var(--text);
+    padding: 9px 14px;
+    background: var(--scarlet);
+    color: #fff;
+    border: 2px solid var(--scarlet);
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .btn.ghost { background: var(--paper); color: var(--ink); border-color: var(--ink); }
+  button:focus-visible, summary:focus-visible { outline: 3px solid #1A73E8; outline-offset: 2px; }
+  .steps { display: flex; gap: 6px; flex-wrap: wrap; }
+  .steps button {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    font: 700 15px var(--text);
+    cursor: pointer;
+  }
+  .steps button[aria-pressed="true"] { background: var(--scarlet); border-color: var(--scarlet); color: #fff; }
+
+  /* Court */
+  .court-wrap { background: var(--panel); border-radius: 10px; padding: 8px 4px 2px; }
+  svg.court { width: 100%; height: auto; display: block; }
+  .tok { transition: transform 600ms cubic-bezier(.4,0,.2,1), opacity 400ms; }
+  .tok text { pointer-events: none; }
+  .tok .num { font: 700 17px var(--text); fill: #fff; }
+  .tok .name { font: 500 11px var(--text); fill: var(--ink); }
+  .tok.s .num, .tok.ds .num, .tok.l .num { fill: var(--ink); }
+  .chord { stroke: rgba(0,0,0,.28); stroke-width: 1.5; stroke-dasharray: 4 4; transition: opacity 300ms; }
+  .zone-num { font: 700 26px var(--display); fill: rgba(0,0,0,.14); }
+  .court-label { font: 600 12px var(--text); fill: var(--muted); }
+  .court-label.strong { fill: var(--ink); }
+  .tiny { font: 500 10px var(--text); fill: var(--muted); }
+  @media (prefers-reduced-motion: reduce) {
+    .tok, .chord { transition: none; }
+  }
+
+  /* Caption */
+  .caption { background: var(--panel); border-radius: 10px; padding: 14px 16px; margin-top: 10px; }
+  .caption h3 { margin: 0 0 6px; }
+  .caption p { margin: 0 0 8px; max-width: none; }
+  .caption p:last-child { margin-bottom: 0; }
+  .order { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 10px 0 4px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px 4px 4px;
+    border-radius: 999px;
+    background: var(--paper);
+    border: 1.5px solid var(--line);
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .chip.now { border-color: var(--scarlet); box-shadow: 0 0 0 2px var(--scarlet) inset; }
+  .num-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%;
+    font-weight: 700; font-size: 13px; color: #fff;
+    flex: 0 0 auto;
+  }
+  .num-badge.s, .num-badge.ds { color: var(--ink); }
+  .num-badge.l { color: var(--ink); border: 2px solid var(--ink); box-sizing: border-box; }
+  .num-badge.oh { background: var(--oh); }
+  .num-badge.mb { background: var(--mb); }
+  .num-badge.opp { background: var(--opp); }
+  .num-badge.s { background: var(--s); }
+  .num-badge.l { background: var(--lib); }
+  .num-badge.ds { background: var(--ds); }
+  .arrow { color: var(--muted); font-size: 14px; }
+
+  /* Legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 10px 0 0; font-size: 14px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+
+  /* Accordions */
+  details { border-top: 1px solid var(--line); }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 14px 0;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 21px;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 12px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; margin-left: auto; font-weight: 600; font-size: 22px; color: var(--muted); }
+  details[open] summary::after { content: "\2013"; }
+  .body { padding: 0 0 16px; }
+  .body p { max-width: 66ch; }
+  .swatch { width: 14px; height: 14px; border-radius: 50%; flex: 0 0 auto; }
+
+  /* Player lists */
+  .cols { display: grid; grid-template-columns: 1fr; gap: 10px 20px; }
+  @media (min-width: 620px) { .cols { grid-template-columns: 1fr 1fr; } }
+  .season-h { font-weight: 600; color: var(--ink); margin: 6px 0 4px; font-size: 15px; }
+  ul.players { list-style: none; margin: 0; padding: 0; }
+  ul.players li { display: flex; gap: 10px; align-items: flex-start; padding: 6px 0; border-top: 1px dotted var(--line); font-size: 15px; }
+  ul.players li:first-child { border-top: 0; }
+  ul.players b { color: var(--ink); font-weight: 600; }
+  ul.players .meta { color: var(--muted); }
+
+  /* Lineup sheet */
+  table.sheet { width: 100%; border-collapse: collapse; font-size: 15px; margin-top: 8px; }
+  table.sheet th, table.sheet td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.sheet th { font-family: var(--display); font-size: 18px; font-weight: 600; color: var(--ink); }
+  table.sheet td:first-child { color: var(--muted); white-space: nowrap; }
+  .cell { display: flex; align-items: center; gap: 8px; }
+
+  /* Mini diagram */
+  .mini { max-width: 300px; margin: 8px 0 14px; }
+  .mini text { font: 600 12px var(--text); fill: var(--ink); }
+
+  /* Quiz */
+  .q { background: var(--panel); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
+  .q p { margin: 0 0 8px; }
+  .q .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .q .opts button {
+    font: 500 15px var(--text);
+    padding: 7px 12px;
+    border-radius: 6px;
+    border: 1.5px solid var(--ink);
+    background: var(--paper);
+    cursor: pointer;
+  }
+  .q .opts button.right { background: #0E7C7B; border-color: #0E7C7B; color: #fff; }
+  .q .opts button.wrong { background: #fff; border-color: var(--scarlet); color: var(--scarlet); }
+  .q .why { margin-top: 8px; font-size: 15px; }
+
+  footer { margin-top: 44px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 14px; color: var(--muted); }
+  footer p { max-width: none; }
+</style>
+</head>
+<body><a href="../index.html" style="display:block;padding:10px 16px;font:600 14px/1.2 sans-serif;color:inherit;">HuskerStats: all reports</a>
+<div class="wrap">
+<header>
+<h1>Volleyball rotations,<br/>explained with the Huskers</h1>
+<p>Six players, six spots on the floor, and one rule that makes everything else happen: when you win the serve back, everyone moves one spot clockwise. Below, the 2025 and 2026 Nebraska lineups rotate through all six positions so you can see who ends up where and why.</p>
+</header>
+<section id="sim">
+<h2>Rotate the Huskers</h2>
+<p>Pick a season, then press <b>Side-out</b> each time you want Nebraska to win a rally on the opponent's serve. Watch who becomes the server and who crosses between the front and back row. The three views show the same rotation three ways: the strict rotational order, how the team spreads out to receive serve while staying legal, and where everyone ends up once the ball is in play.</p>
+<div class="controls">
+<div aria-label="Season" class="seg" role="group">
+<button aria-pressed="false" data-season="2025" type="button">2025 lineup</button>
+<button aria-pressed="true" data-season="2026" type="button">2026 lineup</button>
+</div>
+<div aria-label="View" class="seg" role="group">
+<button aria-pressed="true" data-view="serve" type="button">Rotational order</button>
+<button aria-pressed="false" data-view="receive" type="button">Serve receive</button>
+<button aria-pressed="false" data-view="switched" type="button">After the serve</button>
+</div>
+</div>
+<div class="controls">
+<button class="btn" id="rotateBtn" type="button">Side-out: rotate</button>
+<button class="btn ghost" id="resetBtn" type="button">Reset</button>
+<div aria-label="Jump to rotation" class="steps" id="steps" role="group"></div>
+</div>
+<div class="court-wrap">
+<svg aria-labelledby="courtTitle" class="court" role="img" viewbox="0 0 420 400" xmlns="http://www.w3.org/2000/svg">
+<title id="courtTitle">Nebraska's half of the court with the six rotation zones</title>
+<!-- opponent strip -->
+<rect fill="#E4E4E0" height="32" width="320" x="40" y="0"></rect>
+<text class="tiny" text-anchor="middle" x="200" y="20">opponent's side</text>
+<!-- court -->
+<rect fill="var(--court)" height="320" width="320" x="40" y="40"></rect>
+<rect fill="var(--court-front)" height="106.7" width="320" x="40" y="40"></rect>
+<rect fill="none" height="320" stroke="var(--court-line)" stroke-width="3" width="320" x="40" y="40"></rect>
+<line stroke="var(--court-line)" stroke-width="3" x1="40" x2="360" y1="146.7" y2="146.7"></line>
+<!-- net -->
+<rect fill="#222" height="8" width="332" x="34" y="32"></rect>
+<text class="court-label strong" style="font-size:11px" text-anchor="middle" x="200" y="30">net</text>
+<!-- zone numbers -->
+<text class="zone-num" x="50" y="70">4</text>
+<text class="zone-num" x="157" y="70">3</text>
+<text class="zone-num" x="264" y="70">2</text>
+<text class="zone-num" x="50" y="176">5</text>
+<text class="zone-num" x="157" y="176">6</text>
+<text class="zone-num" x="264" y="176">1</text>
+<!-- side labels -->
+<text class="court-label" text-anchor="middle" transform="rotate(-90 20 96)" x="20" y="96">front row</text>
+<text class="court-label" text-anchor="middle" transform="rotate(-90 20 258)" x="20" y="258">back row</text>
+<text class="court-label" style="font-size:11px" text-anchor="middle" transform="rotate(-90 384 146)" x="384" y="146">attack line, 3 m (10 ft)</text>
+<text class="court-label" style="font-size:11px" text-anchor="middle" x="200" y="378">end line, servers stand behind it</text>
+<!-- bench -->
+<text class="tiny" text-anchor="middle" x="392" y="212">bench</text>
+<!-- dynamic layers -->
+<g id="chords"></g>
+<g id="setterPath" opacity="0">
+<path d="M307,258 C 300,190 270,110 256,68" fill="none" id="setterPathLine" stroke="var(--s)" stroke-dasharray="6 5" stroke-width="2.5"></path>
+<circle cx="256" cy="64" fill="none" r="12" stroke="var(--s)" stroke-dasharray="3 3" stroke-width="2"></circle>
+<text class="tiny" style="fill:#000" text-anchor="end" x="238" y="68">setter runs to the net</text>
+</g>
+<g id="tokens"></g>
+</svg>
+<div class="legend">
+<span><i style="background:var(--s)"></i>Setter</span>
+<span><i style="background:var(--oh)"></i>Outside hitter</span>
+<span><i style="background:var(--mb)"></i>Middle blocker</span>
+<span><i style="background:var(--opp)"></i>Opposite</span>
+<span><i style="background:var(--lib);border:2px solid #000"></i>Libero</span>
+<span><i style="background:var(--ds)"></i>Defensive specialist</span>
+</div>
+</div>
+<div aria-live="polite" class="caption" id="caption"></div>
+</section>
+<section id="rules">
+<h2>The rules that make rotations work</h2>
+<details open="">
+<summary>1. You only rotate after a side-out</summary>
+<div class="body">
+<p>Rotation is triggered by one event: your team wins a rally that the <b>other</b> team served. The moment that happens, all six players move one spot clockwise and the player who was in zone 2 walks back to serve.</p>
+<p>If you win a point on your own serve, nobody moves. The same server keeps serving, which is why Bergen Reilly can serve a 10-0 run (as she did in the 2026 home opener against New Mexico) without the lineup changing.</p>
+</div>
+</details>
+<details>
+<summary>2. Clockwise, always</summary>
+<div class="body">
+<svg aria-label="Rotation order around the six zones" class="mini" role="img" viewbox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ah" markerheight="7" markerwidth="7" orient="auto" refx="8" refy="5" viewbox="0 0 10 10"><path d="M0,0 L10,5 L0,10 z" fill="#000"></path></marker></defs>
+<rect fill="var(--court)" height="110" width="260" x="20" y="20"></rect>
+<rect fill="var(--court-front)" height="36" width="260" x="20" y="20"></rect>
+<rect fill="#222" height="6" width="272" x="14" y="14"></rect>
+<g fill="#000" font-family="Barlow, Arial, sans-serif" font-size="16" font-weight="700" text-anchor="middle">
+<text x="63" y="45">4</text><text x="150" y="45">3</text><text x="237" y="45">2</text>
+<text x="63" y="105">5</text><text x="150" y="105">6</text><text x="237" y="105">1</text>
+</g>
+<g fill="none" marker-end="url(#ah)" stroke="#000" stroke-width="2.2">
+<path d="M237,55 L237,84"></path>
+<path d="M218,100 L172,100"></path>
+<path d="M131,100 L85,100"></path>
+<path d="M63,85 L63,56"></path>
+<path d="M82,40 L128,40"></path>
+<path d="M169,40 L215,40"></path>
+</g>
+</svg>
+<p>The order is 2 → 1 → 6 → 5 → 4 → 3 → 2. Think of it as a wheel turning clockwise when you look down at the court: right front drops back to serve, the server slides to middle back, middle back to left back, left back steps up to left front, left front to middle front, middle front to right front.</p>
+<p>Because the six spots are a loop, every player is always directly opposite the same teammate. The setter is opposite the opposite hitter (that's where the name comes from), the two outside hitters face each other, and the two middles face each other. The dashed lines on the court above (in the <b>At the serve</b> view) connect those pairs.</p>
+</div>
+</details>
+<details>
+<summary>3. The serving order is locked in by the lineup sheet</summary>
+<div class="body">
+<p>Before every set the coach hands the officials a lineup sheet with six jersey numbers in serving order. Slot 1 serves first if Nebraska starts with the ball; otherwise slot 1 is the first to serve after the first side-out. Substitutes inherit the slot of the player they replace, so the order never changes mid-set.</p>
+<p>Coaches choose the starting rotation deliberately. Starting with the setter in zone 1 puts three attackers in the front row right away. Starting one spot earlier or later can put a specific server at the line first, or let the team spend more of the set in its strongest rotations.</p>
+</div>
+</details>
+<details>
+<summary>4. The overlap rule: only at the moment of the serve</summary>
+<div class="body">
+<p>At the instant the ball is contacted for serve, both teams must be in rotational order. Each front-row player needs at least part of a foot closer to the net than the back-row player behind her (4 in front of 5, 3 in front of 6, 2 in front of 1), and the left-to-right order has to hold within each row.</p>
+<p>That is the whole restriction. As soon as the serve is hit, players can go anywhere, subject to the front-row and back-row rules below. This is why you see hitters and the setter sprinting to new spots right after the toss: they line up legally, then "switch" to their real positions. The <b>Serve receive</b> view above shows the legal stack, and <b>After the serve</b> shows where everyone ends up.</p>
+</div>
+</details>
+<details>
+<summary>5. Front row and back row have different powers</summary>
+<div class="body">
+<p>Players in zones 4, 3 and 2 are front-row players. They may block, and they may attack a ball at any height from anywhere.</p>
+<p>Players in zones 5, 6 and 1 are back-row players. They may not block, and if they attack a ball that is above the top of the net, they must take off from behind the 3 m (10 ft) attack line. That back-row swing is the "pipe" or "bic" you hear announcers mention; Virginia Adriano showed she can hit it as a freshman.</p>
+</div>
+</details>
+<details>
+<summary>6. The libero is a rotation shortcut</summary>
+<div class="body">
+<p>The libero wears a contrasting jersey and is a back-row-only player. She can replace any back-row teammate between rallies, as many times as needed, without it counting as a substitution. Almost every team uses her for the middle blockers, whose job is at the net: when a middle rotates to the back row, the libero goes in for her; when the middle is due back in the front row, she returns.</p>
+<p>Limits: the libero cannot block, cannot attack a ball that is above the net at contact, and cannot set with her hands in front of the attack line if the ball is then attacked above the net. NCAA rules let her serve, but only in one spot in the serving order per set. That is why Nebraska usually lets its libero serve for one middle and brings in a defensive specialist to serve for the other.</p>
+</div>
+</details>
+<details>
+<summary>7. Substitutions: 15 per set in college</summary>
+<div class="body">
+<p>NCAA teams get 15 substitutions per set (international rules allow only six), so a college coach can afford a defensive specialist who subs in for a middle blocker's back-row trip, then subs back out. A substitute is paired with the player she replaced and must re-enter for that same player.</p>
+<p>Nebraska ran a two-libero rotation in 2025 and again in 2026: Laney Choboy and Olivia Mauch trade the libero jersey, and whoever is not in it is available as a defensive specialist on the other middle's side of the rotation.</p>
+</div>
+</details>
+<details>
+<summary>8. 5-1 vs. 6-2: how many setters?</summary>
+<div class="body">
+<p>Nebraska runs a <b>5-1</b>: one setter (Bergen Reilly) and five attackers. Reilly sets in all six rotations, which means the offense has three front-row attackers for three rotations and only two for the other three (when Reilly herself is in the front row).</p>
+<p>A <b>6-2</b> uses two setters placed opposite each other. Each one sets from the back row and attacks from the front row, so the team always has three front-row hitters, at the cost of consistency and substitutions. Campbell Flynn, Nebraska's second setter, ran the offense against Grand Canyon in 2025 when the staff tried an unusual starting lineup.</p>
+</div>
+</details>
+</section>
+<section id="positions">
+<h2>Positions and the Huskers who play them</h2>
+<p>Each position has a home base on the court, a job in the rotation, and a group of Huskers who play it. Numbers shown are the ones on their jerseys that season.</p>
+<div id="posList"></div>
+</section>
+<section id="sheet">
+<h2>The lineup sheets side by side</h2>
+<p>Here are the two six-player lineups used in the court above, written the way a coach's lineup sheet reads: in serving order, with the setter in slot 1. These are the regular starters from each season; the actual starting rotation changed match to match.</p>
+<div id="sheetTable"></div>
+<p class="small" style="margin-top:10px">Note the number change: Virginia Adriano wore #9 as a freshman in 2025 and switched to #3 in 2026, the number Allie Sczech wore last season.</p>
+</section>
+<section id="quiz">
+<h2>Check yourself</h2>
+<div id="quizBox"></div>
+</section>
+<footer>
+<p>Rosters, numbers, classes and heights from the official Nebraska volleyball roster pages for 2025 and 2026 (huskers.com), checked September 12, 2026. Lineup details from Huskers.com match recaps (DePaul, New Mexico and Baylor, September 2026), the 2025 NCAA regional final recap, and Huskers Illustrated position previews. Rotation rules summarized from NCAA women's volleyball rules; check the current rulebook for exact wording. Court positions in the "Serve receive" and "After the serve" views are typical three-passer formations and base alignments, not diagrams of Nebraska's actual system.</p>
+<p>Unofficial and fan-built; not affiliated with the University of Nebraska-Lincoln or Nebraska Athletics. Computed from official box scores and play-by-play; no box score or play-by-play is redistributed here.</p></footer>
+</div>
+<script>
+(function () {
+  'use strict';
+
+  // ---------- Data ----------
+  var ROSTER = {
+    2026: [
+      { n: 1,  name: 'Keri Leimbach',    pos: 'DS/L', cls: 'So.', ht: '5-4', home: 'Lincoln, Neb.',              note: 'Third back-row option; projected serving specialist for a middle' },
+      { n: 2,  name: 'Bergen Reilly',    pos: 'S',    cls: 'Sr.', ht: '6-1', home: 'Sioux Falls, S.D.',          note: 'Starting setter, runs the 5-1' },
+      { n: 3,  name: 'Virginia Adriano', pos: 'OPP',  cls: 'So.', ht: '6-5', home: 'Turin, Italy',               note: 'Starting opposite (wore #9 in 2025); season-high 7 kills vs. New Mexico' },
+      { n: 4,  name: 'Campbell Flynn',   pos: 'S',    cls: 'So.', ht: '6-3', home: 'Oakland, Mich.',             note: 'Second setter' },
+      { n: 6,  name: 'Laney Choboy',     pos: 'DS/L', cls: 'Sr.', ht: '5-3', home: 'Raleigh, N.C.',              note: 'Co-libero; two aces in the Baylor match' },
+      { n: 8,  name: 'Kenna Cogill',     pos: 'MB',   cls: 'So.', ht: '6-4', home: 'Gilbert, Ariz.',             note: 'First career start vs. DePaul (7 blocks) while Jackson was out' },
+      { n: 10, name: 'Olivia Mauch',     pos: 'DS/L', cls: 'Jr.', ht: '5-6', home: 'Bennington, Neb.',           note: 'Co-libero; 11 digs in the home opener; plays DS when Choboy wears the jersey' },
+      { n: 11, name: 'Teraya Sigler',    pos: 'OH',   cls: 'So.', ht: '6-3', home: 'Scottsdale, Ariz.',          note: 'Second outside hitter; 9 kills vs. New Mexico' },
+      { n: 14, name: 'Manaia Ogbechie',  pos: 'MB',   cls: 'So.', ht: '6-3', home: 'Santa Rosa Valley, Calif.',  note: 'Starting middle; 9 kills on .538 hitting and 5 blocks vs. New Mexico' },
+      { n: 15, name: 'Andi Jackson',     pos: 'MB',   cls: 'Sr.', ht: '6-3', home: 'Brighton, Colo.',            note: 'Starting middle; back from an early-season injury' },
+      { n: 17, name: 'Keoni Williams',   pos: 'MB',   cls: 'Fr.', ht: '6-4', home: 'Fort Worth, Texas',          note: 'Freshman middle, enrolled in January' },
+      { n: 18, name: 'Ryan Hunter',      pos: 'OPP',  cls: 'So.', ht: '6-2', home: 'Charlotte, N.C.',            note: 'Second opposite; 5 kills on .571 hitting vs. DePaul' },
+      { n: 20, name: 'Jayden Robinson',  pos: 'OH',   cls: 'Fr.', ht: '6-3', home: 'Missouri City, Texas',       note: 'Freshman pin hitter, listed OH but can play the right side' },
+      { n: 21, name: 'Skyler Pierce',    pos: 'OH',   cls: 'Jr.', ht: '6-2', home: 'Lenexa, Kan.',               note: 'Depth outside; 3 kills and 2 blocks vs. DePaul' },
+      { n: 23, name: 'Gabby DiVita',     pos: 'OH',   cls: 'Fr.', ht: '6-1', home: 'Grosse Pointe Farms, Mich.', note: 'Freshman six-rotation outside, enrolled in January' },
+      { n: 27, name: 'Harper Murray',    pos: 'OH',   cls: 'Sr.', ht: '6-2', home: 'Ann Arbor, Mich.',           note: 'Starting outside; 11 kills vs. DePaul' }
+    ],
+    2025: [
+      { n: 1,  name: 'Keri Leimbach',    pos: 'DS/L', cls: 'Fr.',    ht: '5-4', home: 'Lincoln, Neb.',        note: 'Redshirted' },
+      { n: 2,  name: 'Bergen Reilly',    pos: 'S',    cls: 'Jr.',    ht: '6-1', home: 'Sioux Falls, S.D.',    note: 'Starting setter' },
+      { n: 3,  name: 'Allie Sczech',     pos: 'OPP',  cls: 'Sr.',    ht: '6-4', home: 'Sugar Land, Texas',    note: 'Baylor transfer; productive in limited minutes; hurt in warmups before the regional final; drafted by the Omaha Supernovas' },
+      { n: 4,  name: 'Campbell Flynn',   pos: 'S',    cls: 'Fr.',    ht: '6-3', home: 'Oakland, Mich.',       note: 'Second setter; broke a finger days before the regional final' },
+      { n: 5,  name: 'Rebekah Allick',   pos: 'MB',   cls: 'Sr.',    ht: '6-4', home: 'Lincoln, Neb.',        note: 'Starting middle; graduated, joined LOVB Madison' },
+      { n: 6,  name: 'Laney Choboy',     pos: 'DS/L', cls: 'Jr.',    ht: '5-3', home: 'Raleigh, N.C.',        note: 'Started 22 matches at libero; All-Big Ten second team' },
+      { n: 7,  name: 'Maisie Boesiger',  pos: 'DS/L', cls: 'Sr.',    ht: '5-6', home: 'Firth, Neb.',          note: 'DS and serving specialist; one libero start on senior night' },
+      { n: 8,  name: 'Kenna Cogill',     pos: 'MB',   cls: 'Fr.',    ht: '6-4', home: 'Gilbert, Ariz.',       note: 'Freshman middle' },
+      { n: 9,  name: 'Virginia Adriano', pos: 'OPP',  cls: 'Fr.',    ht: '6-5', home: 'Turin, Italy',         note: 'Freshman opposite; Big Ten All-Freshman team' },
+      { n: 10, name: 'Olivia Mauch',     pos: 'DS/L', cls: 'So.',    ht: '5-6', home: 'Bennington, Neb.',     note: 'Started 11 matches at libero' },
+      { n: 11, name: 'Teraya Sigler',    pos: 'OH',   cls: 'Fr.',    ht: '6-3', home: 'Scottsdale, Ariz.',    note: 'Freshman outside; career-high 14 kills vs. Grand Canyon' },
+      { n: 12, name: 'Taylor Landfair',  pos: 'OH',   cls: 'Sr.',    ht: '6-5', home: 'Plainfield, Ill.',     note: 'Minnesota transfer; starting outside; All-Big Ten second team; drafted by Indy Ignite' },
+      { n: 14, name: 'Manaia Ogbechie',  pos: 'MB',   cls: 'Fr.',    ht: '6-3', home: 'Santa Rosa Valley, Calif.', note: 'Freshman middle; broke into the lineup late in the season' },
+      { n: 15, name: 'Andi Jackson',     pos: 'MB',   cls: 'Jr.',    ht: '6-3', home: 'Brighton, Colo.',      note: 'Starting middle' },
+      { n: 18, name: 'Ryan Hunter',      pos: 'OPP',  cls: 'Fr.',    ht: '6-2', home: 'Charlotte, N.C.',      note: 'Freshman opposite' },
+      { n: 21, name: 'Skyler Pierce',    pos: 'OH',   cls: 'RS-Fr.', ht: '6-2', home: 'Lenexa, Kan.',         note: 'Redshirt freshman outside' },
+      { n: 27, name: 'Harper Murray',    pos: 'OH',   cls: 'Jr.',    ht: '6-2', home: 'Ann Arbor, Mich.',     note: 'Starting outside' }
+    ]
+  };
+
+  var SEASONS = {
+    2026: {
+      lineup: { S: 2, OH1: 27, MB1: 15, OPP: 3, OH2: 11, MB2: 14, L: 6, DS: 10 },
+      blurb: 'Ranked No. 1 in September 2026. Opened the renovated Devaney Center (John Cook Arena) with an arena-record crowd of 10,497 against New Mexico.'
+    },
+    2025: {
+      lineup: { S: 2, OH1: 27, MB1: 15, OPP: 9, OH2: 12, MB2: 5, L: 6, DS: 10 },
+      blurb: 'Went 33-1 with an unbeaten regular season and a Big Ten title. The season ended in a five-set regional final loss to Texas A&M in Lincoln.'
+    }
+  };
+
+  var ORDER = ['S', 'OH1', 'MB1', 'OPP', 'OH2', 'MB2'];
+  var ROLE_LABEL = { S: 'setter', OH: 'outside hitter', MB: 'middle blocker', OPP: 'opposite', L: 'libero', DS: 'defensive specialist' };
+  var ZONE_XY = { 4: [93, 96], 3: [200, 96], 2: [307, 96], 5: [93, 258], 6: [200, 258], 1: [307, 258] };
+  var SPOT = { LF: [93, 96], MF: [200, 96], RF: [307, 96], LB: [93, 258], MBk: [200, 258], RB: [307, 258] };
+  var BENCH = [[392, 245], [392, 318]];
+  var ZONE_NAME = { 1: 'right back', 2: 'right front', 3: 'middle front', 4: 'left front', 5: 'left back', 6: 'middle back' };
+
+  var state = { season: 2026, k: 0, view: 'serve' };
+
+  function base(role) { return role.replace(/\d/, ''); }
+  function player(season, n) {
+    var r = ROSTER[season];
+    for (var i = 0; i < r.length; i++) if (r[i].n === n) return r[i];
+    return null;
+  }
+  function last(name) { var p = name.split(' '); return p[p.length - 1]; }
+  function zoneOf(i, k) { return ((i - k) % 6 + 6) % 6 + 1; }
+  function isFront(z) { return z === 2 || z === 3 || z === 4; }
+
+  // Build the on-court picture for rotation k.
+  function layout(k) {
+    var L = SEASONS[state.season].lineup;
+    var court = [];   // tokens on the floor
+    var bench = [];   // tokens off the floor
+    var liberoOnCourt = false;
+    ORDER.forEach(function (role, i) {
+      var z = zoneOf(i, k);
+      var b = base(role);
+      var p = player(state.season, L[role]);
+      var tok = { id: role, base: b, num: p.n, name: last(p.name), zone: z, front: isFront(z) };
+      if (b === 'MB' && !tok.front) {
+        // Back-row middle: the libero (or a DS in the middle's serving spot) takes her place.
+        var repRole = (z === 1 && role === 'MB1') ? 'DS' : 'L';
+        var rp = player(state.season, L[repRole]);
+        var rep = { id: repRole, base: repRole, num: rp.n, name: last(rp.name), zone: z, front: false, replaces: tok };
+        if (repRole === 'L') liberoOnCourt = true;
+        court.push(rep);
+        bench.push(tok);
+      } else {
+        court.push(tok);
+      }
+    });
+    if (!liberoOnCourt) {
+      var lp = player(state.season, L.L);
+      bench.push({ id: 'L', base: 'L', num: lp.n, name: last(lp.name), zone: 0, front: false });
+    }
+    return { court: court, bench: bench };
+  }
+
+  // Where a player stands after the serve (typical base positions).
+  function switchedSpot(tok) {
+    if (tok.front) {
+      if (tok.base === 'OH') return SPOT.LF;
+      if (tok.base === 'MB') return SPOT.MF;
+      return SPOT.RF; // OPP or S
+    }
+    if (tok.base === 'S' || tok.base === 'OPP') return SPOT.RB;
+    if (tok.base === 'OH') return SPOT.MBk;
+    return SPOT.LB; // libero or DS
+  }
+
+  // Serve-receive formations (typical three-passer stacks), by rotation then zone.
+  // Every position keeps the rotational order legal: 4-3-2 and 5-6-1 left to right,
+  // each front-row player closer to the net than the back-row player behind her.
+  var RECEIVE = [
+    { 1: [330, 235], 2: [295, 185], 3: [185, 66], 4: [75, 66],   5: [95, 250],  6: [195, 275] },
+    { 6: [230, 160], 1: [305, 265], 2: [315, 66], 3: [215, 66],  4: [95, 180],  5: [150, 275] },
+    { 5: [64, 175],  6: [210, 275], 1: [310, 265], 2: [315, 66], 3: [150, 175], 4: [75, 66] },
+    { 4: [75, 66],   5: [95, 255],  6: [195, 275], 1: [330, 265], 2: [290, 185], 3: [185, 66] },
+    { 3: [215, 66],  4: [95, 180],  5: [140, 275], 6: [225, 160], 1: [305, 265], 2: [315, 66] },
+    { 2: [315, 66],  3: [165, 175], 4: [75, 66],   5: [64, 180],  6: [150, 275], 1: [305, 265] }
+  ];
+  function receiveSpot(tok) { return RECEIVE[state.k][tok.zone]; }
+  function isPasser(tok) { return tok.base === 'OH' || tok.base === 'L' || tok.base === 'DS'; }
+
+  // ---------- SVG tokens ----------
+  var svgNS = 'http://www.w3.org/2000/svg';
+  var tokensG = document.getElementById('tokens');
+  var chordsG = document.getElementById('chords');
+  var setterPath = document.getElementById('setterPath');
+  var tokEls = {};
+
+  function fillFor(b) {
+    return { S: 'var(--s)', OH: 'var(--oh)', MB: 'var(--mb)', OPP: 'var(--opp)', L: 'var(--lib)', DS: 'var(--ds)' }[b];
+  }
+
+  function makeToken(id, b) {
+    var g = document.createElementNS(svgNS, 'g');
+    g.setAttribute('class', 'tok ' + b.toLowerCase());
+    var ring = document.createElementNS(svgNS, 'circle');
+    ring.setAttribute('class', 'pring');
+    ring.setAttribute('r', '31');
+    ring.setAttribute('fill', 'none');
+    ring.setAttribute('stroke', '#000');
+    ring.setAttribute('stroke-width', '1.5');
+    ring.setAttribute('stroke-dasharray', '3 3');
+    ring.style.opacity = 0;
+    g.appendChild(ring);
+    var c = document.createElementNS(svgNS, 'circle');
+    c.setAttribute('r', '24');
+    c.setAttribute('fill', fillFor(b));
+    c.setAttribute('stroke', b === 'L' ? '#000' : 'rgba(0,0,0,.35)');
+    c.setAttribute('stroke-width', b === 'L' ? '3' : '1.5');
+    if (b === 'L') c.setAttribute('stroke-dasharray', '5 3');
+    g.appendChild(c);
+    var t = document.createElementNS(svgNS, 'text');
+    t.setAttribute('class', 'num');
+    t.setAttribute('text-anchor', 'middle');
+    t.setAttribute('y', '6');
+    g.appendChild(t);
+    var nm = document.createElementNS(svgNS, 'text');
+    nm.setAttribute('class', 'name');
+    nm.setAttribute('text-anchor', 'middle');
+    nm.setAttribute('y', '40');
+    g.appendChild(nm);
+    // serve badge: a small ball
+    var ball = document.createElementNS(svgNS, 'g');
+    ball.setAttribute('class', 'ball');
+    ball.setAttribute('transform', 'translate(21,-19)');
+    var bc = document.createElementNS(svgNS, 'circle');
+    bc.setAttribute('r', '9'); bc.setAttribute('fill', '#fff'); bc.setAttribute('stroke', '#000'); bc.setAttribute('stroke-width', '1.5');
+    var seam = document.createElementNS(svgNS, 'path');
+    seam.setAttribute('d', 'M-7,-3 Q0,4 7,-3 M-3,-8 Q1,0 -3,8');
+    seam.setAttribute('fill', 'none'); seam.setAttribute('stroke', '#000'); seam.setAttribute('stroke-width', '1.2');
+    ball.appendChild(bc); ball.appendChild(seam);
+    g.appendChild(ball);
+    var title = document.createElementNS(svgNS, 'title');
+    g.appendChild(title);
+    tokensG.appendChild(g);
+    return g;
+  }
+
+  function ensureTokens() {
+    ['S', 'OH1', 'MB1', 'OPP', 'OH2', 'MB2', 'L', 'DS'].forEach(function (id) {
+      if (!tokEls[id]) tokEls[id] = makeToken(id, base(id));
+    });
+  }
+
+  function place(g, xy, scale, visible) {
+    g.style.transform = 'translate(' + xy[0] + 'px,' + xy[1] + 'px) scale(' + (scale || 1) + ')';
+    g.style.opacity = visible ? 1 : 0;
+  }
+
+  function drawChord(a, b) {
+    var l = document.createElementNS(svgNS, 'line');
+    l.setAttribute('class', 'chord');
+    l.setAttribute('x1', a[0]); l.setAttribute('y1', a[1]);
+    l.setAttribute('x2', b[0]); l.setAttribute('y2', b[1]);
+    chordsG.appendChild(l);
+  }
+
+  function render() {
+    ensureTokens();
+    var lay = layout(state.k);
+    var switched = state.view === 'switched';
+    var receive = state.view === 'receive';
+    var pos = {};
+    var used = { S: false, OH1: false, MB1: false, OPP: false, OH2: false, MB2: false, L: false, DS: false };
+
+    lay.court.forEach(function (tok) {
+      var xy = switched ? switchedSpot(tok) : (receive ? receiveSpot(tok) : ZONE_XY[tok.zone]);
+      pos[tok.id] = xy;
+      var g = tokEls[tok.id];
+      g.querySelector('.num').textContent = tok.num;
+      g.querySelector('.name').textContent = tok.name;
+      g.querySelector('title').textContent = '#' + tok.num + ' ' + tok.name + ', ' + ROLE_LABEL[tok.base] + ', zone ' + tok.zone;
+      g.querySelector('.ball').style.opacity = (!switched && !receive && tok.zone === 1) ? 1 : 0;
+      g.querySelector('.pring').style.opacity = (receive && isPasser(tok)) ? 1 : 0;
+      place(g, xy, 1, true);
+      used[tok.id] = true;
+    });
+    lay.bench.forEach(function (tok, i) {
+      var g = tokEls[tok.id];
+      g.querySelector('.num').textContent = tok.num;
+      g.querySelector('.name').textContent = tok.name;
+      g.querySelector('title').textContent = '#' + tok.num + ' ' + tok.name + ', on the bench';
+      g.querySelector('.ball').style.opacity = 0;
+      g.querySelector('.pring').style.opacity = 0;
+      place(g, BENCH[i] || BENCH[1], 0.68, true);
+      used[tok.id] = true;
+    });
+    Object.keys(used).forEach(function (id) { if (!used[id]) place(tokEls[id], BENCH[1], 0.68, false); });
+
+    // Opposite pairs (only meaningful in rotational order)
+    while (chordsG.firstChild) chordsG.removeChild(chordsG.firstChild);
+    if (!switched && !receive) {
+      var idOnCourt = function (role) {
+        for (var i = 0; i < lay.court.length; i++) {
+          var t = lay.court[i];
+          if (t.id === role || (t.replaces && t.replaces.id === role)) return t.id;
+        }
+        return null;
+      };
+      [['S', 'OPP'], ['OH1', 'OH2'], ['MB1', 'MB2']].forEach(function (pair) {
+        var a = idOnCourt(pair[0]), b = idOnCourt(pair[1]);
+        if (a && b && pos[a] && pos[b]) drawChord(pos[a], pos[b]);
+      });
+    }
+
+    // Setter penetration arrow
+    var sTok = null;
+    lay.court.forEach(function (t) { if (t.id === 'S') sTok = t; });
+    setterPath.style.transition = 'opacity 300ms';
+    var showPath = (switched || receive) && sTok && !sTok.front;
+    if (showPath) {
+      var sp = pos.S;
+      document.getElementById('setterPathLine').setAttribute('d', 'M' + sp[0] + ',' + sp[1] + ' C ' + sp[0] + ',' + (sp[1] - 70) + ' 262,130 256,68');
+    }
+    setterPath.style.opacity = showPath ? 1 : 0;
+
+    renderCaption(lay);
+    renderSteps();
+    syncButtons();
+  }
+
+  // ---------- Caption ----------
+  function chip(tok, now) {
+    var extra = tok.replaces ? ' <span class="small">for ' + tok.replaces.name + '</span>' : '';
+    return '<span class="chip' + (now ? ' now' : '') + '"><span class="num-badge ' + tok.base.toLowerCase() + '">' + tok.num + '</span>' + tok.name + extra + (now ? ' (serving)' : '') + '</span>';
+  }
+  function tag(tok) { return '#' + tok.num + ' ' + tok.name; }
+  function tagRole(tok) {
+    var r = { S: 'S', OH: 'OH', MB: 'MB', OPP: 'OPP', L: 'L', DS: 'DS' }[tok.base];
+    return '#' + tok.num + ' ' + tok.name + ' (' + r + (tok.replaces ? ', in for ' + tok.replaces.name : '') + ')';
+  }
+
+  function renderCaption(lay) {
+    var k = state.k;
+    var L = SEASONS[state.season].lineup;
+    var byZone = {};
+    lay.court.forEach(function (t) { byZone[t.zone] = t; });
+    var setterZone = zoneOf(0, k);
+    var server = byZone[1];
+    var next = byZone[2];
+    var front = [byZone[4], byZone[3], byZone[2]];
+    var back = [byZone[5], byZone[6], byZone[1]];
+    var switched = state.view === 'switched';
+    var receive = state.view === 'receive';
+
+    var html = '<h3>Rotation ' + (k + 1) + ' of 6: setter in zone ' + setterZone + '</h3>';
+
+    // serving order strip
+    var order = [];
+    for (var z = 1; z <= 6; z++) order.push(byZone[z]);
+    // serving order is zone 1, then 2, 3, 4, 5, 6
+    html += '<div class="order">';
+    order.forEach(function (t, i) {
+      html += chip(t, i === 0);
+      if (i < 5) html += '<span class="arrow">&rarr;</span>';
+    });
+    html += '</div>';
+    html += '<p class="small">Serving order from here. Each side-out sends the next player in this list back to the end line.</p>';
+
+    if (receive) {
+      html += receiveText(lay);
+    } else if (!switched) {
+      html += '<p><b>Front row</b>, zones 4-3-2: ' + tagRole(front[0]) + ', ' + tagRole(front[1]) + ', ' + tagRole(front[2]) + '. They can block and attack at the net.</p>';
+      html += '<p><b>Back row</b>, zones 5-6-1: ' + tagRole(back[0]) + ', ' + tagRole(back[1]) + ', ' + tagRole(back[2]) + '. No blocking; any attack above the net must start behind the 10-foot line.</p>';
+    } else {
+      var f = {}, b = {};
+      lay.court.forEach(function (t) {
+        var s = switchedSpot(t);
+        if (t.front) { if (s === SPOT.LF) f.L = t; else if (s === SPOT.MF) f.M = t; else f.R = t; }
+        else { if (s === SPOT.LB) b.L = t; else if (s === SPOT.MBk) b.M = t; else b.R = t; }
+      });
+      html += '<p>Once the serve is in the air, everyone moves to their home spot. Front row: ' + tag(f.L) + ' takes the left pin, ' + tag(f.M) + ' the middle, ' + tag(f.R) + ' the right side. Back row: ' + tag(b.L) + ' left back, ' + tag(b.M) + ' middle back, ' + tag(b.R) + ' right back.</p>';
+      var sTok = null;
+      lay.court.forEach(function (t) { if (t.id === 'S') sTok = t; });
+      if (sTok && !sTok.front) {
+        html += '<p>' + tag(sTok) + ' is a back-row player right now, so she starts in right back and releases to the net as soon as the ball is played, ready to set the second contact. She cannot block or attack above the net from in front of the line.</p>';
+      } else if (sTok) {
+        html += '<p>' + tag(sTok) + ' is in the front row in this rotation, so she sets from the right side of the net and can also block or dump the second ball over. With the setter up front, Nebraska has only two front-row attackers here.</p>';
+      }
+    }
+
+    // libero / DS note
+    var rep = null;
+    lay.court.forEach(function (t) { if (t.replaces) rep = t; });
+    if (rep) {
+      if (rep.base === 'L') {
+        if (rep.zone === 1) {
+          html += '<p><b>Libero:</b> ' + tag(rep) + ' is in for ' + tag(rep.replaces) + ', and this is the one spot in the order where NCAA rules let the libero serve. When ' + last(rep.replaces.name) + ' is due back in the front row, ' + rep.name + ' steps off and ' + last(rep.replaces.name) + ' returns. None of this counts as a substitution.</p>';
+        } else {
+          html += '<p><b>Libero:</b> ' + tag(rep) + ' is in for ' + tag(rep.replaces) + ' while the middle is in the back row. Libero swaps happen between rallies and never count as substitutions.</p>';
+        }
+      } else {
+        html += '<p><b>Defensive specialist:</b> ' + tag(rep) + ' subs in for ' + tag(rep.replaces) + ' to serve and play the back row (that uses one of the 15 substitutions). The libero, ' + tag({ num: L.L, name: last(player(state.season, L.L).name) }) + ', can only serve in one spot per set, so Nebraska uses a DS for the other middle. Once the serve is lost, the libero can replace ' + rep.name + ' too.</p>';
+      }
+    }
+
+    var z5 = byZone[5];
+    var stepUp = z5.replaces
+      ? tag(z5.replaces) + ' comes back in for ' + tag(z5) + ' and steps up into the front row'
+      : tag(z5) + ' steps up into the front row';
+    html += '<p><b>Next side-out:</b> ' + tag(next) + ' rotates back to zone 1 to serve, ' + tag(server) + ' slides to middle back, and ' + stepUp + '.</p>';
+    html += '<p class="small">' + SEASONS[state.season].blurb + '</p>';
+    document.getElementById('caption').innerHTML = html;
+  }
+
+  // Serve-receive narrative for each rotation.
+  var RECEIVE_TEXT = [
+    '{OH2} passes on the left, {P} in the middle and {OH1} on the right. {S} is a back-row player here (zone 1), so she waits near the right sideline just behind {OH1}: zone 2 has to stay in front of zone 1 until the serve is contacted, then she releases to the net. {OPP} and {MBf} wait at the net and never touch the pass.',
+    '{S} is in middle back (zone 6), so she stacks right behind {OPP} near the attack line: zone 3 must be in front of zone 6, and zone 6 must sit between zones 5 and 1. The instant the serve is hit she runs forward to set. {OH2} passes from left front, {P} and {OH1} pass deep.',
+    '{S} is in left back (zone 5), so she hides on the left sideline behind {MBf} and releases from there. {OH2} passes from the middle of the front row, {OH1} passes deep in the middle and {P} passes deep on the right.',
+    '{S} is in the front row, already at the net on the left. {OPP} is a back-row player (zone 1) and hides in the right back corner behind {OH2}, so the three passers, {OH1}, {P} and {OH2}, can take the whole court.',
+    '{S} sets from the middle of the net (zone 3). {OPP} is directly behind her in zone 6 and stacks near the attack line to stay out of the passers\' way. {OH1} passes from left front, {P} and {OH2} pass deep.',
+    '{S} is at the net on the right (zone 2). {OPP} is in left back (zone 5) and hides on the left sideline behind {MBf}. {OH1} passes from the middle of the front row, {OH2} passes deep and {P} passes on the right.'
+  ];
+  function receiveText(lay) {
+    var names = {};
+    lay.court.forEach(function (t) {
+      if (t.id === 'S' || t.id === 'OPP' || t.id === 'OH1' || t.id === 'OH2') names[t.id] = tag(t);
+      if (t.base === 'MB') names.MBf = tag(t);
+      if (t.base === 'L' || t.base === 'DS') names.P = tag(t);
+    });
+    var txt = RECEIVE_TEXT[state.k].replace(/\{(\w+)\}/g, function (m, key) { return names[key] || m; });
+    return '<p>' + txt + '</p><p class="small">Dashed rings mark the three passers. Serve receive is where the overlap rule bites: passers want to spread out, non-passers want out of the way, and every stack has to keep the rotational order legal until the ball is contacted. This is a typical three-passer look, not a diagram of Nebraska\'s exact system.</p>';
+  }
+
+  // ---------- Controls ----------
+  function renderSteps() {
+    var box = document.getElementById('steps');
+    if (!box.children.length) {
+      for (var i = 0; i < 6; i++) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = i + 1;
+        b.setAttribute('aria-label', 'Rotation ' + (i + 1));
+        b.dataset.k = i;
+        b.addEventListener('click', function (e) { state.k = +e.currentTarget.dataset.k; render(); });
+        box.appendChild(b);
+      }
+    }
+    Array.prototype.forEach.call(box.children, function (b) { b.setAttribute('aria-pressed', (+b.dataset.k === state.k) ? 'true' : 'false'); });
+  }
+
+  function syncButtons() {
+    document.querySelectorAll('[data-season]').forEach(function (b) { b.setAttribute('aria-pressed', (+b.dataset.season === state.season) ? 'true' : 'false'); });
+    document.querySelectorAll('[data-view]').forEach(function (b) { b.setAttribute('aria-pressed', (b.dataset.view === state.view) ? 'true' : 'false'); });
+  }
+
+  document.getElementById('rotateBtn').addEventListener('click', function () { state.k = (state.k + 1) % 6; render(); });
+  document.getElementById('resetBtn').addEventListener('click', function () { state.k = 0; state.view = 'serve'; render(); });
+  document.querySelectorAll('[data-season]').forEach(function (b) {
+    b.addEventListener('click', function () { state.season = +b.dataset.season; render(); });
+  });
+  document.querySelectorAll('[data-view]').forEach(function (b) {
+    b.addEventListener('click', function () { state.view = b.dataset.view; render(); });
+  });
+
+  // ---------- Positions ----------
+  var POSITIONS = [
+    { key: 'S', match: ['S'], color: 'var(--s)', title: 'Setter',
+      text: '<p>The quarterback. She takes the second contact on almost every rally and decides who attacks. In Nebraska\'s 5-1 the setter plays all six rotations: three in the front row, where she sets from the right side and can block or dump, and three in the back row, where she starts in right back and runs to the net after the serve. Her position defines the rotation number.</p>' },
+    { key: 'OH', match: ['OH'], color: 'var(--oh)', title: 'Outside hitter (left side)',
+      text: '<p>Attacks from the left antenna in the front row and, on most teams, plays all six rotations: passing serve and digging in the back row, then hitting the "pipe" from behind the 10-foot line. The two outsides are opposite each other in the lineup, so one is always in the front row.</p>' },
+    { key: 'MB', match: ['MB'], color: 'var(--mb)', title: 'Middle blocker',
+      text: '<p>A front-row specialist: quick sets in the middle, slides toward the right antenna, and the first blocker on every opponent attack. When a middle rotates to the back row the libero usually replaces her, so most middles play only three rotations at a time and re-enter when they are due back at the net. The two middles are opposite each other.</p>' },
+    { key: 'OPP', match: ['OPP'], color: 'var(--opp)', title: 'Opposite (right side)',
+      text: '<p>Named for where she sits in the lineup: directly opposite the setter, so that one of them is always in the front row on the right side. Attacks from the right antenna, blocks the other team\'s outside hitters, and often stays in for the back row as an extra attacker.</p>' },
+    { key: 'L', match: ['DS/L'], color: 'var(--lib)', border: true, title: 'Libero and defensive specialists',
+      text: '<p>The libero is the contrasting-jersey passer and digger who goes in for the back-row middle without using a substitution; she cannot block, cannot attack a ball above the net, and in college may serve in one rotation. A defensive specialist does a similar job through regular substitutions, often coming in to serve for the other middle. Nebraska keeps three players in this group and has rotated the libero jersey between Choboy and Mauch.</p>' }
+  ];
+
+  function playersFor(season, match) {
+    return ROSTER[season].filter(function (p) { return match.indexOf(p.pos) !== -1; });
+  }
+  function badgeClass(pos) {
+    if (pos === 'DS/L') return 'l';
+    return pos.toLowerCase();
+  }
+  function playerList(season, match) {
+    var html = '<ul class="players">';
+    playersFor(season, match).forEach(function (p) {
+      html += '<li><span class="num-badge ' + badgeClass(p.pos) + '">' + p.n + '</span><div><b>' + p.name + '</b> <span class="meta">' + p.cls + ', ' + p.ht + ', ' + p.home + '</span><br><span class="small">' + p.note + '</span></div></li>';
+    });
+    html += '</ul>';
+    return html;
+  }
+  function renderPositions() {
+    var box = document.getElementById('posList');
+    var html = '';
+    POSITIONS.forEach(function (P, i) {
+      html += '<details' + (i === 0 ? ' open' : '') + '><summary><span class="swatch" style="background:' + P.color + (P.border ? ';border:2px solid #000' : '') + '"></span>' + P.title + '</summary><div class="body">' + P.text +
+        '<div class="cols"><div><div class="season-h">2026 Huskers</div>' + playerList(2026, P.match) + '</div>' +
+        '<div><div class="season-h">2025 Huskers</div>' + playerList(2025, P.match) + '</div></div></div></details>';
+    });
+    box.innerHTML = html;
+  }
+
+  // ---------- Lineup sheet ----------
+  function renderSheet() {
+    var rows = [
+      ['1', 'S', 'Setter'], ['2', 'OH1', 'Outside 1'], ['3', 'MB1', 'Middle 1'], ['4', 'OPP', 'Opposite'], ['5', 'OH2', 'Outside 2'], ['6', 'MB2', 'Middle 2'], ['L', 'L', 'Libero'], ['DS', 'DS', 'Def. specialist']
+    ];
+    var html = '<table class="sheet"><thead><tr><th>Slot</th><th>2025</th><th>2026</th></tr></thead><tbody>';
+    rows.forEach(function (r) {
+      html += '<tr><td>' + r[0] + ' <span class="small">' + r[2] + '</span></td>';
+      [2025, 2026].forEach(function (s) {
+        var p = player(s, SEASONS[s].lineup[r[1]]);
+        html += '<td><span class="cell"><span class="num-badge ' + badgeClass(p.pos) + '">' + p.n + '</span>' + p.name + '</span></td>';
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    document.getElementById('sheetTable').innerHTML = html;
+  }
+
+  // ---------- Quiz ----------
+  var QUIZ = [
+    { q: 'Nebraska is serving and wins the point. What happens to the lineup?',
+      opts: ['Everyone rotates clockwise', 'Nothing, the same player serves again', 'Only the setter moves'],
+      a: 1, why: 'Rotation only happens after a side-out, when you win a rally the opponent served. Win on your own serve and the same server stays at the line.' },
+    { q: 'Harper Murray is in zone 2 (right front). Nebraska side-outs. Where is she now?',
+      opts: ['Zone 3, middle front', 'Zone 1, serving', 'Zone 5, left back'],
+      a: 1, why: 'Zone 2 is the on-deck spot. The player there rotates to zone 1 and serves next.' },
+    { q: 'Andi Jackson has just rotated to the back row. Who normally takes her place on the floor?',
+      opts: ['The libero, without using a substitution', 'Nobody, she has to stay in', 'The second setter'],
+      a: 0, why: 'Middles are front-row specialists, so the libero goes in for them in the back row. Libero swaps are unlimited and do not count as substitutions.' },
+    { q: 'Bergen Reilly is in zone 6 when the serve is contacted. What may she NOT do during the rally?',
+      opts: ['Set the ball', 'Block at the net', 'Run to the net to set'],
+      a: 1, why: 'Back-row players cannot block, and any attack above the net has to start behind the 10-foot line. Setting and moving to the net are fine once the serve is contacted.' }
+  ];
+  function renderQuiz() {
+    var box = document.getElementById('quizBox');
+    var html = '';
+    QUIZ.forEach(function (q, i) {
+      html += '<div class="q" data-i="' + i + '"><p><b>' + (i + 1) + '.</b> ' + q.q + '</p><div class="opts">';
+      q.opts.forEach(function (o, j) { html += '<button type="button" data-j="' + j + '">' + o + '</button>'; });
+      html += '</div><div class="why" hidden></div></div>';
+    });
+    box.innerHTML = html;
+    box.querySelectorAll('.q').forEach(function (qEl) {
+      var i = +qEl.dataset.i;
+      qEl.querySelectorAll('button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var j = +btn.dataset.j;
+          qEl.querySelectorAll('button').forEach(function (b2) { b2.classList.remove('right', 'wrong'); });
+          if (j === QUIZ[i].a) { btn.classList.add('right'); }
+          else { btn.classList.add('wrong'); qEl.querySelector('button[data-j="' + QUIZ[i].a + '"]').classList.add('right'); }
+          var why = qEl.querySelector('.why');
+          why.hidden = false;
+          why.textContent = (j === QUIZ[i].a ? 'Right. ' : 'Not quite. ') + QUIZ[i].why;
+        });
+      });
+    });
+  }
+
+  // ---------- Init ----------
+  renderPositions();
+  renderSheet();
+  renderQuiz();
+  render();
+})();
+</script>
+</body>
+</html>
