@@ -7,4 +7,4 @@ This repository holds the published page only (`index.html`). It is generated fr
 analysis pipeline; no box score, play-by-play log or data file is redistributed here. Every number
 on the page carries its count, and every rate its interval.
 
-Built 2026-11-25 from 85,615 rallies of 26 seasons (2001-2026).
+Built 2026-11-25 from 85,742 rallies of 26 seasons (2001-2026).

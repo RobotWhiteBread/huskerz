@@ -58,29 +58,29 @@
 <table class="data">
 <thead><tr><th onclick="sortTable(this)">Field</th><th class="num">Value</th></tr></thead>
 <tbody>
-<tr><td title="matches">matches</td><td class="num">616</td></tr>
-<tr><td title="sets">sets</td><td class="num">1,898</td></tr>
-<tr><td title="serves">serves</td><td class="num">47,212</td></tr>
-<tr><td title="aces">aces</td><td class="num">2,453</td></tr>
-<tr><td title="errors">errors</td><td class="num">3,856</td></tr>
+<tr><td title="matches">matches</td><td class="num">617</td></tr>
+<tr><td title="sets">sets</td><td class="num">1,901</td></tr>
+<tr><td title="serves">serves</td><td class="num">47,286</td></tr>
+<tr><td title="aces">aces</td><td class="num">2,457</td></tr>
+<tr><td title="errors">errors</td><td class="num">3,860</td></tr>
 <tr><td title="seasons">seasons</td><td class="num">26</td></tr>
-<tr><td title="point_scoring_rate">point scoring rate</td><td class="num">0.4748</td></tr>
-<tr><td title="point_scoring_rate_when_the_serve_lands">point scoring rate when the serve lands</td><td class="num">0.517</td></tr>
+<tr><td title="point_scoring_rate">point scoring rate</td><td class="num">0.4749</td></tr>
+<tr><td title="point_scoring_rate_when_the_serve_lands">point scoring rate when the serve lands</td><td class="num">0.5171</td></tr>
 <tr><td title="conversion_after_a_landed_non_ace_serve">conversion after a landed non ace serve</td><td class="num">0.4881</td></tr>
-<tr><td title="required_aces_per_extra_error">required aces per extra error</td><td class="num">0.9534</td></tr>
-<tr><td title="aggression_value_per_serve">aggression value per serve</td><td class="num">-0.01327</td></tr>
+<tr><td title="required_aces_per_extra_error">required aces per extra error</td><td class="num">0.9535</td></tr>
+<tr><td title="aggression_value_per_serve">aggression value per serve</td><td class="num">-0.01325</td></tr>
 <tr><td title="aggression_value_total_points">aggression value total points</td><td class="num">-626.3</td></tr>
 <tr><td title="player_seasons">player seasons</td><td class="num">272</td></tr>
 <tr><td title="players">players</td><td class="num">109</td></tr>
 <tr><td title="player_seasons_on_the_wrong_side">player seasons on the wrong side</td><td class="num">73</td></tr>
-<tr><td title="player_seasons_confidently_on_the_wrong_side">player seasons confidently on the wrong side</td><td class="num">19</td></tr>
+<tr><td title="player_seasons_confidently_on_the_wrong_side">player seasons confidently on the wrong side</td><td class="num">20</td></tr>
 <tr><td title="read_the_refusals_first">read the refusals first</td><td class="num">the record has no pass rating and no touch inside a rally; see `refused`</td></tr>
 </tbody>
 </table>
 </div>
 <h2>What the export says · <code>break_even.verdict</code></h2>
 <ul style="padding-left: 18px; margin: 0 0 24px;">
-<li>break-even needs 0.953 points of ace rate per point of error rate. Comparing Nebraska's servers with each other, the riskier ones buy 0.336 (uncorrected 0.258, bootstrap 95% 0.165 to 0.299). That is short of break-even at every minimum-serve floor tried, and the bootstrap interval stays below it: on this corpus the extra errors are not paid for, and the aces the riskier servers win are a small fraction of what their misses cost. The within-player slope - the same exchange measured from a player's own season-to-season change, which is the quantity this argument needs - is +0.1565 [+0.0539, +0.2685] on 97 consecutive-season pairs, so the two agree and both are far under break-even.</li>
+<li>break-even needs 0.954 points of ace rate per point of error rate. Comparing Nebraska's servers with each other, the riskier ones buy 0.336 (uncorrected 0.259, bootstrap 95% 0.166 to 0.301). That is short of break-even at every minimum-serve floor tried, and the bootstrap interval stays below it: on this corpus the extra errors are not paid for, and the aces the riskier servers win are a small fraction of what their misses cost. The within-player slope - the same exchange measured from a player's own season-to-season change, which is the quantity this argument needs - is +0.1567 [+0.0546, +0.2691] on 97 consecutive-season pairs, so the two agree and both are far under break-even.</li>
 </ul>
 <h2>Limits it states</h2>
 <ul style="padding-left: 18px; margin: 0 0 24px;">
@@ -101,27 +101,27 @@
     Every number above is read out of a file in this repository, and every file is
     re-derived and re-checked by <code>huskerstats vb-validate</code>, which wrote
     <code>data/reports/coverage.json</code> at commit
-    <code>5a554e5</code>. Hover a file to read its checks.
+    <code>e7a4b96</code>. Hover a file to read its checks.
   </p>
 <div class="lineage-list">
 <span class="lineage-src" title="data/reports/serving.json 
 what a Nebraska serve is worth, and whether serving harder pays
-47,212 Nebraska serves
+47,286 Nebraska serves
 
-[pass] analysis_exports: 5 analysis exports fresh and consistent: leverage on 85471 rallies, serving on 47212 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
+[pass] analysis_exports: 5 analysis exports fresh and consistent: leverage on 85598 rallies, serving on 47286 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
 ">
-<code>serving.json</code> · <span class="num">47,212</span> rows ·
+<code>serving.json</code> · <span class="num">47,286</span> rows ·
         <span class="ok">1/1</span>
         checks
     </span>
 <span class="lineage-src" title="data/reports/rally_analytics.json 
 side-out and point-scoring rates from the rally logs
-85,615 rallies
+85,742 rallies
 
-[pass] rally_analytics: 85615 rallies in 1898 trusted sets of 616 matches
-[pass] play_by_play: 655 matches and 2260 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+[pass] rally_analytics: 85742 rallies in 1901 trusted sets of 617 matches
+[pass] play_by_play: 656 matches and 2263 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
 ">
-<code>rally_analytics.json</code> · <span class="num">85,615</span> rows ·
+<code>rally_analytics.json</code> · <span class="num">85,742</span> rows ·
         <span class="ok">2/2</span>
         checks
     </span>

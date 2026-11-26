@@ -58,23 +58,23 @@
 <table class="data">
 <thead><tr><th onclick="sortTable(this)">Field</th><th class="num">Value</th></tr></thead>
 <tbody>
-<tr><td title="matches">matches</td><td class="num">878</td></tr>
+<tr><td title="matches">matches</td><td class="num">879</td></tr>
 <tr><td title="files_left_out">files left out</td><td class="num">1</td></tr>
 <tr><td title="opponents">opponents</td><td class="num">138</td></tr>
 <tr><td title="opponent_seasons">opponent seasons</td><td class="num">649</td></tr>
-<tr><td title="matches_with_a_trusted_nebraska_block">matches with a trusted nebraska block</td><td class="num">874</td></tr>
-<tr><td title="matches_with_a_trusted_opponent_block">matches with a trusted opponent block</td><td class="num">859</td></tr>
-<tr><td title="matches_with_both">matches with both</td><td class="num">857</td></tr>
+<tr><td title="matches_with_a_trusted_nebraska_block">matches with a trusted nebraska block</td><td class="num">875</td></tr>
+<tr><td title="matches_with_a_trusted_opponent_block">matches with a trusted opponent block</td><td class="num">860</td></tr>
+<tr><td title="matches_with_both">matches with both</td><td class="num">858</td></tr>
 </tbody>
 </table>
 </div>
 <h2>What the export says · <code>read_this_first</code></h2>
 <ul style="padding-left: 18px; margin: 0 0 24px;">
-<li>all 878 matches used from box_scores.json have a Nebraska block, so every observation of an opponent is an observation against Nebraska. 'What they allow' is a fixture history, not a scouting report.</li><li>leave one out: the baseline for a match never includes that match</li><li>'season' is the opponent's other matches that season (443 of the 874 matches with a trusted Nebraska line have one); 'career' is their other matches in any season with each season's mean removed first (817 have one; the other 57 are opponents this corpus holds exactly once)</li><li>hitting percentage in percentage points (value - beta); kills, digs and blocks per set multiplicatively by grand/(grand + beta), which assumes the opponent effect scales every player in proportion to her own production - an assumption, not a measurement</li><li>rounding: nothing in this file is rounded</li><li>'allows' is Nebraska's own line in that match, filed under the opponent who gave it up, so above_baseline &gt; 0 means Nebraska beat that fixture's history. 'does' is the opponent's line, so above_baseline &gt; 0 means the opponent beat it and Nebraska's defence was below its own history; 'does.adjusted' is what an average offence would have produced against Nebraska that night.</li>
+<li>all 879 matches used from box_scores.json have a Nebraska block, so every observation of an opponent is an observation against Nebraska. 'What they allow' is a fixture history, not a scouting report.</li><li>leave one out: the baseline for a match never includes that match</li><li>'season' is the opponent's other matches that season (445 of the 875 matches with a trusted Nebraska line have one); 'career' is their other matches in any season with each season's mean removed first (818 have one; the other 57 are opponents this corpus holds exactly once)</li><li>hitting percentage in percentage points (value - beta); kills, digs and blocks per set multiplicatively by grand/(grand + beta), which assumes the opponent effect scales every player in proportion to her own production - an assumption, not a measurement</li><li>rounding: nothing in this file is rounded</li><li>'allows' is Nebraska's own line in that match, filed under the opponent who gave it up, so above_baseline &gt; 0 means Nebraska beat that fixture's history. 'does' is the opponent's line, so above_baseline &gt; 0 means the opponent beat it and Nebraska's defence was below its own history; 'does.adjusted' is what an average offence would have produced against Nebraska that night.</li>
 </ul>
 <h2>Questions it refuses</h2>
 <ul style="padding-left: 18px; margin: 0 0 24px;">
-<li><strong>strength of schedule against the rest of the country</strong> — every match in data/reports/box_scores.json is a Nebraska match, so no opponent's games against a third team are anywhere in this corpus. What is computed here is relative to the opponents Nebraska itself played, and nothing in it can say whether those opponents are strong nationally.</li><li><strong>an opponent effect for a team we hold once</strong> — 57 of the 138 opponents appear in exactly one match. Leaving that match out leaves nothing, so those matches carry no baseline and are excluded from every adjusted figure rather than being given the season mean and counted.</li><li><strong>a per-season opponent baseline for most opponents</strong> — 429 of the 649 opponent-seasons are a single match. The per-season table is exported for all of them, but its shrunk column at n = 1 is almost entirely the season mean, and the per-match season baseline is marked unavailable rather than silently pooled.</li><li><strong>how much of a kill the setter, the passer or the digger is responsible for</strong> — the box score prints one line per player per match and the play-by-play prints one terminal action per rally; no source records a touch inside a rally. rally_analytics refuses first-ball side-out for the same reason and nothing is imputed here either.</li><li><strong>an opponent effect from an untrusted team block</strong> — a block that does not reconcile with its own printed totals can have a player's numbers attached to the name above (handoff section 4). Those blocks contribute no value on their side and the row says which side is missing and why.</li>
+<li><strong>strength of schedule against the rest of the country</strong> — every match in data/reports/box_scores.json is a Nebraska match, so no opponent's games against a third team are anywhere in this corpus. What is computed here is relative to the opponents Nebraska itself played, and nothing in it can say whether those opponents are strong nationally.</li><li><strong>an opponent effect for a team we hold once</strong> — 57 of the 138 opponents appear in exactly one match. Leaving that match out leaves nothing, so those matches carry no baseline and are excluded from every adjusted figure rather than being given the season mean and counted.</li><li><strong>a per-season opponent baseline for most opponents</strong> — 428 of the 649 opponent-seasons are a single match. The per-season table is exported for all of them, but its shrunk column at n = 1 is almost entirely the season mean, and the per-match season baseline is marked unavailable rather than silently pooled.</li><li><strong>how much of a kill the setter, the passer or the digger is responsible for</strong> — the box score prints one line per player per match and the play-by-play prints one terminal action per rally; no source records a touch inside a rally. rally_analytics refuses first-ball side-out for the same reason and nothing is imputed here either.</li><li><strong>an opponent effect from an untrusted team block</strong> — a block that does not reconcile with its own printed totals can have a player's numbers attached to the name above (handoff section 4). Those blocks contribute no value on their side and the row says which side is missing and why.</li>
 </ul>
 <h2>The other studies</h2>
 <ul style="padding-left: 18px; margin: 0;">
@@ -87,27 +87,27 @@
     Every number above is read out of a file in this repository, and every file is
     re-derived and re-checked by <code>huskerstats vb-validate</code>, which wrote
     <code>data/reports/coverage.json</code> at commit
-    <code>5a554e5</code>. Hover a file to read its checks.
+    <code>e7a4b96</code>. Hover a file to read its checks.
   </p>
 <div class="lineage-list">
 <span class="lineage-src" title="data/reports/opponent_adjusted.json 
 each match against what that opponent does and allows
-878 matches
+879 matches
 
-[pass] analysis_exports: 5 analysis exports fresh and consistent: leverage on 85471 rallies, serving on 47212 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
+[pass] analysis_exports: 5 analysis exports fresh and consistent: leverage on 85598 rallies, serving on 47286 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
 ">
-<code>opponent_adjusted.json</code> · <span class="num">878</span> rows ·
+<code>opponent_adjusted.json</code> · <span class="num">879</span> rows ·
         <span class="ok">1/1</span>
         checks
     </span>
 <span class="lineage-src" title="data/reports/rally_analytics.json 
 side-out and point-scoring rates from the rally logs
-85,615 rallies
+85,742 rallies
 
-[pass] rally_analytics: 85615 rallies in 1898 trusted sets of 616 matches
-[pass] play_by_play: 655 matches and 2260 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+[pass] rally_analytics: 85742 rallies in 1901 trusted sets of 617 matches
+[pass] play_by_play: 656 matches and 2263 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
 ">
-<code>rally_analytics.json</code> · <span class="num">85,615</span> rows ·
+<code>rally_analytics.json</code> · <span class="num">85,742</span> rows ·
         <span class="ok">2/2</span>
         checks
     </span>

@@ -63,18 +63,18 @@
 <table class="data">
 <thead><tr><th onclick="sortTable(this)">Field</th><th class="num">Value</th></tr></thead>
 <tbody>
-<tr><td title="matches">matches</td><td class="num">616</td></tr>
-<tr><td title="sets">sets</td><td class="num">1,898</td></tr>
-<tr><td title="rallies">rallies</td><td class="num">85,615</td></tr>
-<tr><td title="nebraska_serves">nebraska serves</td><td class="num">47,212</td></tr>
-<tr><td title="nebraska_receptions">nebraska receptions</td><td class="num">38,403</td></tr>
+<tr><td title="matches">matches</td><td class="num">617</td></tr>
+<tr><td title="sets">sets</td><td class="num">1,901</td></tr>
+<tr><td title="rallies">rallies</td><td class="num">85,742</td></tr>
+<tr><td title="nebraska_serves">nebraska serves</td><td class="num">47,286</td></tr>
+<tr><td title="nebraska_receptions">nebraska receptions</td><td class="num">38,456</td></tr>
 <tr><td title="skipped_files">skipped files</td><td class="num">483</td></tr>
 </tbody>
 </table>
 </div>
 <h2>What the export says · <code>verdict</code></h2>
 <ul style="padding-left: 18px; margin: 0 0 24px;">
-<li>Naively, Nebraska wins 0.4942 of the rallies that follow three it has just won (9873 rallies), against a base rate of 0.5575 over all 85615. That is -0.0633, and it is negative because winning hands over the serve.</li><li>Inside the serving state the gap runs the other way: having won the last three rallies (two serves already won) Nebraska takes 0.4942 of the fourth, on 10112 of them, against 0.4656 on a serve that starts a turn (25597): +0.0285.</li><li>But a within-set reshuffle of the same serves produces +0.0238 of that on its own. What is left - the answer to the question - is +0.0048 [-0.0059, +0.0154], p = 0.380.</li><li>One rally longer - four already won, so the fifth - the corrected estimate is +0.0098 [-0.0044, +0.0240], p = 0.176, on 4807 rallies.</li><li>Nebraska's 5380 runs of three or more are fewer than the 6462 the same sets produce when the order of their own rallies is shuffled at random. Long runs are not evidence of momentum until the serving rule is taken out, because the team that wins a rally has to serve the next one, and serving is worth less than receiving.</li><li>the three streak indicators change held-out log loss by -0.000000 nats per rally, and help in 14 of 26 held-out seasons. A term that mattered would help in most of them.</li><li>14 specifications, 3 significant at 5%. The closest is 'match_server_score' asking about rally 3 (having won the last 2), corrected +0.0131, p = 0.000 - and it is the one that shuffles inside bands of the score, which the streak itself moves, so it is reported here rather than adopted. Every corrected estimate in the table is smaller than the 0.0132 this corpus could have detected with 80% power.</li>
+<li>Naively, Nebraska wins 0.4943 of the rallies that follow three it has just won (9887 rallies), against a base rate of 0.5575 over all 85742. That is -0.0633, and it is negative because winning hands over the serve.</li><li>Inside the serving state the gap runs the other way: having won the last three rallies (two serves already won) Nebraska takes 0.4943 of the fourth, on 10126 of them, against 0.4657 on a serve that starts a turn (25637): +0.0286.</li><li>But a within-set reshuffle of the same serves produces +0.0238 of that on its own. What is left - the answer to the question - is +0.0048 [-0.0060, +0.0155], p = 0.381.</li><li>One rally longer - four already won, so the fifth - the corrected estimate is +0.0103 [-0.0041, +0.0246], p = 0.158, on 4813 rallies.</li><li>Nebraska's 5389 runs of three or more are fewer than the 6473 the same sets produce when the order of their own rallies is shuffled at random. Long runs are not evidence of momentum until the serving rule is taken out, because the team that wins a rally has to serve the next one, and serving is worth less than receiving.</li><li>the three streak indicators change held-out log loss by +0.000001 nats per rally, and help in 14 of 26 held-out seasons. A term that mattered would help in most of them.</li><li>14 specifications, 4 significant at 5%. The closest is 'match_server_score' asking about rally 3 (having won the last 2), corrected +0.0130, p = 0.001 - and it is the one that shuffles inside bands of the score, which the streak itself moves, so it is reported here rather than adopted. Every corrected estimate in the table is smaller than the 0.0131 this corpus could have detected with 80% power.</li>
 </ul>
 <h2>Questions it refuses</h2>
 <ul style="padding-left: 18px; margin: 0 0 24px;">
@@ -91,27 +91,27 @@
     Every number above is read out of a file in this repository, and every file is
     re-derived and re-checked by <code>huskerstats vb-validate</code>, which wrote
     <code>data/reports/coverage.json</code> at commit
-    <code>5a554e5</code>. Hover a file to read its checks.
+    <code>e7a4b96</code>. Hover a file to read its checks.
   </p>
 <div class="lineage-list">
 <span class="lineage-src" title="data/reports/runs.json 
 whether winning rallies makes Nebraska likelier to win the next one
-85,615 rallies
+85,742 rallies
 
-[pass] analysis_exports: 5 analysis exports fresh and consistent: leverage on 85471 rallies, serving on 47212 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
+[pass] analysis_exports: 5 analysis exports fresh and consistent: leverage on 85598 rallies, serving on 47286 serves, 2 of 4 opponent-adjusted metrics survive their checks, 341 era-adjusted player-seasons
 ">
-<code>runs.json</code> · <span class="num">85,615</span> rows ·
+<code>runs.json</code> · <span class="num">85,742</span> rows ·
         <span class="ok">1/1</span>
         checks
     </span>
 <span class="lineage-src" title="data/reports/rally_analytics.json 
 side-out and point-scoring rates from the rally logs
-85,615 rallies
+85,742 rallies
 
-[pass] rally_analytics: 85615 rallies in 1898 trusted sets of 616 matches
-[pass] play_by_play: 655 matches and 2260 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
+[pass] rally_analytics: 85742 rallies in 1901 trusted sets of 617 matches
+[pass] play_by_play: 656 matches and 2263 sets of rally play-by-play, 1389 of the 1663 StatCrew sets of 2000-2015 pass all six checks
 ">
-<code>rally_analytics.json</code> · <span class="num">85,615</span> rows ·
+<code>rally_analytics.json</code> · <span class="num">85,742</span> rows ·
         <span class="ok">2/2</span>
         checks
     </span>
