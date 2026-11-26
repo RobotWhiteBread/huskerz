@@ -616,3 +616,10 @@ footer small { color: var(--ink-muted); font-size: var(--text-xs); }
 .pick .pick-span { margin-left: auto; font-size: var(--text-xs); color: var(--ink-muted); font-variant-numeric: tabular-nums; }
 .filter-box { display: flex; align-items: center; gap: var(--sp-2); border: 1px solid var(--ink-ghost); background: var(--white); padding: 8px var(--sp-3); }
 .filter-box input { border: 0; outline: 0; background: transparent; font: inherit; font-size: var(--text-sm); width: 100%; }
+
+/* The study pages set their side padding inline for a desktop column; on a phone that padding is
+   a third of the screen. */
+@media (max-width: 700px) {
+    [style*="64px"] { padding-left: 16px !important; padding-right: 16px !important; }
+    .study-prose p, .study-prose li { font-size: 15px !important; }
+}
