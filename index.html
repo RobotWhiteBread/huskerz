@@ -187,14 +187,33 @@ The closest is the score itself: Nebraska&#39;s margin in the set, in points
   <li>Rates on small samples come with wide intervals; read the interval, not just the number.</li>
 </ul>
 
-<h2>How it's built</h2>
-<p>Every official box score from 2001 on is archived as published, parsed, and checked against its own
-  printed totals before it counts (880 box scores). A rally log
-  is used only if every set passes six checks: rallies equal the final score, the score moves one point at a time, the
-  serve changes on every side-out, the server follows the rotation, the final matches the box score, and the points by
-  type match the box score. Where a school's site publishes the same match, the two logs are compared rally for rally.
-Every one of these checks held when this page was built.</p>
-<p>The pipeline, the checks and much of this page's wording were written with an AI model (Anthropic's Claude) and
+<h2>How the data is checked</h2>
+<p>Nothing counts until it passes its checks, and the build stops if any check fails.</p>
+<ul>
+  <li><strong>Box scores.</strong> Every official box score from 2000 on is archived exactly as
+    published, then parsed (880 so far, none
+    failed to parse). Each team's player lines must add up to the printed team totals in all nine
+    stat columns before they are used: 1,736 of 1,760
+    team tables do, and the rest are left out rather than guessed at.</li>
+  <li><strong>Results.</strong> Every result is checked against the season's schedule page:
+    879 compared, 0 disagreeing.    Season records add up to what the official season reports print in 26 of
+    26 seasons.</li>
+  <li><strong>Rally logs.</strong> A play-by-play set is used only if it passes six checks: the rallies equal the final
+    score, the score moves one point at a time, the serve changes on every side-out, the server follows the rotation,
+    the final matches the box score, and the points by type match the box score. Of
+    2,266 sets read from every source, 1,911 are used; the rest failed a check or
+    repeat a match already counted from another source.</li>
+  <li><strong>A second source.</strong> Where the opponent's site publishes its own log of the same match, the two are
+    compared rally by rally (108 matches; 6
+    differ somewhere, and each difference is looked at).</li>
+  <li><strong>Corrections in the open.</strong> When a source is wrong (a misprinted jersey, a name spelled three ways,
+    a table that does not add up), the fix is written down as its own line with the reason and the evidence, never
+    made silently: 95 so far, 85 marked certain and
+    10 likely.</li>
+  <li><strong>Readers.</strong> When someone spots a mistake, it is checked against the source and fixed, and the check
+    that missed it is tightened so it cannot come back.</li>
+</ul>
+<p>Every one of these checks held when this page was built.</p><p>The pipeline, the checks and much of this page's wording were written with an AI model (Anthropic's Claude) and
   reviewed by the one person who runs it. No number on the page comes from the model: each is computed by that code
   from the records above, and the tests compare the page's headline numbers with the files they come from.</p>
 
